@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ключевые проекты Москвы</title>
+</head>
+<body class="page">
+  <header class="header">
+    <div class="header__logos">
+      <a href="" class="header__logo">
+        <img src="<%=require('./images/mka-logo-black.svg')%>" alt="">
+      </a>
+      <a href="" class="header__logo">
+        <img src="<%=require('./images/main-logo-old-black.svg')%>" alt="">
+      </a>
+    </div>
+
+    <h1 class="header__title">Ключевые проекты Москвы</h1>
+
+    <button class="header__burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+
+    <div class="header__sidepanel">
+      <div class="header__sidepanel-inner">
+        <a href="#" class="header__sidepanel-link">longer link</a>
+        <a href="#" class="header__sidepanel-link">longer link</a>
+        <a href="#" class="header__sidepanel-link">longer link</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="submenu">
+      <form action="" class="search">
+        <div class="search__main-block">
+          <input type="text" class="search__main-input" placeholder="Поиск" >
+          
+          <button class="search__filter">
+            <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M8.94999 2.5H15V3.5H8.94999C8.71836 4.64112 7.70948 5.5 6.5 5.5C5.29052 5.5 4.28164 4.64112 4.05001 3.5H0V2.5H4.05001C4.28164 1.35888 5.29052 0.5 6.5 0.5C7.70948 0.5 8.71836 1.35888 8.94999 2.5ZM13.95 7.5H15V8.5H13.95C13.7184 9.64112 12.7095 10.5 11.5 10.5C10.2905 10.5 9.28164 9.64112 9.05001 8.5H0V7.5H9.05001C9.28164 6.35888 10.2905 5.5 11.5 5.5C12.7095 5.5 13.7184 6.35888 13.95 7.5ZM15 12.5H6.94999C6.71836 11.3589 5.70948 10.5 4.5 10.5C3.29052 10.5 2.28164 11.3589 2.05001 12.5H0V13.5H2.05001C2.28164 14.6411 3.29052 15.5 4.5 15.5C5.70948 15.5 6.71836 14.6411 6.94999 13.5H15V12.5Z" fill="black" fill-opacity="0.7"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+  
+      <div class="submenu__view-options">
+        <p class="submenu__description">вид</p>
+  
+        <div class="submenu__view-box">
+          <input type="radio" name="view" id="table" checked>
+          <label for="table" class="submenu__view">
+            <svg  width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="bg" width="40" height="40" rx="20" fill="white"/>
+              <path class="fillbock" fill-rule="evenodd" clip-rule="evenodd" d="M17.0859 13V16.6847H13V17.6847H17.0859V22.5064H13V23.5064H17.0859V26.9704H18.0859V23.5064H21.1641V27H22.1641V23.5064H27V22.5064H22.1641V17.6847H27V16.6847H22.1641V13.0296H21.1641V16.6847H18.0859V13H17.0859ZM21.1641 22.5064V17.6847H18.0859V22.5064H21.1641Z" fill="#1678E2"/>
+              <rect class="strokeblock" x="0.25" y="0.25" width="39.5" height="39.5" rx="19.75" stroke="black" stroke-opacity="0.5" stroke-width="0.5"/>
+            </svg>
+              
+          </label>
+        </div>
+        <div class="submenu__view-box">
+          <input type="radio" name="view" id="mosaic">
+          <label for="mosaic" class="submenu__view">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="bg" width="40" height="40" rx="20" fill="white"/>
+              <path class="fillbock" fill-rule="evenodd" clip-rule="evenodd" d="M19.4091 13.5H13.5V19.4091H19.4091V13.5ZM19.4091 20.5909H13.5V26.5H19.4091V20.5909ZM20.5938 13.5H26.5028V19.4091H20.5938V13.5ZM26.5028 20.5909H20.5938V26.5H26.5028V20.5909Z" fill="#1678E2"/>
+              <rect class="strokeblock" x="0.25" y="0.25" width="39.5" height="39.5" rx="19.75" stroke="black" stroke-opacity="0.5" stroke-width="0.5"/>
+              </svg>
+              
+          </label>
+        </div>
+        <div class="submenu__view-box">
+          <input type="radio" name="view" id="map">
+          <label for="map" class="submenu__view">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect class="bg" width="40" height="40" rx="20" fill="white"/>
+              <path class="fillbock" fill-rule="evenodd" clip-rule="evenodd" d="M20 28C20 28 26 20.8702 26 17.7143C26 14.5584 23.3137 12 20 12C16.6863 12 14 14.5584 14 17.7143C14 20.8702 20 28 20 28ZM17.913 19.649C16.8939 18.5614 16.8958 16.8689 17.9174 15.7835V15.7835C19.042 14.5888 20.9447 14.6011 22.0538 15.8103V15.8103C23.0422 16.888 23.044 18.5422 22.058 19.6222V19.6222C20.9483 20.8375 19.0384 20.8499 17.913 19.649V19.649Z" fill="#1678E2"/>
+              <rect class="strokeblock" x="0.25" y="0.25" width="39.5" height="39.5" rx="19.75" stroke="black" stroke-opacity="0.5" stroke-width="0.5"/>
+              </svg>
+              
+          </label>
+        </div>
+       
+  
+      </div>
+    </section>
+
+    <section class="represent table">
+      <div class="table__line table__header">
+        <div class="table__cell table__cell_checkbox">
+          <input type="checkbox" name="all" id="all">
+        </div>
+        <div class="table__cell table__cell_id">ID</div>
+        <div class="table__cell table__cell_raiting">Рейтинг</div>
+        <div class="table__cell table__cell_name">Название</div>
+        <div class="table__cell table__cell_customer">Заказчик</div>
+        <div class="table__cell table__cell_projector">Проектировщик</div>
+        <div class="table__cell table__cell_date">Дата ввода</div>
+        <div class="table__cell table__cell_district">Округ</div>
+        <div class="table__cell table__cell_agr">АГР</div>
+        <div class="table__cell table__cell_archmain">Архзначимый</div>
+        <div class="table__cell table__cell_tags">ТЭГИ</div>
+        <div class="table__cell table__cell_function">Функции</div>
+        <div class="table__cell table__cell_action">Действия</div>        
+      </div>
+
+      <div class="table__line">
+        <div class="table__cell table__cell_checkbox">
+          <input type="checkbox" name="obj1" id="obj1">
+        </div>
+        <div class="table__cell table__cell_id">1</div>
+        <div class="table__cell table__cell_raiting">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+        </div>
+        <div class="table__cell table__cell_name">RED7</div>
+        <div class="table__cell table__cell_customer">АО ГК “Основа” </div>
+        <div class="table__cell table__cell_projector">Проектное бюро “Апекс”</div>
+        <div class="table__cell table__cell_date">1.01.2023</div>
+        <div class="table__cell table__cell_district">ЦАО</div>
+        <div class="table__cell table__cell_agr">1.01.2023</div>
+        <div class="table__cell table__cell_archmain">1.01.2023</div>
+        <div class="table__cell table__cell_tags">Высотные объекты</div>
+        <div class="table__cell table__cell_function">Функции</div>
+        <div class="table__cell table__cell_action">
+          <a href="#" class="table__cell-button pdf">
+            <img src="<%=require('./images/icon-pdf.png')%>" alt="кнопка печать в пдф">
+          </a>
+          <a href="#" class="table__cell-button edit">
+            <img src="<%=require('./images/icon-edit.png')%>" alt="кнопка редактирования">
+          </a>
+          <a href="#" class="table__cell-button gotoproject">
+            <img src="<%=require('./images/icon-to-project.png')%>" alt="кнопка открыть на новой странице">
+          </a>
+        </div>        
+      </div>
+
+      <div class="table__line">
+        <div class="table__cell table__cell_checkbox">
+          <input type="checkbox" name="obj1" id="obj2">
+        </div>
+        <div class="table__cell table__cell_id">2</div>
+        <div class="table__cell table__cell_raiting">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+        </div>
+        <div class="table__cell table__cell_name">музейный центр (структурное подразделение ФГБУК «Государственного исторического музея») </div>
+        <div class="table__cell table__cell_customer">АО ГК “Основа” </div>
+        <div class="table__cell table__cell_projector">Проектное бюро “Апекс”</div>
+        <div class="table__cell table__cell_date">1.01.2023</div>
+        <div class="table__cell table__cell_district">ЦАО</div>
+        <div class="table__cell table__cell_agr">1.01.2023</div>
+        <div class="table__cell table__cell_archmain">1.01.2023</div>
+        <div class="table__cell table__cell_tags">Высотные объекты</div>
+        <div class="table__cell table__cell_function">Функции</div>
+        <div class="table__cell table__cell_action">
+          <a href="#" class="table__cell-button pdf">
+            <img src="<%=require('./images/icon-pdf.png')%>" alt="кнопка печать в пдф">
+          </a>
+          <a href="#" class="table__cell-button edit">
+            <img src="<%=require('./images/icon-edit.png')%>" alt="кнопка редактирования">
+          </a>
+          <a href="#" class="table__cell-button gotoproject">
+            <img src="<%=require('./images/icon-to-project.png')%>" alt="кнопка открыть на новой странице">
+          </a>
+        </div>        
+      </div>
+
+      <div class="table__line">
+        <div class="table__cell table__cell_checkbox">
+          <input type="checkbox" name="obj1" id="obj3">
+        </div>
+        <div class="table__cell table__cell_id">3</div>
+        <div class="table__cell table__cell_raiting">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">          
+        </div>
+        <div class="table__cell table__cell_name">Многофункциональный деловой комплекс с гостиничными номерами и подземной парковкой</div>
+        <div class="table__cell table__cell_customer">АО «Мосинжинвест», CRCC Reulestate (Иван Ванг), AFIDEVELOPMENT</div>
+        <div class="table__cell table__cell_projector">UNK Архитектуроное бюро Асадова ООО «АМ Атриум».</div>
+        <div class="table__cell table__cell_date">1.01.2023</div>
+        <div class="table__cell table__cell_district">ЦАО</div>
+        <div class="table__cell table__cell_agr">1.01.2023</div>
+        <div class="table__cell table__cell_archmain">1.01.2023</div>
+        <div class="table__cell table__cell_tags">Высотные объекты</div>
+        <div class="table__cell table__cell_function">апартаменты</div>
+        <div class="table__cell table__cell_action">
+          <a href="#" class="table__cell-button pdf">
+            <img src="<%=require('./images/icon-pdf.png')%>" alt="кнопка печать в пдф">
+          </a>
+          <a href="#" class="table__cell-button edit">
+            <img src="<%=require('./images/icon-edit.png')%>" alt="кнопка редактирования">
+          </a>
+          <a href="#" class="table__cell-button gotoproject">
+            <img src="<%=require('./images/icon-to-project.png')%>" alt="кнопка открыть на новой странице">
+          </a>
+        </div>        
+      </div>
+
+      <div class="table__line">
+        <div class="table__cell table__cell_checkbox">
+          <input type="checkbox" name="obj1" id="obj1">
+        </div>
+        <div class="table__cell table__cell_id">1</div>
+        <div class="table__cell table__cell_raiting">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+        </div>
+        <div class="table__cell table__cell_name">RED7</div>
+        <div class="table__cell table__cell_customer">АО ГК “Основа” </div>
+        <div class="table__cell table__cell_projector">Проектное бюро “Апекс”</div>
+        <div class="table__cell table__cell_date">1.01.2023</div>
+        <div class="table__cell table__cell_district">ЦАО</div>
+        <div class="table__cell table__cell_agr">1.01.2023</div>
+        <div class="table__cell table__cell_archmain">1.01.2023</div>
+        <div class="table__cell table__cell_tags">Высотные объекты</div>
+        <div class="table__cell table__cell_function">Функции</div>
+        <div class="table__cell table__cell_action">
+          <a href="#" class="table__cell-button pdf">
+            <img src="<%=require('./images/icon-pdf.png')%>" alt="кнопка печать в пдф">
+          </a>
+          <a href="#" class="table__cell-button edit">
+            <img src="<%=require('./images/icon-edit.png')%>" alt="кнопка редактирования">
+          </a>
+          <a href="#" class="table__cell-button gotoproject">
+            <img src="<%=require('./images/icon-to-project.png')%>" alt="кнопка открыть на новой странице">
+          </a>
+        </div>        
+      </div>
+
+      <div class="table__line">
+        <div class="table__cell table__cell_checkbox">
+          <input type="checkbox" name="obj1" id="obj1">
+        </div>
+        <div class="table__cell table__cell_id">1</div>
+        <div class="table__cell table__cell_raiting">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+        </div>
+        <div class="table__cell table__cell_name">RED7</div>
+        <div class="table__cell table__cell_customer">АО ГК “Основа” </div>
+        <div class="table__cell table__cell_projector">Проектное бюро “Апекс”</div>
+        <div class="table__cell table__cell_date">1.01.2023</div>
+        <div class="table__cell table__cell_district">ЦАО</div>
+        <div class="table__cell table__cell_agr">1.01.2023</div>
+        <div class="table__cell table__cell_archmain">1.01.2023</div>
+        <div class="table__cell table__cell_tags">Высотные объекты</div>
+        <div class="table__cell table__cell_function">Функции</div>
+        <div class="table__cell table__cell_action">
+          <a href="#" class="table__cell-button pdf">
+            <img src="<%=require('./images/icon-pdf.png')%>" alt="кнопка печать в пдф">
+          </a>
+          <a href="#" class="table__cell-button edit">
+            <img src="<%=require('./images/icon-edit.png')%>" alt="кнопка редактирования">
+          </a>
+          <a href="#" class="table__cell-button gotoproject">
+            <img src="<%=require('./images/icon-to-project.png')%>" alt="кнопка открыть на новой странице">
+          </a>
+        </div>        
+      </div>
+
+      <div class="table__line">
+        <div class="table__cell table__cell_checkbox">
+          <input type="checkbox" name="obj1" id="obj1">
+        </div>
+        <div class="table__cell table__cell_id">1</div>
+        <div class="table__cell table__cell_raiting">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+        </div>
+        <div class="table__cell table__cell_name">RED7</div>
+        <div class="table__cell table__cell_customer">АО ГК “Основа” </div>
+        <div class="table__cell table__cell_projector">Проектное бюро “Апекс”</div>
+        <div class="table__cell table__cell_date">1.01.2023</div>
+        <div class="table__cell table__cell_district">ЦАО</div>
+        <div class="table__cell table__cell_agr">1.01.2023</div>
+        <div class="table__cell table__cell_archmain">1.01.2023</div>
+        <div class="table__cell table__cell_tags">Высотные объекты</div>
+        <div class="table__cell table__cell_function">Функции</div>
+        <div class="table__cell table__cell_action">
+          <a href="#" class="table__cell-button pdf">
+            <img src="<%=require('./images/icon-pdf.png')%>" alt="кнопка печать в пдф">
+          </a>
+          <a href="#" class="table__cell-button edit">
+            <img src="<%=require('./images/icon-edit.png')%>" alt="кнопка редактирования">
+          </a>
+          <a href="#" class="table__cell-button gotoproject">
+            <img src="<%=require('./images/icon-to-project.png')%>" alt="кнопка открыть на новой странице">
+          </a>
+        </div>        
+      </div>
+
+      <div class="table__line">
+        <div class="table__cell table__cell_checkbox">
+          <input type="checkbox" name="obj1" id="obj1">
+        </div>
+        <div class="table__cell table__cell_id">1</div>
+        <div class="table__cell table__cell_raiting">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+        </div>
+        <div class="table__cell table__cell_name">RED7</div>
+        <div class="table__cell table__cell_customer">АО ГК “Основа” </div>
+        <div class="table__cell table__cell_projector">Проектное бюро “Апекс”</div>
+        <div class="table__cell table__cell_date">1.01.2023</div>
+        <div class="table__cell table__cell_district">ЦАО</div>
+        <div class="table__cell table__cell_agr">1.01.2023</div>
+        <div class="table__cell table__cell_archmain">1.01.2023</div>
+        <div class="table__cell table__cell_tags">Высотные объекты</div>
+        <div class="table__cell table__cell_function">Функции</div>
+        <div class="table__cell table__cell_action">
+          <a href="#" class="table__cell-button pdf">
+            <img src="<%=require('./images/icon-pdf.png')%>" alt="кнопка печать в пдф">
+          </a>
+          <a href="#" class="table__cell-button edit">
+            <img src="<%=require('./images/icon-edit.png')%>" alt="кнопка редактирования">
+          </a>
+          <a href="#" class="table__cell-button gotoproject">
+            <img src="<%=require('./images/icon-to-project.png')%>" alt="кнопка открыть на новой странице">
+          </a>
+        </div>        
+      </div>
+
+      <div class="table__line">
+        <div class="table__cell table__cell_checkbox">
+          <input type="checkbox" name="obj1" id="obj1">
+        </div>
+        <div class="table__cell table__cell_id">1</div>
+        <div class="table__cell table__cell_raiting">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+          <img src="<%=require('./images/star.png')%>" alt="звездочка">
+        </div>
+        <div class="table__cell table__cell_name">RED7</div>
+        <div class="table__cell table__cell_customer">АО ГК “Основа” </div>
+        <div class="table__cell table__cell_projector">Проектное бюро “Апекс”</div>
+        <div class="table__cell table__cell_date">1.01.2023</div>
+        <div class="table__cell table__cell_district">ЦАО</div>
+        <div class="table__cell table__cell_agr">1.01.2023</div>
+        <div class="table__cell table__cell_archmain">1.01.2023</div>
+        <div class="table__cell table__cell_tags">Высотные объекты</div>
+        <div class="table__cell table__cell_function">Функции</div>
+        <div class="table__cell table__cell_action">
+          <a href="#" class="table__cell-button pdf">
+            <img src="<%=require('./images/icon-pdf.png')%>" alt="кнопка печать в пдф">
+          </a>
+          <a href="#" class="table__cell-button edit">
+            <img src="<%=require('./images/icon-edit.png')%>" alt="кнопка редактирования">
+          </a>
+          <a href="#" class="table__cell-button gotoproject">
+            <img src="<%=require('./images/icon-to-project.png')%>" alt="кнопка открыть на новой странице">
+          </a>
+        </div>        
+      </div>
+    </section>
+
+  </main>
+
+  <footer></footer>
+</body>
+</html>

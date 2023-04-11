@@ -1,0 +1,38 @@
+/*подгружаем файлы шрифтов из папки fonts*/
+@font-face {
+    font-family: 'Circe';
+    font-style:  bold;
+    font-weight: 900;
+    font-display: swap;
+    src: url("../../fonts/Circe_Bold.woff") format("woff"),
+         url("../../fonts/Circe_Bold.woff2") format("woff2"),
+         url("../../fonts/circe_bold.ttf") format("truetype"),
+         /* url("../../fonts/circe_bold.svg") format("svg") */
+}
+
+@font-face {
+    font-family: 'Circe';
+    font-style:  normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../../fonts/Circe_Regular.woff") format("woff"),
+         url("../../fonts/Circe_Regular.woff2") format("woff2"),
+         url("../../fonts/circe.ttf") format("truetype"),
+         /* url("../../fonts/circe.svg") format("svg") */
+}
+
+@font-face {
+    font-family: 'Lora';
+    font-style:  italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../../fonts/Lora-Italic.WOFF") format("woff")
+}
+  
+@font-face {
+    font-family: 'Lora';
+    font-style:  normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../../fonts/Lora-Regular.WOFF") format("woff")
+}

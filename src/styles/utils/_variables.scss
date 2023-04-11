@@ -1,0 +1,35 @@
+/*----------------------------------- colors -----------------------------------*/
+
+/*primary/blue*/
+$primary-color-default: #2D8BF1;
+$primary-color-hovered: #106CD1;
+$primary-color-onclick: #0C5FBA;
+
+$light-primary-color-default: rgba(45, 139, 241, 0.07);
+
+/*dark/black*/
+$dark-color-default: #25253B;
+$dark-color-hovered: #605D7C;
+$dark-color-onclick: #201E33;
+
+/*middle-dark/gray*/
+$middle-dark-color-default: #A7A6B5;
+$middle-dark-color-hovered: #7E7D90;
+$middle-dark-color-onclick: #5A596E;
+
+
+/*danger/red*/
+$danger-color-default: #F13D53;
+$danger-color-hovered: #AD003E;
+$danger-color-onclick: #FF005C;
+
+/*succes/green*/
+$succes-color-default: #4BB96A;
+
+
+
+/*----------------------------------- mediaquery -----------------------------------*/
+$desktop: 1440px;
+$tablet: 1024px;
+$mobile: 550px;
+

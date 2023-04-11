@@ -1,0 +1,37 @@
+{
+  "name": "architect-archive",
+  "version": "0.0.1",
+  "description": "Проект для главного архитектора Москвы",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build-and-b": "webpack --mode production && html docs/*.html --indent-size 2",
+    "beautify": "html docs/*.html --indent-size 2",
+    "serve": "webpack serve --open --mode development",
+    "dev": "webpack --mode development"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@fancyapps/ui": "^5.0.15",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.2",
+    "core-js": "^3.30.0",
+    "css-loader": "^6.7.3",
+    "cssnano": "^6.0.0",
+    "file-loader": "^6.2.0",
+    "filemanager-webpack-plugin": "^8.0.0",
+    "html-cli": "^1.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.7.5",
+    "postcss-loader": "^7.2.4",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.61.0",
+    "sass-loader": "^13.2.2",
+    "webpack": "^5.78.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.2"
+  }
+}

@@ -1,0 +1,123 @@
+.header {
+  @include  standart-block-width;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100px;
+  position: relative;
+
+  .header__logos {
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
+  }
+
+  .header__logo {
+    @include silly-link;
+    min-width: 35px;
+    min-height: 40px;
+  }
+
+  .header__title {
+    @include circe-uppercase;
+    margin: 0 auto;
+  }
+
+  .header__burger {
+    display: flex;
+    flex-direction: column;
+    row-gap: 6px;
+    
+    background-color: transparent;
+    border: none;
+    width: 24px;
+    padding: 4px 0;
+    margin-left: 122px;
+    cursor: pointer;
+    z-index: 40;
+    
+    span {
+      width: 100%;
+      height: 1px;
+      background-color: $dark-color-default;
+      transition: all 0.3s ease-in-out;
+    }
+
+
+    &.header__burger_active {
+      span {
+   
+        &:nth-of-type(1) {
+          transform: rotate(45deg) translate(7px,2px);
+        }
+
+        &:nth-of-type(3) {
+          transform: rotate(-45deg) translate(7px,-3px);
+        }
+
+        &:nth-of-type(2) {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  .header__sidepanel {
+    z-index: 39;
+    width: 400px;
+    height: 100vh;
+    background-color: white;
+    position: absolute;
+    top: -100vh;
+    right: -64px;
+    opacity: 0;
+
+   }
+
+  .header__burger_active ~ .header__sidepanel {
+    animation: fadeInDown 0.4s;
+    opacity: 1;
+    top: 0;
+    transition: box-shadow 0.2s ease-in-out 0.2s;
+    box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.15);
+  }
+
+  .header__sidepanel-inner {
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+    padding: 140px 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
+  }
+
+  .header__sidepanel-link {
+    @include silly-link;
+    @include circe-lowercase;
+
+    color: $dark-color-default;
+    font-size: 18px;
+    position: relative;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -5%;
+      width: 0;
+      height: 1px;
+      background-image: linear-gradient(to left, rgba(45, 139, 241, 0.07) 0%, #1678E2 100%);
+      transition: width 0.2s ease-in-out;
+    }
+
+    &:hover {
+      &:before {
+        width: 120%;
+      }
+    }
+  }
+}

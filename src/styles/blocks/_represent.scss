@@ -1,0 +1,143 @@
+.represent {
+  @include  standart-block-width; 
+  @include circe-lowercase
+}
+
+
+.table {
+  display: flex;
+  flex-direction: column;
+
+  
+  .table__line {
+    display: grid;
+    grid-template-columns: 1fr     1fr 2fr     4fr  3fr      4fr       2fr  1fr      2fr 2fr      3fr  3fr      2fr;
+    grid-template-areas: 'checkbox id  raiting name customer projector date district agr archmain tags function action';
+    min-height: 60px;
+    transition: background 0.2s ease-in-out;
+    box-sizing: border-box;
+    
+    &:hover {
+      background: rgba(45, 139, 241, 0.1);
+    }
+
+    &.table__header {
+      height: 35px;
+      background: transparent;
+      &:hover {
+        background: transparent;
+      }
+
+      .table__cell {
+        border-width: 0.5px 0.5px 0.5px 0px;
+        border-style: solid;
+        align-items: center;
+        border-color: #201E33;
+        
+
+        &:first-of-type {
+          border-width: 0 0.5px 0 0px;
+        }
+
+        &.table__cell_name {
+          background: transparent;
+        }
+
+      }
+    }
+  
+    .table__cell {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: center;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 8px 0;
+      
+
+      &.table__cell_checkbox {
+        grid-area: checkbox;
+      }
+
+      &.table__cell_id {
+        grid-area: id;
+      }
+
+      &.table__cell_raiting {
+        grid-area: raiting;
+      }
+
+      &.table__cell_name {
+        grid-area: name;
+        background: rgba(45, 139, 241, 0.1);
+      }
+
+      &.table__cell_customer {
+        grid-area: customer;
+      }
+
+      &.table__cell_projector {
+        grid-area: projector;
+      }
+
+      &.table__cell_date {
+        grid-area: date;
+      }
+
+      &.table__cell_district {
+        grid-area: district;
+      }
+
+      &.table__cell_agr {
+        grid-area: agr;
+      }
+
+      &.table__cell_archmain {
+        grid-area: archmain;
+      }
+
+      &.table__cell_tags {
+        grid-area: tags;
+      }
+
+      &.table__cell_function {
+        grid-area: function;
+      }
+
+      &.table__cell_action{
+        grid-area: action;
+
+        display: flex;
+        flex-direction: row;
+        column-gap: 4px;
+      }
+
+      .table__cell-button {
+        @include  silly-link;
+        display: block;
+        width: 24px;
+        height: 24px;
+        transition: opacity 0.3s ease-in-out;
+
+        &.edit {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 17px;
+            height: 17px;
+          }
+  
+        }
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+
+    }
+
+
+  }
+}

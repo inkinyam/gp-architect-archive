@@ -1,0 +1,30 @@
+
+@mixin silly-link {
+  text-decoration: none;
+  &:hover {
+    cursor: url(../../images/Cursor-hand.svg), pointer;
+  }
+}
+
+@mixin standart-block-width {
+  width: 100%;
+  max-width: calc(100% - 128px);
+  margin:  0 auto;
+}
+
+@mixin circe-uppercase {
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-transform: uppercase;
+}
+
+@mixin circe-lowercase{
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+}
