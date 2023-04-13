@@ -88,11 +88,11 @@ $blueQueen: rgba(0, 0, 0, 0.05);
     @include transition;
     @include circe-uppercase;
     color: #fff;
-  
-    width: 100px;
+    line-height: 44px;
+    width: fit-content;
     height: 44px;
     border: 0;
-    padding: 10px 0;
+    padding:  0 16px;
     margin-top: 10px;
     border-radius: 20px;
     background-color: $primary-color-default;
