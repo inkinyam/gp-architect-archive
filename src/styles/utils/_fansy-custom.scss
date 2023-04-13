@@ -1,0 +1,155 @@
+/*настройки карусельки*/
+button:focus {
+  outline: none;
+  border: none;
+}
+.f-carousel {
+  color: $primary-color-default;
+  --carousel-button-bg: transparent;
+  --carousel-button-shadow: none;
+  --carousel-button-svg-width: 28px;
+  --carousel-button-svg-height: 28px;
+  --carousel-button-svg-stroke-width: 2.5;
+  width: 100%;
+}
+.fancybox__container .fancybox__backdrop {
+  background:  rgba(19, 18, 18, 0.9);
+}
+
+
+.fancybox__caption {
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+  text-align: left;
+}
+
+
+.f-carousel__slide {
+  width: 100%;
+  padding: 0;
+}
+
+/*положение тулбара (крестик, кубики)*/
+.fancybox__container .fancybox__toolbar {
+  top: 2% !important;
+  right:  2% !important;
+}
+
+.fancybox__container .fancybox__toolbar .f-button {
+  margin: 0 4px;
+  background: transparent;
+  width: 28px;
+  height: 28px;
+}
+
+.fancybox__container .fancybox__toolbar .f-button svg{
+  height: 100%;
+  width: 100%;
+  fill: white;
+}
+
+.fancybox__container .fancybox__toolbar .f-button:hover svg {
+  fill: $primary-color-default;
+  stroke: $primary-color-default;
+  background: transparent;
+  
+}
+
+body:not(.is-using-mouse) .fancybox__container :focus {
+  box-shadow: none;
+}
+
+/*кастомизируем кнопки*/
+/*кнопка ->*/
+.fancybox__nav .f-button.is-next {
+  right: 2%;
+}
+
+.fancybox__nav .f-button.is-next:hover {
+  @include silly-link;
+  color: $primary-color-default;
+}
+
+.fancybox__nav .f-button.is-next:active {
+  color: $primary-color-onclick;
+}
+
+
+/*кнопка <-*/
+.fancybox__nav .f-button.is-prev {
+  left: 2%;
+}
+
+.fancybox__nav .f-button.is-prev:hover {
+  @include silly-link;
+  color: var(--only-green);
+}
+
+.fancybox__nav .f-button.is-prev:active {
+  color: $primary-color-onclick;
+}
+
+.f-carousel__dot  {
+  color: $primary-color-default;
+}
+
+
+
+
+
+.fancybox__container .f-thumbs{
+  --f-thumb-width: 60px;
+  --f-thumb-height: 60px;
+  --f-thumb-border-radius: 0;
+  --f-thumb-outline: 4px !important;
+  --f-thumb-outline-color: $primary-color-default !important;
+}
+
+@media screen and (max-width: 800px) {
+  .f-carousel__slide {
+    padding: 0 5px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .fancybox__container .f-button.is-prev,
+  .fancybox__container .f-button.is-next {
+    display: none;
+  }
+}
+
+
+/*СТИЛИЗАЦИЯ ПОД РАЗНЫЕ СТРАНИЦЫ*/
+.projectsCrsl .f-carousel__slide {
+  align-items: flex-start;
+}
+
+.lead .f-carousel {
+  --carousel-button-svg-stroke-width: 1;
+}
+
+.lead .f-carousel__slide  {
+  width: 100%;
+}
+
+.lead .f-carousel__button.carousel__button.is-prev:hover circle{
+  fill: white;
+  stroke: white;
+}
+
+.lead .f-carousel__button.carousel__button.is-prev:active circle{
+  fill: $dark-color-hovered;
+  stroke: $dark-color-hovered;
+}
+
+.lead .f-carousel__button.carousel__button.is-next:active circle{
+  fill: $dark-color-onclick;
+  stroke: $dark-color-onclick;
+}
+
+.institut .f-carousel {
+  --carousel-button-svg-stroke-width: 1;
+}

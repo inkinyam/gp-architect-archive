@@ -1,0 +1,13 @@
+.table {
+  .table__link {
+    @include silly-link;
+    @include transition;
+    transition-property: color;
+    color: $dark-color-default;
+    
+
+    &:hover {
+      color: $primary-color-hovered;
+    }
+  }
+}

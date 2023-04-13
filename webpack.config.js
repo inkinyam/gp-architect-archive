@@ -17,14 +17,13 @@ function generateHtmlPlugins(templateDir) {
     })
   })
 }
-const htmlPlugins = generateHtmlPlugins('./src/pages/')
+const htmlPlugins = generateHtmlPlugins('./src/pages/');
 
 module.exports = {
   entry: path.join(__dirname, 'src/scripts', 'index.js'),
   output: {
     path: path.join(__dirname, 'docs'),
     filename: 'index.js',
-    publicPath: '',
     assetModuleFilename: path.join('images', '[name][ext]').replace(/\\/g, '/'),
   },
 
@@ -78,7 +77,8 @@ module.exports = {
         generator: {
           filename: path.join('fonts', '[name][ext]').replace(/\\/g, '/'),
         },
-      }      
+      },
+      
     ],
   },
 
@@ -98,7 +98,7 @@ module.exports = {
             {
               source: path.join('src', 'favicons'),
               destination: 'docs/favicons',    
-            },
+            }
           ]
         }
       },
@@ -108,6 +108,7 @@ module.exports = {
       filename: '[name].css',
     }),
   ].concat(htmlPlugins),
+
 
   mode: 'development',
   devServer: {

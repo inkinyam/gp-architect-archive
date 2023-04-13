@@ -11,9 +11,20 @@
 @import './utils/reset';     // убираем лишнее
 @import './utils/root';      // стили для .page
 @import './utils/mixins';    // основные миксины
+@import './utils/fansy-custom';
 
 @import './blocks/header';
-@import './blocks/submenu';
+@import './blocks/main';
+@import './blocks/footer';
+@import './blocks/search';
+@import './blocks/tabs';
 
 @import './blocks/represent';
 @import './blocks/table';
+@import './blocks/mosaic';
+@import './blocks/map';
+@import './blocks/auth';
+@import './blocks/navigation';
+@import './blocks/slider';
+@import './blocks/lead';
+@import './blocks/contacts';

@@ -1,0 +1,21 @@
+.lead {
+  @include  standart-block-width;
+  display: flex;
+  flex-direction: column;
+
+  row-gap: 25px;
+  margin-bottom: 60px;
+
+  .lead__title {
+    @include  standart-block-width;
+    @include circe-uppercase;
+    font-weight: 700;
+  }
+
+  .lead__text {
+    @include  standart-block-width;
+    @include circe-lowercase;
+    column-count: 2;
+    column-gap: 40px;
+  }
+}

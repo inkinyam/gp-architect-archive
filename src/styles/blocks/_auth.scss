@@ -1,0 +1,129 @@
+$greenSeaweed: rgba(45, 139, 241, 0.07);
+$blueQueen: rgba(0, 0, 0, 0.05);
+
+.auth {
+  width: 100%;
+  height: calc(100vh - 300px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+.login {
+  overflow: hidden;
+  background-color: white;
+  padding: 40px 30px 30px 30px;
+  border-radius: 10px;
+  position: relative;
+  margin: auto;
+  width: 600px;
+  transition: transform 300ms, box-shadow 300ms;
+  box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2), -2px -2px 4px rgba($greenSeaweed, 0.02);
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+  
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    width: 900px;
+    height: 900px;
+
+    z-index: 0;
+  }
+  
+  &::before {
+    left: 30%;
+    bottom: -222%;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 45%;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 40%;
+    background-color: lighten($color: #0c60ba52, $amount: 8);
+    animation: wawes 9s infinite linear;
+  }
+  
+  &::after {
+    left: 6%;
+    bottom: -215%;
+    border-top-left-radius: 55%;
+    border-top-right-radius: 35%;
+    border-bottom-left-radius: 65%;
+    border-bottom-right-radius: 29%;
+    background-color: rgba($greenSeaweed, 0.2);
+    animation: wawes 12s infinite linear;
+  }
+  
+  > input {
+    @include transition;
+    @include circe-lowercase;
+    transition-property: border-color;
+    display: block;
+    border-radius: 5px;
+    font-size: 16px;
+    background: white;
+    width: 100%;
+    border: 0.5px solid rgba(235, 235, 235, 0.458);
+    padding: 10px 10px;
+    z-index: 2;
+    outline: none;
+
+    color: $primary-color-hovered;
+
+    &::placeholder {
+      color: $middle-dark-color-default;
+    }
+    &:focus {
+      border-color: $primary-color-default;
+    }
+
+    &:invalid {
+      border: 0.5px solid $danger-color-default;
+    }
+  }
+  
+  > button {
+    @include silly-link;
+    @include transition;
+    @include circe-uppercase;
+    color: #fff;
+  
+    width: 100px;
+    height: 44px;
+    border: 0;
+    padding: 10px 0;
+    margin-top: 10px;
+    border-radius: 20px;
+    background-color: $primary-color-default;
+    z-index: 2;
+    
+    &:hover {
+      background-color: $primary-color-hovered;
+    }
+  }
+
+  .login__remember {
+    @include circe-lowercase;
+    @include silly-link;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    z-index: 2;
+  }
+
+  .login__title {
+    @include circe-uppercase;
+    font-weight: 700;
+  }
+}
+
+@keyframes wawes {
+  from {
+    transform: rotate(0); 
+  }
+  to { 
+    transform: rotate(360deg); 
+  }
+}
+

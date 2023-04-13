@@ -1,8 +1,16 @@
 .represent {
-  @include standart-block-width;
   @include circe-lowercase;
 
-/*   &.represent_table {
 
-  } */
+  .represent__total {
+    @include circe-uppercase;
+    display: flex;
+    flex-direction: row;
+    column-gap: 4px;
+    margin: 0 auto 8px;
+  
+  }
+  .represent__counter {
+    font-weight: 600;
+  }
 }

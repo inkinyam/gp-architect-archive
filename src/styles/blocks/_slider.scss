@@ -1,0 +1,18 @@
+.slider {
+  margin: 40px auto 60px;
+   
+  .slider__slide {
+    max-width: 1054px;
+    max-height: 480px;
+    width: 85%;
+    margin: 0 auto;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+}

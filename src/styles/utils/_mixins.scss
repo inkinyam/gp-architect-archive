@@ -7,9 +7,19 @@
 }
 
 @mixin standart-block-width {
+  @include transition;
+  transition-property: max-width;
   width: 100%;
   max-width: calc(100% - 128px);
   margin:  0 auto;
+
+  @media screen and (max-width: $tablet) {
+    max-width: calc(100% - 80px);
+  }
+
+  @media screen and (max-width: $mobile) {
+    max-width: calc(100% - 64px);
+  }
 }
 
 @mixin circe-uppercase {
@@ -27,4 +37,35 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
+}
+
+@mixin transition {
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in-out;
+}
+
+@mixin button {
+  @include circe-uppercase;
+  @include silly-link;
+  @include transition;
+  border: none;
+  background-color: $primary-color-default;
+  color: white;
+  min-width: 100px;
+  min-height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 8px 16px;
+  border-radius: 20px;
+
+  &:hover {
+    background-color: $primary-color-hovered;
+  }
+
+  &:active {
+    background-color: $primary-color-onclick;
+  }
+
 }

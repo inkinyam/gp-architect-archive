@@ -16,11 +16,11 @@
 <body class="page">
   <header class="header">
     <div class="header__logos">
-      <a href="" class="header__logo">
-        <img src="<%=require('./images/mka-logo-black.svg')%>" alt="">
+      <a href="#" class="header__logo">
+        <img src="<%=require('./images/mka-logo-black.svg')%>" alt="logo1">
       </a>
-      <a href="" class="header__logo">
-        <img src="<%=require('./images/main-logo-old-black.svg')%>" alt="">
+      <a href="#" class="header__logo">
+        <img src="<%=require('./images/main-logo-old-black.svg')%>" alt="logo2">
       </a>
     </div>
 
@@ -35,99 +35,170 @@
 
     <div class="header__sidepanel">
       <div class="header__sidepanel-inner">
-        <a href="#" class="header__sidepanel-link">longer link</a>
-        <a href="#" class="header__sidepanel-link">longer link</a>
-        <a href="#" class="header__sidepanel-link">longer link</a>
+        <a href="./login.html" class="header__sidepanel-link">Страница логина</a>
+        <a href="./resume-pass.html" class="header__sidepanel-link">Восстановить пароль</a>
+        <a href="./project.html" class="header__sidepanel-link">Страница проекта</a>
+        <a href="./404.html" class="header__sidepanel-link">404</a>
       </div>
     </div>
   </header>
 
   <main>
-    <section class="submenu">
-      <form action="" class="search">
-        <div class="search__main-block">
-          <input type="text" class="search__main-input" placeholder="Поиск" >
-          
-          <button class="search__filter">
-            <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M8.94999 2.5H15V3.5H8.94999C8.71836 4.64112 7.70948 5.5 6.5 5.5C5.29052 5.5 4.28164 4.64112 4.05001 3.5H0V2.5H4.05001C4.28164 1.35888 5.29052 0.5 6.5 0.5C7.70948 0.5 8.71836 1.35888 8.94999 2.5ZM13.95 7.5H15V8.5H13.95C13.7184 9.64112 12.7095 10.5 11.5 10.5C10.2905 10.5 9.28164 9.64112 9.05001 8.5H0V7.5H9.05001C9.28164 6.35888 10.2905 5.5 11.5 5.5C12.7095 5.5 13.7184 6.35888 13.95 7.5ZM15 12.5H6.94999C6.71836 11.3589 5.70948 10.5 4.5 10.5C3.29052 10.5 2.28164 11.3589 2.05001 12.5H0V13.5H2.05001C2.28164 14.6411 3.29052 15.5 4.5 15.5C5.70948 15.5 6.71836 14.6411 6.94999 13.5H15V12.5Z" fill="black" fill-opacity="0.7"/>
-            </svg>
-          </button>
-        </div>
-      </form>
-  
-      <div class="submenu__view-options">
-        <p class="submenu__description">вид</p>
-  
-        <div class="submenu__view-box">
-          <input type="radio" name="view" id="tableview" checked>
-          <label for="tableview" class="submenu__view">
-            <svg  width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect class="bg" width="40" height="40" rx="20" fill="white"/>
-              <path class="fillbock" fill-rule="evenodd" clip-rule="evenodd" d="M17.0859 13V16.6847H13V17.6847H17.0859V22.5064H13V23.5064H17.0859V26.9704H18.0859V23.5064H21.1641V27H22.1641V23.5064H27V22.5064H22.1641V17.6847H27V16.6847H22.1641V13.0296H21.1641V16.6847H18.0859V13H17.0859ZM21.1641 22.5064V17.6847H18.0859V22.5064H21.1641Z" fill="#1678E2"/>
-              <rect class="strokeblock" x="0.25" y="0.25" width="39.5" height="39.5" rx="19.75" stroke="black" stroke-opacity="0.5" stroke-width="0.5"/>
-            </svg>
-              
-          </label>
-        </div>
-        <div class="submenu__view-box">
-          <input type="radio" name="view" id="mosaicview">
-          <label for="mosaicview" class="submenu__view">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect class="bg" width="40" height="40" rx="20" fill="white"/>
-              <path class="fillbock" fill-rule="evenodd" clip-rule="evenodd" d="M19.4091 13.5H13.5V19.4091H19.4091V13.5ZM19.4091 20.5909H13.5V26.5H19.4091V20.5909ZM20.5938 13.5H26.5028V19.4091H20.5938V13.5ZM26.5028 20.5909H20.5938V26.5H26.5028V20.5909Z" fill="#1678E2"/>
-              <rect class="strokeblock" x="0.25" y="0.25" width="39.5" height="39.5" rx="19.75" stroke="black" stroke-opacity="0.5" stroke-width="0.5"/>
-              </svg>
-              
-          </label>
-        </div>
-        <div class="submenu__view-box">
-          <input type="radio" name="view" id="mapview">
-          <label for="mapview" class="submenu__view">
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect class="bg" width="40" height="40" rx="20" fill="white"/>
-              <path class="fillbock" fill-rule="evenodd" clip-rule="evenodd" d="M20 28C20 28 26 20.8702 26 17.7143C26 14.5584 23.3137 12 20 12C16.6863 12 14 14.5584 14 17.7143C14 20.8702 20 28 20 28ZM17.913 19.649C16.8939 18.5614 16.8958 16.8689 17.9174 15.7835V15.7835C19.042 14.5888 20.9447 14.6011 22.0538 15.8103V15.8103C23.0422 16.888 23.044 18.5422 22.058 19.6222V19.6222C20.9483 20.8375 19.0384 20.8499 17.913 19.649V19.649Z" fill="#1678E2"/>
-              <rect class="strokeblock" x="0.25" y="0.25" width="39.5" height="39.5" rx="19.75" stroke="black" stroke-opacity="0.5" stroke-width="0.5"/>
-              </svg>
-              
-          </label>
-        </div>
-      </div>
-    </section>
+    <div class="tabs representation-tabs">
+      <div class="tabs__links">
 
-    <section class="represent represent_table">
-      <table class="table"
-             id="table"
-             data-toolbar="#toolbar"
-             data-search="true"
-             data-show-refresh="true"
-             data-show-toggle="true"
-             data-show-fullscreen="true"
-             data-show-columns="true"
-             data-show-columns-toggle-all="true"
-      
-             data-show-export="true"
-             data-click-to-select="true"
-             data-detail-formatter="detailFormatter"
-             data-minimum-count-columns="2"
-             data-show-pagination-switch="true"
-             data-pagination="true"
-             data-id-field="id"
-             data-page-list="[25, 50, 100, all]"
-             data-show-footer="false"
-             data-side-pagination="server"
-             data-response-handler="responseHandler"
-             
-             data-toggle="table"
-             data-search="true"
-             data-filter-control="true" 
-             data-header-style="headerstyle">
-    </table>
-    </section>
+        <form action="" class="search">
+          <div class="search__main-block">
+            <input type="text" class="search__main-input" placeholder="Поиск" >
+            
+            <button class="search__filter">
+              <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.94999 2.5H15V3.5H8.94999C8.71836 4.64112 7.70948 5.5 6.5 5.5C5.29052 5.5 4.28164 4.64112 4.05001 3.5H0V2.5H4.05001C4.28164 1.35888 5.29052 0.5 6.5 0.5C7.70948 0.5 8.71836 1.35888 8.94999 2.5ZM13.95 7.5H15V8.5H13.95C13.7184 9.64112 12.7095 10.5 11.5 10.5C10.2905 10.5 9.28164 9.64112 9.05001 8.5H0V7.5H9.05001C9.28164 6.35888 10.2905 5.5 11.5 5.5C12.7095 5.5 13.7184 6.35888 13.95 7.5ZM15 12.5H6.94999C6.71836 11.3589 5.70948 10.5 4.5 10.5C3.29052 10.5 2.28164 11.3589 2.05001 12.5H0V13.5H2.05001C2.28164 14.6411 3.29052 15.5 4.5 15.5C5.70948 15.5 6.71836 14.6411 6.94999 13.5H15V12.5Z" fill="black" fill-opacity="0.7"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <ul class="tabs__nav"> 
+          <li class="tabs__info">ВИД</li>
+          <li class="tabs__nav-item">
+            <a class="tabs__nav-btn" type="button" href="#tableview">
+              <svg  width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0859 13V16.6847H13V17.6847H17.0859V22.5064H13V23.5064H17.0859V26.9704H18.0859V23.5064H21.1641V27H22.1641V23.5064H27V22.5064H22.1641V17.6847H27V16.6847H22.1641V13.0296H21.1641V16.6847H18.0859V13H17.0859ZM21.1641 22.5064V17.6847H18.0859V22.5064H21.1641Z" fill="#1678E2"/>
+            </svg>
+            </a>
+          </li>
+          <li class="tabs__nav-item">
+            <a class="tabs__nav-btn" type="button" href="#mosaicview">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9766 12.998H26.9766V18.998H20.9766V12.998ZM19 13.0508H13V19.0508H19V13.0508ZM19 21.002H13V27.002H19V21.002ZM26.995 20.998H20.9766V26.998H26.995V20.998Z" fill="#1678E2"/>
+              </svg>
+            </a>
+          </li>
+          <li class="tabs__nav-item">
+            <a class="tabs__nav-btn" type="button" href="#mapview">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="fillbock" fill-rule="evenodd" clip-rule="evenodd" d="M20 28C20 28 26 20.8702 26 17.7143C26 14.5584 23.3137 12 20 12C16.6863 12 14 14.5584 14 17.7143C14 20.8702 20 28 20 28ZM17.913 19.649C16.8939 18.5614 16.8958 16.8689 17.9174 15.7835V15.7835C19.042 14.5888 20.9447 14.6011 22.0538 15.8103V15.8103C23.0422 16.888 23.044 18.5422 22.058 19.6222V19.6222C20.9483 20.8375 19.0384 20.8499 17.913 19.649V19.649Z" fill="#1678E2"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tabs__content">
+        <div class="tabs__panel" data-tab-name="tableview">
+          <section class="represent represent_tableview " >
+            <table class="newTable"
+                  id="table"
+                
+                  data-search="true"
+                  data-show-refresh="true"
+                  data-show-toggle="true"
+                  data-show-fullscreen="true"
+                  data-show-columns="true"
+                  data-show-columns-toggle-all="true"
+            
+                  data-show-export="true"
+                  data-click-to-select="true"
+                  data-detail-formatter="detailFormatter"
+                  data-minimum-count-columns="2"
+                  data-show-pagination-switch="true"
+                  data-pagination="true"
+                  data-id-field="id"
+                  data-page-list="[25, 50, 100, all]"
+                  data-show-footer="false"
+                  data-side-pagination="server"
+                  data-response-handler="responseHandler"
+                  
+                  data-toggle="table"
+                  data-search="true"
+                  data-filter-control="true" 
+                  >
+            </table>
+          </section>
+        </div> 
+
+        <div class="tabs__panel" data-tab-name="mosaicview">
+          <section class="represent represent_mosaicview" >
+            <p class="represent__total">всего проектов:  
+              <span class="represent__counter">
+                120
+              </span>
+            </p>
+            <div class="mosaic">
+              <a class="mosaic__card" href="#">
+                <img src="<%=require('./images/mosaic (1).png')%>" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">RED 7</h3>
+                <h3 class="mosaic__card-subtitle">Москва, пр. Академика Сахарова, 1</h3>
+              </a>
+              <a class="mosaic__card" href="#">
+                <img src="<%=require('./images/mosaic (2).png')%>" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">Жк «Бадаевский»</h3>
+                <h3 class="mosaic__card-subtitle">Москва, ул. Золоторожский вал, 11 стр. 20/1</h3>
+              </a>
+              <a class="mosaic__card" href="#">
+                <img src="<%=require('./images/mosaic (3).png')%>" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">ЖК «Событие»</h3>
+                <h3 class="mosaic__card-subtitle">ЗАО, район Раменки, между ул. Лобачевского и платформой «Матвеевская», квартал 4.1</h3>
+              </a>
+              <a class="mosaic__card" href="#">
+                <img src="<%=require('./images/mosaic (4).png')%>" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">ЖК «Hide»</h3>
+                <h3 class="mosaic__card-subtitle">Москва, проезд Сетуньский 1-й, вл. 6-10 </h3>
+              </a>
+              <a class="mosaic__card" href="#">
+                <img src="<%=require('./images/mosaic (5).png')%>" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">Технопарк сбербанка</h3>
+                <h3 class="mosaic__card-subtitle">Москва, 2-я Брестская ул., 2/14</h3>
+              </a>
+              <a class="mosaic__card" href="#">
+                <img src="<%=require('./images/mosaic (6).png')%>" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">ЖК «sky view»</h3>
+                <h3 class="mosaic__card-subtitle">Москва, ул.Дружинниковская 15</h3>
+              </a>
+            </div>
+        </section>
+
+        </div> 
+
+        <div class="tabs__panel" data-tab-name="mapview">
+          <section class="represent represent_mapview" >
+            <p class="represent__total">всего проектов:  
+              <span class="represent__counter">
+                120
+              </span>
+            </p>
+        
+            <div class="map">
+              здесь будет карта
+            </div>
+          </section>
+
+        </div> 
+      </div>    
+    </div>
 
 
   </main>
 
-  <footer></footer>
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__link">
+        <img src="<%=require('./images/logo-institute.svg')%>" alt="logo" class="footer__img">
+        <p class="footer__link-description">
+          <a href="#">Комплекс градостроительной политики и строительства</a> 
+          <a href="#">Комитет по архитектуре и градостроительству</a>
+        </p>
+      </div>
+      <div class="footer__link">
+        <img src="<%=require('./images/main-logo-white.svg')%>" alt="logo" class="footer__img">
+        <p class="footer__link-description">
+          <a href="#">
+            Государственное автономное учреждение «Научно-исследовательский и проектный институт Генерального плана города Москвы»
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

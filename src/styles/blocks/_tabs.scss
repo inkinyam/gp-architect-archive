@@ -1,0 +1,129 @@
+.tabs {
+  @include standart-block-width;
+  display: flex;
+  flex-direction: column;
+  margin: 40px auto;
+}
+
+
+.tabs__links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto 40px;
+  width: 100%;
+  column-gap: 24px;
+
+  .tabs__link {
+    @include circe-lowercase;
+    @include silly-link;
+    flex-shrink: 0;
+  }
+
+  @media screen and (max-width:$mobile) {
+    flex-direction: column;
+    row-gap: 26px;
+  }
+}
+
+.tabs__nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 4px;
+  row-gap: 24px;
+  padding: 0;
+  list-style: none;
+
+  background-color: white;
+  box-sizing: border-box;
+  border-radius: 4px;
+
+  .tabs__info {
+    @include circe-uppercase;
+    margin-right: 10px;
+  }
+
+  @media screen and (max-width:$tablet) {
+    justify-content: flex-end;
+  }
+
+}
+
+.tabs__nav-btn {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  
+  @include silly-link;
+  @include transition;
+  transition-property: all;
+
+  text-decoration: none;    
+  overflow-anchor: none;
+  svg {
+    stroke: $primary-color-onclick;
+  }
+
+  &:hover {
+    background-color: rgba(22, 120, 226, 0.1);
+  }
+
+  &:active {
+    background-color: $primary-color-default;
+    svg {
+      stroke: white;
+      path {
+        fill: white;
+      }
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    width: 100%;
+    display: block;
+    
+  }
+
+  &.tabs__nav-btn_disabled {
+    background-color: $middle-dark-color-default;
+    svg {
+      stroke: black;
+      path {
+        fill: black;
+      }
+    }
+    &:hover {
+      background-color: $middle-dark-color-hovered;
+    }
+  }
+
+  &.tabs__nav-btn_active {
+    background-color: $primary-color-onclick;
+    svg {
+      stroke: white;
+      path {
+        fill: white;
+      }
+    }
+  }
+  
+}
+
+
+.tabs__panel {
+  display: none;
+
+  &.tabs__panel_active {
+    display: block;  
+  }
+}
+
+
+.tabs ~ .pagination  {
+  margin-bottom: 80px;
+}
