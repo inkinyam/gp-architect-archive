@@ -1,0 +1,48 @@
+.teps {
+  @include standart-block-width;
+  max-width: calc(100% - 256px);
+  margin: 60px auto;
+  display: flex;
+  flex-direction: column;
+
+  .teps__title {
+    @include section-title ;
+  }
+
+  .teps__table {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .teps__item {
+    @include circe-lowercase;
+    @include transition;
+    font-size: 16px;
+    line-height: 23.5px;
+
+    min-height: 56px;
+    display: grid;
+    grid-template-columns: 0.8fr 1.5fr 1fr 0.5fr ;
+    align-items: center;
+    align-content: center;
+    box-sizing: border-box;
+
+    &:hover {
+      background: rgba(45, 139, 241, 0.1);
+    }
+
+    &:first-of-type {
+      align-items: center;
+      background: rgba(0, 0, 0, 0.05);
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+
+  .teps__cell {
+    box-sizing: border-box;
+    padding: 4px 20px;
+  }
+}

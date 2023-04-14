@@ -30,9 +30,9 @@
     <div class="header__sidepanel">
       <div class="header__sidepanel-inner">
         <a href="./index.html" class="header__sidepanel-link">Главная</a>
-        <a href="./login.html" class="header__sidepanel-link">Восстановить пароль</a>
-        <a href="./resume-pass.html" class="header__sidepanel-link">Восстановить пароль</a>
         <a href="./project.html" class="header__sidepanel-link">Страница проекта</a>
+        <a href="./login.html" class="header__sidepanel-link">Залогиниться</a>
+        <a href="./resume-pass.html" class="header__sidepanel-link">Восстановить пароль</a>
         <a href="./404.html" class="header__sidepanel-link">404</a>
       </div>
     </div>
@@ -49,26 +49,27 @@
 
       <ul class="navigation__rightblock">
         <li class="navigation__nav-button active">
-          <a href="#" >Описание</a>
+          <a class="navigation__nav-link" href="#lead" >Описание</a>
         </li>
         <li class="navigation__nav-button">
-          <a href="#" >Контакты</a>
+          <a class="navigation__nav-link" href="#contacts" >Контакты</a>
         </li>
         <li class="navigation__nav-button">
-          <a href="#" >ТЭПЫ</a>
+          <a class="navigation__nav-link" href="#teps" >ТЭПЫ</a>
         </li>
         <li class="navigation__nav-button">
-          <a href="#" >Рендеры</a>
+          <a class="navigation__nav-link" href="#photos" >Фото</a>
         </li>
         <li class="navigation__nav-button">
-          <a href="#" >Фото</a>
+          <a class="navigation__nav-link" href="#renders" >Рендеры</a>
         </li>
         <li class="navigation__nav-button">
-          <a href="#" >Видео</a>
+
+          <a class="navigation__nav-link" href="#videos" >Видео</a>
         </li>
         <li class="navigation__nav-button">
           <a href="#" >
-            <img src="<%=require('../images/pdf.png')%>" alt="стрелка назад">
+            <img src="<%=require('../images/pdf.png')%>" alt="скачать презентацию">
           </a>
         </li>
       </ul>
@@ -95,15 +96,17 @@
       </div>
     </section>
     
-    <section class="lead">
+    <section class="lead" >
+      <div class="anchor" id="lead"></div>
       <h2 class="lead__title">Описание проекта</h2>
       <p class="lead__text">
-        Продуманный до деталей. Созданный для жизни, полной счастливых событий. Квартал СОБЫТИЕ – это жизнь класса премиум в одном из самых престижных районов на западе Москвы. Архитектура мирового уровня от LDA Design и UHA London (Великобритания). Выигрышное расположение на границе природного комплекса «Долина реки Раменки». «Долина реки Раменки». 
-        Продуманный до деталей. Созданный для жизни, полной счастливых событий. Квартал СОБЫТИЕ – это жизнь класса премиум в одном из самых престижных районов на западе Москвы. Архитектура мирового уровня от LDA Design и UHA London (Великобритания). Выигрышное расположение на границе природного комплекса «Долина реки Раменки». «Долина реки Раменки». 
+        Идейные соображения высшего порядка, а также реализация намеченных плановых заданий в значительной степени обуславливает создание новых предложений. Задача организации, в особенности же рамки и место обучения кадров позволяет оценить значение соответствующий условий активизации. Равным образом дальнейшее развитие различных форм деятельности играет важную роль в формировании дальнейших направлений развития. С другой стороны укрепление и развитие структуры влечет за собой процесс внедрения и модернизации форм развития. Товарищи! <br>постоянный количественный рост и сфера нашей активности позволяет оценить значение системы обучения кадров, соответствует насущным потребностям.
+        Равным образом рамки и место обучения кадров требуют определения и уточнения направлений прогрессивного развития. Значимость этих проблем настолько очевидна, что начало повседневной работы по формированию позиции позволяет выполнять важные задания по разработке дальнейших направлений развития. Разнообразный и богатый опыт консультация с широким активом позволяет оценить значение модели развития.
       </p>
     </section>
 
     <section class="contacts">
+      <div class="anchor" id="contacts"></div>
       <h2 class="contacts__title">Контакты</h2>
 
       <ul class="contacts__list">
@@ -136,6 +139,235 @@
         </li>
       </ul>
     </section>
+
+    <section class="teps" >
+      <div class="anchor" id="teps"></div>
+      <h2 class="teps__title">Технико-экономические показатели</h2>
+
+      <ul class="teps__table">
+        <li class="teps__item">
+          <p class="teps__cell teps__cell_number">№</p>
+          <p class="teps__cell teps__cell_name">Название показателя</p>
+          <p class="teps__cell teps__cell_units">Единица измерения</p>
+          <p class="teps__cell teps__cell_amount">Значение</p>
+        </li>
+        <li class="teps__item">
+          <p class="teps__cell teps__cell_number">1</p>
+          <p class="teps__cell teps__cell_name">Количество жителей</p>
+          <p class="teps__cell teps__cell_units">Человек</p>
+          <p class="teps__cell teps__cell_amount">1740</p>
+        </li>
+        <li class="teps__item">
+          <p class="teps__cell teps__cell_number">2</p>
+          <p class="teps__cell teps__cell_name">Площадки  для игр детей</p>
+          <p class="teps__cell teps__cell_units">м²</p>
+          <p class="teps__cell teps__cell_amount">1217</p>
+        </li>
+        <li class="teps__item">
+          <p class="teps__cell teps__cell_number">3</p>
+          <p class="teps__cell teps__cell_name">Площадки  для отдыха взрослого населения</p>
+          <p class="teps__cell teps__cell_units">м²</p>
+          <p class="teps__cell teps__cell_amount">174</p>
+        </li>
+        <li class="teps__item">
+          <p class="teps__cell teps__cell_number">4</p>
+          <p class="teps__cell teps__cell_name">Практика показывает, что укрепление и развитие структуры играет важную роль в формировании дальнейших направлений развития. Разнообразный и богатый опыт постоянный рост и сфера нашей активности способствует подготовки и реализации систем массового участия</p>
+          <p class="teps__cell teps__cell_units">м²</p>
+          <p class="teps__cell teps__cell_amount">1217</p>
+        </li>
+        <li class="teps__item">
+          <p class="teps__cell teps__cell_number">5</p>
+          <p class="teps__cell teps__cell_name">Площадки для занятия физкультурой</p>
+          <p class="teps__cell teps__cell_units">м²</p>
+          <p class="teps__cell teps__cell_amount">48</p>
+        </li>
+        <li class="teps__item">
+          <p class="teps__cell teps__cell_number">6</p>
+          <p class="teps__cell teps__cell_name">Площадь озеленения</p>
+          <p class="teps__cell teps__cell_units">м²</p>
+          <p class="teps__cell teps__cell_amount">12170</p>
+        </li>
+        <li class="teps__item">
+          <p class="teps__cell teps__cell_number">7</p>
+          <p class="teps__cell teps__cell_name">Площадки для занятия физкультурой</p>
+          <p class="teps__cell teps__cell_units">м²</p>
+          <p class="teps__cell teps__cell_amount">12170</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="assets photos" >
+      <div class="anchor" id="photos"></div>
+      <div class="assets__titleblock">
+        <h2 class="assets__title">Фото</h2>
+        <a href="#" class="assets__link"> Скачать 
+          <img src="<%=require('../images/icon-download.png')%>" alt="icon">
+        </a>
+      </div>
+
+      <div class="assets__pattern">
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery" data-src="../images/mosaic (1).png" data-caption="Выровнять здесь текст невозможно по ширине, его длина не зависит от длины фотки (настройки fancybox)">
+          <img src="<%=require('../images/mosaic (1).png')%>" alt="gallery">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery" data-src="../images/mosaic (2).png" data-caption="Выровнять здесь текст невозможно по ширине, его длина не зависит от длины фотки (настройки fancybox)">
+          <img src="<%=require('../images/mosaic (2).png')%>" alt="gallery">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery" data-src="../images/mosaic (3).png" data-caption="Выровнять здесь текст невозможно по ширине, его длина не зависит от длины фотки (настройки fancybox)">
+          <img src="<%=require('../images/mosaic (3).png')%>" alt="gallery">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery" data-src="../images/mosaic (4).png" data-caption="Выровнять здесь текст невозможно по ширине, его длина не зависит от длины фотки (настройки fancybox)">
+          <img src="<%=require('../images/mosaic (4).png')%>" alt="gallery">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery" data-src="../images/mosaic (5).png" data-caption="Выровнять здесь текст невозможно по ширине, его длина не зависит от длины фотки (настройки fancybox)">
+          <img src="<%=require('../images/mosaic (5).png')%>" alt="gallery">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery" data-src="../images/mosaic (6).png" data-caption="Выровнять здесь текст невозможно по ширине, его длина не зависит от длины фотки (настройки fancybox)">
+          <img src="<%=require('../images/mosaic (6).png')%>" alt="gallery">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery" data-src="../images/mosaic (1).png" data-caption="Выровнять здесь текст невозможно по ширине, его длина не зависит от длины фотки (настройки fancybox)">
+          <img src="<%=require('../images/mosaic (1).png')%>" alt="gallery">
+        </a>
+      </div>
+    </section>
+
+    <section class="assets renders" >
+      <div class="anchor" id="renders"></div>
+      <div class="assets__titleblock">
+        <h2 class="assets__title">Рендеры</h2>
+        <a href="#" class="assets__link"> Скачать 
+          <img src="<%=require('../images/icon-download.png')%>" alt="icon">
+        </a>
+      </div>
+
+      <div class="assets__columns">
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery2" data-src="../images/main-photo-2.jpg" data-caption="Фотограф: Алешка А.">
+          <img src="<%=require('../images/main-photo-2.jpg')%>" alt="gallery2">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery2" data-src="../images/mosaic (3).png" data-caption="Дизайнер: Кукушкин Сан Саныч, Автор: Еловый С.А.">
+          <img src="<%=require('../images/mosaic (3).png')%>" alt="gallery2">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery2" data-src="../images/main-photo-3.jpg" data-caption="Малопонятное описание текста">
+          <img src="<%=require('../images/main-photo-3.jpg')%>" alt="gallery2">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery2" data-src="../images/mosaic (2).png" data-caption="Равным образом постоянное информационно-пропагандистское обеспечение нашей деятельности способствует подготовки и реализации существенных финансовых и административных условий. Равным образом дальнейшее развитие различных форм деятельности требуют определения и уточнения модели развития. ">
+          <img src="<%=require('../images/mosaic (2).png')%>" alt="gallery2">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery2" data-src="../images/main-photo.png" data-caption="Дизайнер: Кукушкин Сан Саныч, Автор: Еловый С.А">
+          <img src="<%=require('../images/main-photo.png')%>" alt="gallery2">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery2" data-src="../images/mosaic (6).png" data-caption="Фотограф: Абручкин Лев Леонидович">
+          <img src="<%=require('../images/mosaic (6).png')%>" alt="gallery2">
+        </a>
+        <a href="#" class="assets__pattern-block"  data-fancybox="gallery" data-src="../images/mosaic (1).png" data-caption=" Автор: Еловый С.А">
+          <img src="<%=require('../images/mosaic (1).png')%>" alt="gallery2">
+        </a>
+      </div>
+    </section>
+
+    <section class="assets videos" >
+      <div class="anchor" id="videos"></div>
+      <div class="assets__titleblock">
+        <h2 class="assets__title">Видео паттерном</h2>
+        <a href="#" class="assets__link"> Скачать 
+          <img src="<%=require('../images/icon-download.png')%>" alt="icon">
+        </a>
+      </div>
+
+      <div class="assets__pattern">
+        <div class="assets__pattern-block" >
+          <video id="video-1"
+                 poster = "<%=require('../images/mosaic (3).png')%>"
+                 class = "assets__video"
+                 preload = "metadata"
+                 autoplay = "false"
+                 controls
+                 data-setup='{}'>
+            <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+            <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+            <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+          </video>
+        </div>
+        <div class="assets__pattern-block" >
+          <video id="video-2"
+                 poster = "<%=require('../images/mosaic (3).png')%>"
+                 class = "assets__video"
+                 preload = "metadata"
+                 autoplay = "false"
+                 controls
+                 data-setup='{}'>
+            <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+            <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+            <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+          </video>
+        </div>
+        <div class="assets__pattern-block" >
+          <video id = "video-3"
+                 poster = "<%=require('../images/mosaic (3).png')%>"
+                 class = "assets__video"
+                 preload = "metadata"
+                 autoplay = "false"
+                 controls
+                 data-setup='{}'>
+            <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+            <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+            <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <section class="assets videos" >
+      <div class="anchor" id="videos"></div>
+      <div class="assets__titleblock">
+        <h2 class="assets__title">Видео колонками</h2>
+        <a href="#" class="assets__link"> Скачать 
+          <img src="<%=require('../images/icon-download.png')%>" alt="icon">
+        </a>
+      </div>
+
+      <div class="assets__columns">
+        <div class="assets__pattern-block" >
+          <video id="video-1"
+                 poster = "<%=require('../images/mosaic (3).png')%>"
+                 class = "assets__video"
+                 preload = "metadata"
+                 autoplay = "false"
+                 controls
+                 data-setup='{}'>
+            <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+            <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+            <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+          </video>
+        </div>
+        <div class="assets__pattern-block" >
+          <video id="video-2"
+                 poster = "<%=require('../images/mosaic (3).png')%>"
+                 class = "assets__video"
+                 preload = "metadata"
+                 autoplay = "false"
+                 controls
+                 data-setup='{}'>
+            <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+            <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+            <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+          </video>
+        </div>
+        <div class="assets__pattern-block" >
+          <video id = "video-3"
+                 poster = "<%=require('../images/mosaic (3).png')%>"
+                 class = "assets__video"
+                 preload = "metadata"
+                 autoplay = "false"
+                 controls
+                 data-setup='{}'>
+            <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+            <source src="//vjs.zencdn.net/v/oceans.webm" type="video/webm"></source>
+            <source src="//vjs.zencdn.net/v/oceans.ogv" type="video/ogg"></source>
+          </video>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">

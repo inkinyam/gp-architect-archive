@@ -39,6 +39,12 @@
   line-height: 21px;
 }
 
+@mixin section-title {
+  @include circe-uppercase;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
 @mixin transition {
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;

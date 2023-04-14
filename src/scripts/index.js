@@ -7,6 +7,9 @@ import "@fancyapps/ui/dist/carousel/carousel.css";
 import { Autoplay } from "@fancyapps/ui/dist/carousel/carousel.autoplay.esm.js";
 import "@fancyapps/ui/dist/carousel/carousel.autoplay.css";
 
+import { Fancybox } from '@fancyapps/ui';
+import "@fancyapps/ui/dist/fancybox/fancybox.css"
+
 let burgerButton = document.querySelector('.header__burger');
 if (burgerButton) {
   burgerButton.addEventListener('click', ()=>{
@@ -180,7 +183,6 @@ if (table) {
   
 }
 
-
 const sliderBlock = document.getElementById("main-slider");
 if (sliderBlock) {
   const options = {
@@ -195,4 +197,55 @@ if (sliderBlock) {
   };
   
   new Carousel(sliderBlock, options, { Autoplay });
+}
+
+import initSubmenu from './submenu';
+const navBar = document.querySelector('.navigation');
+if (navBar) {
+  initSubmenu('.navigation');
+}
+
+// подключение фансибокс к чему-угодно 
+Fancybox.bind('[data-fancybox]', {
+  Images: {
+    zoom: true,
+    click: false,
+  },
+  Thumbs: {
+    type: 'classic',
+    showOnStart: true
+  },
+  Toolbar: {
+    display: {
+      left: [],
+      middle: [],
+      right: ["thumbs", "close"]
+    },
+    items: {
+      thumbs: {
+        tpl: '<button class="f-button" title="{{TOGGLE_FULLSCREEN}}" data-fancybox-toggle-fullscreen><svg viewBox="2 2 24 24"  xmlns="http://www.w3.org/2000/svg"><rect x="18" y="7.5" width="2.5" height="2.5" fill="inherit" stroke="inherit"/><rect x="18" y="12.75" width="2.5" height="2.5" fill="inherit" stroke="inherit"/><rect x="18" y="18" width="2.5" height="2.5" fill="inherit" stroke="inherit"/><rect x="12.75" y="7.5" width="2.5" height="2.5" fill="inherit" stroke="inherit"/><rect x="12.75" y="12.75" width="2.5" height="2.5" fill="inherit" stroke="inherit"/><rect x="12.75" y="18" width="2.5" height="2.5" fill="inherit" stroke="inherit"/><rect x="7.5" y="7.5" width="2.5" height="2.5" fill="inherit" stroke="inherit"/><rect x="7.5" y="12.75" width="2.5" height="2.5" fill="inherit" stroke="inherit"/><rect x="7.5" y="18" width="2.5" height="2.5" fill="inherit" stroke="inherit"/></svg></button>'
+      },
+      close: {
+        tpl: '<button class="f-button" title="{{CLOSE}}" data-fancybox-close><svg width="24" height="24" viewBox="4 4 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.0011 14.7154L20.1332 20.8528L20.84 20.1454L14.7079 14.008L20.8559 7.85475L20.1491 7.14734L14.0011 13.3006L7.84817 7.14246L7.14136 7.84987L13.2943 14.008L7.15723 20.1503L7.86404 20.8577L14.0011 14.7154Z" fill="inherit"/></svg></button>',
+      },
+    }
+  }
+});
+
+//кнопка вверх на страницах
+if (window.innerHeight > 950) {
+  // если страница длинная, создаем кнопку UP
+  let body = document.querySelector('.page');
+  let upBtn = document.createElement('div');
+  upBtn.classList.add('up');
+  body.append(upBtn);
+
+  upBtn.addEventListener('click', function(e) {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  })
+
+  window.onscroll = () =>
+  window.scrollY > 620
+    ? (upBtn.classList.add('up_showed'))
+    : (upBtn.classList.remove('up_showed'));
 }

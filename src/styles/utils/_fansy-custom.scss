@@ -17,13 +17,11 @@ button:focus {
 }
 
 
-.fancybox__caption {
-
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+.fancybox__container  .fancybox__caption {
+  @include circe-lowercase;
+  max-width: 80%;
   color: white;
-  text-align: left;
+  text-align: center;
 }
 
 
@@ -90,6 +88,10 @@ body:not(.is-using-mouse) .fancybox__container :focus {
 
 .fancybox__nav .f-button.is-prev:active {
   color: $primary-color-onclick;
+}
+
+.f-carousel__dots  {
+  bottom: -50px !important;
 }
 
 .f-carousel__dot  {

@@ -13,11 +13,15 @@
 @import './utils/mixins';    // основные миксины
 @import './utils/fansy-custom';
 
+
 @import './blocks/header';
 @import './blocks/main';
 @import './blocks/footer';
 @import './blocks/search';
 @import './blocks/tabs';
+@import './blocks/anchor';
+@import './blocks/up';
+
 
 @import './blocks/represent';
 @import './blocks/table';
@@ -28,3 +32,5 @@
 @import './blocks/slider';
 @import './blocks/lead';
 @import './blocks/contacts';
+@import './blocks/teps';
+@import './blocks/assets';
