@@ -2,17 +2,51 @@
   margin: 40px auto 60px;
    
   .slider__slide {
-    max-width: 1054px;
-    max-height: 480px;
     width: 85%;
+    height: 100%;
     margin: 0 auto;
     overflow: hidden;
 
     img {
       width: 100%;
+      min-height: 100%;
       height: auto;
       object-fit: cover;
       object-position: center;
+    }
+  }
+
+  .slider__button {
+    @include silly-link;
+    @include transition;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    &:after {
+      position: absolute;
+    }
+
+    &.slider__button_next{
+      &:after {
+        content: url(../../images/nav-arr-next.png)
+      }
+    }
+
+    &.slider__button_prev{
+      &:after {
+        content: url(../../images/nav-arr-prev.png)
+      }
+    }
+
+    &:hover {
+      background-color: rgba(45, 139, 241, 0.07);
     }
   }
 }

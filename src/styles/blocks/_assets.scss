@@ -13,10 +13,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
   }
 
   .assets__title {
     @include section-title ;
+    margin-bottom: 0;
   }
 
   .assets__link {

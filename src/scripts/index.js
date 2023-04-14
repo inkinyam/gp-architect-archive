@@ -70,14 +70,14 @@ if (table) {
           field: 'state',
           checkbox: true,
           align: 'center',
-          valign: 'middle'
+          valign: 'middle',
+        
         },{
           title: 'ID',
           field: 'id',
           rowspan: 1,
           align: 'center',
           valign: 'middle',
-          sortable: true,
         }, 
         {
           title: 'Рейтинг',
@@ -164,23 +164,22 @@ if (table) {
     })
     $table.on('check.bs.table uncheck.bs.table ' +
       'check-all.bs.table uncheck-all.bs.table',
+    
+ 
     function () {
       $remove.prop('disabled', !$table.bootstrapTable('getSelections').length)
-  
-      // save your data, here just save the current page
       selections = getIdSelections()
-      // push or splice the selections if you want to save all data selections
+      })
+        $table.on('all.bs.table', function (e, name, args) {
+      })
+    }
+  
+    $(function() {
+      initTable(tableInfo);
+      $table[0].classList.remove('table-bordered')
     })
-    $table.on('all.bs.table', function (e, name, args) {
-     /*  console.log(name, args) */
-    })
-  
-  }
-  
-  $(function() {
-    initTable(tableInfo)
-  })
-  
+ 
+   
 }
 
 const sliderBlock = document.getElementById("main-slider");
@@ -194,6 +193,10 @@ if (sliderBlock) {
       showProgress: false,
       timeout: 10000,
     },
+    Navigation: {
+      nextTpl: "<svg width='44' height='44' viewBox='0 0 44 44' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M28.3536 22.3536C28.5488 22.1583 28.5488 21.8417 28.3536 21.6464L25.1716 18.4645C24.9763 18.2692 24.6597 18.2692 24.4645 18.4645C24.2692 18.6597 24.2692 18.9763 24.4645 19.1716L27.2929 22L24.4645 24.8284C24.2692 25.0237 24.2692 25.3403 24.4645 25.5355C24.6597 25.7308 24.9763 25.7308 25.1716 25.5355L28.3536 22.3536ZM16 22.5L28 22.5V21.5L16 21.5V22.5Z' fill='black'/><rect x='43.75' y='43.75' width='43.5' height='43.5' rx='21.75' transform='rotate(180 43.75 43.75)' stroke='black' stroke-width='0.5'/></svg>",
+      prevTpl: "<svg width='44' height='44' viewBox='0 0 44 44' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M15.6464 21.6464C15.4512 21.8417 15.4512 22.1583 15.6464 22.3536L18.8284 25.5355C19.0237 25.7308 19.3403 25.7308 19.5355 25.5355C19.7308 25.3403 19.7308 25.0237 19.5355 24.8284L16.7071 22L19.5355 19.1716C19.7308 18.9763 19.7308 18.6597 19.5355 18.4645C19.3403 18.2692 19.0237 18.2692 18.8284 18.4645L15.6464 21.6464ZM28 21.5H16V22.5H28V21.5Z' fill='black'/> <rect x='0.25' y='0.25' width='43.5' height='43.5' rx='21.75' stroke='black' stroke-width='0.5'/></svg>" 
+    }
   };
   
   new Carousel(sliderBlock, options, { Autoplay });
@@ -248,4 +251,47 @@ if (window.innerHeight > 950) {
   window.scrollY > 620
     ? (upBtn.classList.add('up_showed'))
     : (upBtn.classList.remove('up_showed'));
+}
+
+
+import LeafletMap from './leflet-custom';
+import mapsData from '../utils/mapsdata';
+
+import 'leaflet/dist/leaflet.css';
+let mapContainer = document.querySelector('#mskmap');
+if (mapContainer) {
+
+  const map = new LeafletMap(
+    'mskmap', // id контейнера для карты
+       {
+          zoom: 13,
+          attributionControl : false,
+          zoomControl: true,
+          keyboard: false,
+          scrollWheelZoom: false,
+          center: [55.753214, 37.623054],
+          tap: false,
+          zoomControl:false,
+          fullscreenControl: false,
+          clickFitBounds: false,
+          clickPanToLayer: false,
+
+          minZoom: 8,
+          maxZoom: 18,
+          baseLayers: [ // массив базовых слоев
+            {
+              name: 'OpenStreetMap',
+              url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+              options: {},
+            },
+ 
+          ],
+    }, [
+      {
+        name: 'Territory1',
+        geojson: mapsData,
+        group: 'Territory', // имя группы, к которой принадлежит слой
+      },
+    ], []);
+  map.init();
 }

@@ -1,7 +1,9 @@
-.table {
+.newTable {
+  border-radius: 10px !important;
   .table__link {
     @include silly-link;
     @include transition;
+    font-weight: 700;
     transition-property: color;
     color: $dark-color-default;
     
@@ -9,5 +11,11 @@
     &:hover {
       color: $primary-color-hovered;
     }
+  }
+
+  .newTable__header {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 10px !important;
+    overflow: hidden;
   }
 }

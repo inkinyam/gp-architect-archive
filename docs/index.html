@@ -47,7 +47,24 @@
       <div class="tabs__content">
         <div class="tabs__panel" data-tab-name="tableview">
           <section class="represent represent_tableview">
-            <table class="newTable" id="table" data-search="true" data-show-refresh="true" data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true" data-show-columns-toggle-all="true" data-show-export="true" data-click-to-select="true" data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-show-pagination-switch="true" data-pagination="true" data-id-field="id" data-page-list="[25, 50, 100, all]" data-show-footer="false" data-side-pagination="server" data-response-handler="responseHandler" data-toggle="table" data-search="true" data-filter-control="true"></table>
+            <table class="newTable" id="table" data-search="true" data-show-refresh="true" data-show-toggle="false" data-show-fullscreen="false" data-show-columns="false" data-show-columns-toggle-all="false" data-show-export="false" data-show-pagination-switch="false" data-show-footer="false" data-click-to-select="true" data-minimum-count-columns="2" data-pagination="true" data-id-field="id" data-page-list="[25, 50, 100, all]" data-side-pagination="server" data-response-handler="responseHandler" data-toggle="table" data-search="true" data-filter-control="true">
+              <thead class="newTable__header">
+                <tr>
+                  <th data-field="state" data-checkbox="true"></th>
+                  <th data-field="id" data-sortable="true" data-filter-control="select">ID</th>
+                  <th data-field="raiting" data-sortable="true" data-filter-control="select">Рейтинг</th>
+                  <th data-field="name" data-sortable="true" data-filter-control="select">Название</th>
+                  <th data-field="customer" data-sortable="true" data-filter-control="select">Заказчик</th>
+                  <th data-field="projector" data-sortable="true" data-filter-control="select">Проектировщик</th>
+                  <th data-field="date" data-sortable="true" data-filter-control="select">Дата ввода</th>
+                  <th data-field="district" data-sortable="true" data-filter-control="select">Округ</th>
+                  <th data-field="agr" data-sortable="true" data-filter-control="select">АГР</th>
+                  <th data-field="archmain" data-sortable="true" data-filter-control="select">Архначимый</th>
+                  <th data-field="tags" data-sortable="true" data-filter-control="select">ТЭГИ</th>
+                  <th data-field="function" data-sortable="true" data-filter-control="select">Функции</th>
+                </tr>
+              </thead>
+            </table>
           </section>
         </div>
         <div class="tabs__panel" data-tab-name="mosaicview">
@@ -77,7 +94,7 @@
         <div class="tabs__panel" data-tab-name="mapview">
           <section class="represent represent_mapview">
             <p class="represent__total">всего проектов: <span class="represent__counter">120</span></p>
-            <div class="map">здесь будет карта</div>
+            <div class="map" id="mskmap">здесь будет карта</div>
           </section>
         </div>
       </div>

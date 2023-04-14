@@ -29,6 +29,7 @@
     "html-cli": "^1.0.0",
     "html-webpack-plugin": "^5.5.0",
     "jquery": "^3.6.4",
+    "leaflet": "^1.9.3",
     "mini-css-extract-plugin": "^2.7.5",
     "postcss-loader": "^7.2.4",
     "resolve-url-loader": "^5.0.0",

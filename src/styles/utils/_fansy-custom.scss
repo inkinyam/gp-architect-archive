@@ -99,6 +99,23 @@ body:not(.is-using-mouse) .fancybox__container :focus {
 }
 
 
+.f-carousel {
+  max-width: 1240px;
+  width: 90%;
+  margin: 0 auto;
+
+  .f-button {
+    @include silly-link;
+    svg {
+      width: 40px;
+      height: 40px;
+      path {
+        stroke-width: 0.5px;
+      }
+    }
+
+  }
+}
 
 
 
@@ -123,35 +140,3 @@ body:not(.is-using-mouse) .fancybox__container :focus {
   }
 }
 
-
-/*СТИЛИЗАЦИЯ ПОД РАЗНЫЕ СТРАНИЦЫ*/
-.projectsCrsl .f-carousel__slide {
-  align-items: flex-start;
-}
-
-.lead .f-carousel {
-  --carousel-button-svg-stroke-width: 1;
-}
-
-.lead .f-carousel__slide  {
-  width: 100%;
-}
-
-.lead .f-carousel__button.carousel__button.is-prev:hover circle{
-  fill: white;
-  stroke: white;
-}
-
-.lead .f-carousel__button.carousel__button.is-prev:active circle{
-  fill: $dark-color-hovered;
-  stroke: $dark-color-hovered;
-}
-
-.lead .f-carousel__button.carousel__button.is-next:active circle{
-  fill: $dark-color-onclick;
-  stroke: $dark-color-onclick;
-}
-
-.institut .f-carousel {
-  --carousel-button-svg-stroke-width: 1;
-}
