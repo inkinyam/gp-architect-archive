@@ -9,9 +9,9 @@
 .tabs__links {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin: 0 auto 40px;
-  width: 100%;
+  justify-content: flex-end;
+  margin: 0 0 0 auto ;
+    z-index: 555;
   column-gap: 24px;
 
   .tabs__link {

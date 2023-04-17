@@ -1,5 +1,7 @@
 
 .search {
+  max-width: 240px;
+
   .search__main-block {
     position: relative;
 
@@ -10,7 +12,7 @@
   
       background: #FFFFFF;
       border: 0.5px solid rgba(0, 0, 0, 0.5);
-      border-radius: 25px;
+      border-radius: 34px;
       outline: none;
   
       box-sizing: border-box;
@@ -21,9 +23,14 @@
         @include circe-lowercase;
         color: rgba(32, 30, 51, 0.7);
       }
+
+      &:focus {
+        border-color: $primary-color-hovered;
+      }
     }
 
     .search__filter{
+      @include silly-link;
       width: 38px;
       height: 38px;
       padding: 0;
@@ -34,13 +41,28 @@
       align-items: center;
 
       position: absolute;
-      right: 5px;
+      right: 1px;
       top: 50%;
       transform: translateY(-50%);
 
+      svg {
+        rect {
+          @include transition;
+          fill: $primary-color-hovered;
+        }
+      }
+
+      &:hover {
+        svg {
+          rect {
+            fill: $primary-color-onclick;
+          }
+        }
+      }
+
       &.search__submenu_active {
         svg {
-          path {
+          rect {
             fill: $primary-color-onclick;
           }
         }

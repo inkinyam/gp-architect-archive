@@ -6,11 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ключевые проекты Москвы</title>
   <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-
-  <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
   <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
   <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table-locale-all.min.js"></script>
-  <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/extensions/export/bootstrap-table-export.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/extensions/filter-control/bootstrap-table-filter-control.js"></script> 
 
 </head>
 <body class="page">
@@ -43,22 +41,11 @@
     </div>
   </header>
 
-  <main>
+  <main class="main">
     <div class="tabs representation-tabs">
       <div class="tabs__links">
 
-        <form action="" class="search">
-          <div class="search__main-block">
-            <input type="text" class="search__main-input" placeholder="Поиск" >
-            
-            <button class="search__filter">
-              <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M8.94999 2.5H15V3.5H8.94999C8.71836 4.64112 7.70948 5.5 6.5 5.5C5.29052 5.5 4.28164 4.64112 4.05001 3.5H0V2.5H4.05001C4.28164 1.35888 5.29052 0.5 6.5 0.5C7.70948 0.5 8.71836 1.35888 8.94999 2.5ZM13.95 7.5H15V8.5H13.95C13.7184 9.64112 12.7095 10.5 11.5 10.5C10.2905 10.5 9.28164 9.64112 9.05001 8.5H0V7.5H9.05001C9.28164 6.35888 10.2905 5.5 11.5 5.5C12.7095 5.5 13.7184 6.35888 13.95 7.5ZM15 12.5H6.94999C6.71836 11.3589 5.70948 10.5 4.5 10.5C3.29052 10.5 2.28164 11.3589 2.05001 12.5H0V13.5H2.05001C2.28164 14.6411 3.29052 15.5 4.5 15.5C5.70948 15.5 6.71836 14.6411 6.94999 13.5H15V12.5Z" fill="black" fill-opacity="0.7"/>
-              </svg>
-            </button>
-          </div>
-        </form>
-
+      
         <ul class="tabs__nav"> 
           <li class="tabs__info">ВИД</li>
           <li class="tabs__nav-item">
@@ -85,53 +72,52 @@
         </ul>
       </div>
 
+
+      <form action="" class="search" id="toolbarCustom">
+        <div class="search__main-block">
+          <input type="text" class="search__main-input" placeholder="Поиск" >
+          
+          <button id="ok" type="submit"9 class="search__filter">
+              <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="34" height="34" rx="17" fill="#1678E2"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.7927 18.2638C17.3608 19.6957 15.0391 19.6957 13.6072 18.2638C12.1753 16.8319 12.1753 14.5103 13.6072 13.0783C15.0391 11.6464 17.3608 11.6464 18.7927 13.0783C20.2246 14.5103 20.2246 16.8319 18.7927 18.2638ZM19.2331 19.6468C17.2728 21.1462 14.4572 20.9994 12.6644 19.2066C10.7118 17.254 10.7118 14.0882 12.6644 12.1355C14.617 10.1829 17.7829 10.1829 19.7355 12.1355C21.5282 13.9283 21.675 16.7437 20.1758 18.7039L23.7425 22.2706L22.7997 23.2134L19.2331 19.6468Z" fill="white"/>
+              </svg>
+            </button>      
+        </div>
+      </form>
       <div class="tabs__content">
         <div class="tabs__panel" data-tab-name="tableview">
-          <section class="represent represent_tableview " >
-            <table class="newTable"
-                  id="table"
-                  
-                  data-search="true"
-                  data-show-refresh="true"
-                  data-show-toggle="false"
-                  data-show-fullscreen="false"
-                  data-show-columns="false"
-                  data-show-columns-toggle-all="false"
-                  data-show-export="false"
-                  data-show-pagination-switch="false"
-                  data-show-footer="false"
-            
-                  data-click-to-select="true"
-      
-                  data-minimum-count-columns="2"
-                  data-pagination="true"
-                  data-id-field="id"
-                  data-page-list="[25, 50, 100, all]"
-                  data-side-pagination="server"
-                  data-response-handler="responseHandler"
-                 
-                  data-toggle="table"
-                  data-search="true"
-                  data-filter-control="true" 
-                  >
 
-                  <thead class="newTable__header">
-                    <tr>
-                      <th data-field="state"     data-checkbox="true"></th>
-                      <th data-field="id"        data-sortable="true" data-filter-control="select">ID</th>
-                      <th data-field="raiting"   data-sortable="true" data-filter-control="select">Рейтинг</th>
-                      <th data-field="name"      data-sortable="true" data-filter-control="select">Название</th>
-                      <th data-field="customer"  data-sortable="true" data-filter-control="select">Заказчик</th>
-                      <th data-field="projector" data-sortable="true" data-filter-control="select">Проектировщик</th>
-                      <th data-field="date"      data-sortable="true" data-filter-control="select">Дата ввода</th>
-                      <th data-field="district"  data-sortable="true" data-filter-control="select">Округ</th>
-                      <th data-field="agr"       data-sortable="true" data-filter-control="select">АГР</th>
-                      <th data-field="archmain"  data-sortable="true" data-filter-control="select">Архначимый</th>
-                      <th data-field="tags"      data-sortable="true" data-filter-control="select">ТЭГИ</th>
-                      <th data-field="function"  data-sortable="true" data-filter-control="select">Функции</th>
-                    </tr>
-                  </thead>
-            </table>
+
+  
+          <section class="represent represent_tableview " >
+
+            <table id="table"  class="aa-tablet"
+                  data-toggle          = "table"
+                  data-filter-control  = "true" 
+                  data-click-to-select = "true"
+                  data-locale          = "ru"
+                  data-mobile-responsive="true"
+                  data-toolbar="#toolbarCustom"
+                                    
+                  >
+              <thead>
+                <tr>
+                  <th data-field="state"      data-checkbox="true"                                    data-width="3,5"  data-width-unit="%" data-searchable="true"></th>
+                  <th data-field="id"         data-filter-control="input"       data-sortable="true"  data-width="3,5"  data-width-unit="%" data-searchable="true">ID</th>
+                  <th data-field="raiting"    data-filter-control="select"      data-sortable="true"  data-width="7"    data-width-unit="%" data-searchable="true">Рейтинг</th>
+                  <th data-field="name"       data-filter-control="input"       data-sortable="true"  data-width="14"   data-width-unit="%" data-searchable="true">Название</th>
+                  <th data-field="customer"   data-filter-control="select"      data-sortable="true"  data-width="10.5" data-width-unit="%" data-searchable="true">Заказчик</th>
+                  <th data-field="projector"  data-filter-control="select"      data-sortable="true"  data-width="14"   data-width-unit="%" data-searchable="true">Проектировщик</th>
+                  <th data-field="date"       data-filter-control="datepicker"  data-sortable="true"  data-width="7"    data-width-unit="%" data-searchable="true">Дата ввода</th>
+                  <th data-field="district"   data-filter-control="select"      data-sortable="true"  data-width="7"    data-width-unit="%" data-searchable="true">Округ</th>
+                  <th data-field="archmain"   data-filter-control="select"      data-sortable="true"  data-width="7"    data-width-unit="%" data-searchable="true">Архзначимый</th>
+                  <th data-field="tags"       data-filter-control="input"       data-sortable="true"  data-width="10.5" data-width-unit="%" data-searchable="true">ТЭГИ</th>
+                  <th data-field="function"   data-filter-control="input"       data-sortable="true"  data-width="10.5" data-width-unit="%" data-searchable="true">Функции</th>           
+                </tr>
+              </thead>
+            </table> 
+
           </section>
         </div> 
 

@@ -1,21 +1,144 @@
-.newTable {
-  border-radius: 10px !important;
-  .table__link {
-    @include silly-link;
-    @include transition;
-    font-weight: 700;
-    transition-property: color;
-    color: $dark-color-default;
-    
+.aa-tablet {
+  text-align: center;
+  vertical-align: middle;
 
-    &:hover {
-      color: $primary-color-hovered;
+   thead {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-bottom-color: transparent !important;
+    tr {
+      th{
+        &:first-of-type {
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px;
+          border-left-width: 0px;
+        }
+
+        &:last-of-type {
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px;
+          border-right-width: 0px;
+        }
+
+
+        .filter-control {
+          input {
+            border-radius: 25px;
+
+            &:focus {
+              box-shadow: none;
+              border-color: $primary-color-hovered;
+            }
+          }
+
+          select {
+            border-radius: 25px;
+            &:focus {
+              box-shadow: none;
+              border-color: $primary-color-hovered;
+            }
+
+            option {
+              min-height: 40px;
+              &:first-of-type {
+                border-top-left-radius: 25px;
+                border-top-right-radius: 25px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 
-  .newTable__header {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 10px !important;
-    overflow: hidden;
+  tbody {
+    border-top-width: 0 !important;
+    border-top-color: transparent !important;
   }
+
+
+
+  
+  .aa-tablet__raiting {
+    font-size: 18px;
+    color: $primary-color-hovered;
+  }
+
+  .aa-tablet__link {
+    @include silly-link;
+    color: $dark-color-default;
+    font-weight: 700;
+  }
+
+  &.table-hover {
+    tbody {
+      tr {
+        &.selected {
+          background-color: rgba(31, 132, 233, 0.05);
+          &:hover {
+            box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.25);
+          }
+        }
+        
+        &:hover {
+          td {
+            background-color: rgb(230, 241, 252);
+          }
+        }
+      }
+    }
+  }
+
+  .bs-checkbox {
+    label {
+      display: flex;
+      border-radius: 3px;
+      position: relative;
+      width: 15px;
+      height: 15px;
+      border: 0.5px solid #201E33; 
+      align-items: center;
+      justify-content: center; 
+      input {
+        display: none;
+      }
+
+      input:checked ~ span{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -80%) rotate(135deg);
+          width: 10px;
+          height: 5px;
+          border-width: 1px;
+          border-style: solid;
+          border-color: #201E33 #201E33 transparent transparent;
+      }
+    }
+  }
+}  
+
+.table-hover>tbody>tr:hover>* {
+  --bs-table-accent-bg:  rgb(230, 241, 252);
+}
+
+.bootstrap-table .fixed-table-container .table tbody tr.selected td {
+  background-color: transparent;
+}
+.bootstrap-table .fixed-table-container .table thead .sortable {
+ @include silly-link
+  
+}
+
+.bootstrap-table .fixed-table-container .table thead th .both {
+  
+  background-image: url(../../images/sortableUpDown.png);
+  background-position: right 10px bottom 50%;
+}
+
+.bootstrap-table .fixed-table-container .table thead th .asc {
+  background-image: url(../../images/sortableUp.png);
+}
+
+.bootstrap-table .fixed-table-container .table thead th .desc {
+   background-image: url(../../images/sortable.png);
 }

@@ -1,5 +1,6 @@
 .represent {
   @include circe-lowercase;
+  
 
 
   .represent__total {
@@ -12,5 +13,10 @@
   }
   .represent__counter {
     font-weight: 600;
+  }
+
+  &.represent_tableview {
+    margin-top: -60px;
+    margin-bottom: 60px;
   }
 }
