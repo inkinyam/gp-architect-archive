@@ -1,6 +1,5 @@
 .teps {
   @include standart-block-width;
-  max-width: calc(100% - 256px);
   margin: 60px auto;
   display: flex;
   flex-direction: column;

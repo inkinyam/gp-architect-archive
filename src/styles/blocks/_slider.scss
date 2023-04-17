@@ -2,7 +2,7 @@
   margin: 40px auto 60px;
    
   .slider__slide {
-    width: 85%;
+   @include standart-block-width;
     height: 100%;
     margin: 0 auto;
     overflow: hidden;

@@ -1,5 +1,6 @@
 .header {
   @include  standart-block-width;
+  max-width: calc(100% - 128px);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -38,7 +39,7 @@
     padding: 4px 0;
     margin-left: 122px;
     cursor: pointer;
-    z-index: 40;
+    z-index: 1005;
     
     span {
       width: 100%;

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ключевые проекты Москвы</title>
+  <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table-locale-all.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.21.4/dist/extensions/filter-control/bootstrap-table-filter-control.js"></script>
+  <script defer="defer" src="index.js"></script>
+  <link href="main.css" rel="stylesheet">
+</head>
+
+<body class="page">
+  <header class="header">
+    <div class="header__logos"><a href="#" class="header__logo"><img src="images/icons/mka-logo-black.svg" alt="logo1"> </a><a href="#" class="header__logo"><img src="images/icons/main-logo-old-black.svg" alt="logo2"></a></div>
+    <h1 class="header__title">Ключевые проекты Москвы</h1><button class="header__burger"><span></span> <span></span> <span></span></button>
+    <div class="header__sidepanel">
+      <div class="header__sidepanel-inner"><a href="./login.html" class="header__sidepanel-link">Страница логина</a> <a href="./resume-pass.html" class="header__sidepanel-link">Восстановить пароль</a> <a href="./project.html" class="header__sidepanel-link">Страница проекта</a> <a href="./404.html" class="header__sidepanel-link">404</a></div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="tabs representation-tabs">
+      <div class="tabs__links">
+        <ul class="tabs__nav">
+          <li class="tabs__info">ВИД</li>
+          <li class="tabs__nav-item"><a class="tabs__nav-btn" type="button" href="#tableview"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M17.0859 13V16.6847H13V17.6847H17.0859V22.5064H13V23.5064H17.0859V26.9704H18.0859V23.5064H21.1641V27H22.1641V23.5064H27V22.5064H22.1641V17.6847H27V16.6847H22.1641V13.0296H21.1641V16.6847H18.0859V13H17.0859ZM21.1641 22.5064V17.6847H18.0859V22.5064H21.1641Z" fill="#1678E2" />
+              </svg></a></li>
+          <li class="tabs__nav-item"><a class="tabs__nav-btn" type="button" href="#mosaicview"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9766 12.998H26.9766V18.998H20.9766V12.998ZM19 13.0508H13V19.0508H19V13.0508ZM19 21.002H13V27.002H19V21.002ZM26.995 20.998H20.9766V26.998H26.995V20.998Z" fill="#1678E2" />
+              </svg></a></li>
+          <li class="tabs__nav-item"><a class="tabs__nav-btn" type="button" href="#mapview"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="fillbock" fill-rule="evenodd" clip-rule="evenodd" d="M20 28C20 28 26 20.8702 26 17.7143C26 14.5584 23.3137 12 20 12C16.6863 12 14 14.5584 14 17.7143C14 20.8702 20 28 20 28ZM17.913 19.649C16.8939 18.5614 16.8958 16.8689 17.9174 15.7835V15.7835C19.042 14.5888 20.9447 14.6011 22.0538 15.8103V15.8103C23.0422 16.888 23.044 18.5422 22.058 19.6222V19.6222C20.9483 20.8375 19.0384 20.8499 17.913 19.649V19.649Z" fill="#1678E2" />
+              </svg></a></li>
+        </ul>
+      </div>
+      <form action="" class="search" id="toolbarCustom">
+        <div class="search__main-block"><input class="search__main-input" placeholder="Поиск"> <button id="ok" type="submit" 9 class="search__filter"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="34" height="34" rx="17" fill="#1678E2" />
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M18.7927 18.2638C17.3608 19.6957 15.0391 19.6957 13.6072 18.2638C12.1753 16.8319 12.1753 14.5103 13.6072 13.0783C15.0391 11.6464 17.3608 11.6464 18.7927 13.0783C20.2246 14.5103 20.2246 16.8319 18.7927 18.2638ZM19.2331 19.6468C17.2728 21.1462 14.4572 20.9994 12.6644 19.2066C10.7118 17.254 10.7118 14.0882 12.6644 12.1355C14.617 10.1829 17.7829 10.1829 19.7355 12.1355C21.5282 13.9283 21.675 16.7437 20.1758 18.7039L23.7425 22.2706L22.7997 23.2134L19.2331 19.6468Z" fill="white" />
+            </svg></button></div>
+      </form>
+      <div class="tabs__content">
+        <div class="tabs__panel" data-tab-name="tableview">
+          <section class="represent represent_tableview">
+            <table id="table" class="aa-tablet" data-toggle="table" data-filter-control="true" data-click-to-select="true" data-locale="ru" data-mobile-responsive="true" data-toolbar="#toolbarCustom">
+              <thead>
+                <tr>
+                  <th data-field="state" data-checkbox="true" data-width="3,5" data-width-unit="%" data-searchable="true"></th>
+                  <th data-field="id" data-filter-control="input" data-sortable="true" data-width="3,5" data-width-unit="%" data-searchable="true">ID</th>
+                  <th data-field="raiting" data-filter-control="select" data-sortable="true" data-width="7" data-width-unit="%" data-searchable="true">Рейтинг</th>
+                  <th data-field="name" data-filter-control="input" data-sortable="true" data-width="14" data-width-unit="%" data-searchable="true">Название</th>
+                  <th data-field="customer" data-filter-control="select" data-sortable="true" data-width="10.5" data-width-unit="%" data-searchable="true">Заказчик</th>
+                  <th data-field="projector" data-filter-control="select" data-sortable="true" data-width="14" data-width-unit="%" data-searchable="true">Проектировщик</th>
+                  <th data-field="date" data-filter-control="datepicker" data-sortable="true" data-width="7" data-width-unit="%" data-searchable="true">Дата ввода</th>
+                  <th data-field="district" data-filter-control="select" data-sortable="true" data-width="7" data-width-unit="%" data-searchable="true">Округ</th>
+                  <th data-field="archmain" data-filter-control="select" data-sortable="true" data-width="7" data-width-unit="%" data-searchable="true">Архзначимый</th>
+                  <th data-field="tags" data-filter-control="input" data-sortable="true" data-width="10.5" data-width-unit="%" data-searchable="true">ТЭГИ</th>
+                  <th data-field="function" data-filter-control="input" data-sortable="true" data-width="10.5" data-width-unit="%" data-searchable="true">Функции</th>
+                </tr>
+              </thead>
+            </table>
+          </section>
+        </div>
+        <div class="tabs__panel" data-tab-name="mosaicview">
+          <section class="represent represent_mosaicview">
+            <p class="represent__total">всего проектов: <span class="represent__counter">120</span></p>
+            <div class="mosaic"><a class="mosaic__card" href="#"><img src="images/mosaic (1).png" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">RED 7</h3>
+                <h3 class="mosaic__card-subtitle">Москва, пр. Академика Сахарова, 1</h3>
+              </a><a class="mosaic__card" href="#"><img src="images/mosaic (2).png" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">Жк «Бадаевский»</h3>
+                <h3 class="mosaic__card-subtitle">Москва, ул. Золоторожский вал, 11 стр. 20/1</h3>
+              </a><a class="mosaic__card" href="#"><img src="images/mosaic (3).png" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">ЖК «Событие»</h3>
+                <h3 class="mosaic__card-subtitle">ЗАО, район Раменки, между ул. Лобачевского и платформой «Матвеевская», квартал 4.1</h3>
+              </a><a class="mosaic__card" href="#"><img src="images/mosaic (4).png" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">ЖК «Hide»</h3>
+                <h3 class="mosaic__card-subtitle">Москва, проезд Сетуньский 1-й, вл. 6-10</h3>
+              </a><a class="mosaic__card" href="#"><img src="images/mosaic (5).png" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">Технопарк сбербанка</h3>
+                <h3 class="mosaic__card-subtitle">Москва, 2-я Брестская ул., 2/14</h3>
+              </a><a class="mosaic__card" href="#"><img src="images/mosaic (6).png" alt="фото проекта" class="mosaic__img">
+                <h3 class="mosaic__card-title">ЖК «sky view»</h3>
+                <h3 class="mosaic__card-subtitle">Москва, ул.Дружинниковская 15</h3>
+              </a></div>
+          </section>
+        </div>
+        <div class="tabs__panel" data-tab-name="mapview">
+          <section class="represent represent_mapview">
+            <p class="represent__total">всего проектов: <span class="represent__counter">120</span></p>
+            <div class="map" id="mskmap">здесь будет карта</div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__link"><img src="images/icons/logo-institute.svg" alt="logo" class="footer__img">
+        <p class="footer__link-description"><a href="#">Комплекс градостроительной политики и строительства</a> <a href="#">Комитет по архитектуре и градостроительству</a></p>
+      </div>
+      <div class="footer__link"><img src="images/icons/main-logo-white.svg" alt="logo" class="footer__img">
+        <p class="footer__link-description"><a href="#">Государственное автономное учреждение «Научно-исследовательский и проектный институт Генерального плана города Москвы»</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

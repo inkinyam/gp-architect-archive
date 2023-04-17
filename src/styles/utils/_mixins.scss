@@ -10,15 +10,15 @@
   @include transition;
   transition-property: max-width;
   width: 100%;
-  max-width: calc(100% - 128px);
+  max-width: calc(1140px - 128px);
   margin:  0 auto;
 
   @media screen and (max-width: $tablet) {
-    max-width: calc(100% - 80px);
+    max-width: calc(1440px - 80px);
   }
 
   @media screen and (max-width: $mobile) {
-    max-width: calc(100% - 64px);
+    max-width: calc(1440px - 64px);
   }
 }
 
