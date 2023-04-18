@@ -95,16 +95,45 @@ if (window.innerHeight > 950) {
 }
 
 
-/* import LeafletMap from './leflet-custom';
+const mediaQuerySmallSize = window.matchMedia('(max-width: 1024px)'); // проверяем мобилка или десктоп
+import dataTabletInfo from '../utils/data2y';
+
+let tabletContainer = document.querySelector('.aa-tablet');
+if (tabletContainer) {
+  let $table = $('#table').bootstrapTable(
+    {
+      data: dataTabletInfo,
+    });
+  $table[0].classList.remove('table-bordered');
+  
+  if (mediaQuerySmallSize.matches) {
+    $table.bootstrapTable('toggleView')
+  }
+}
+
+
+
+
+
+
+
+import createMap from './leflet-custom';
+
 import mapsData from '../utils/mapsdata';
 
-import 'leaflet/dist/leaflet.css';
-let mapContainer = document.querySelector('#mskmap');
-if (mapContainer) {
 
-  const map = new LeafletMap(
-    'mskmap', // id контейнера для карты
-       {
+
+
+import 'leaflet/dist/leaflet.css';
+let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
+  if (mapBtn) {
+    let mapContainer = document.querySelector('#mskmap');
+
+    if (mapContainer) {
+
+      const map = createMap(
+        'mskmap', // id контейнера для карты
+        {
           zoom: 13,
           attributionControl : false,
           zoomControl: true,
@@ -116,7 +145,7 @@ if (mapContainer) {
           fullscreenControl: false,
           clickFitBounds: false,
           clickPanToLayer: false,
-
+    
           minZoom: 8,
           maxZoom: 18,
           baseLayers: [ // массив базовых слоев
@@ -125,32 +154,58 @@ if (mapContainer) {
               url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
               options: {},
             },
- 
           ],
-    }, [
-      {
-        name: 'Territory1',
-        geojson: mapsData,
-        group: 'Territory', // имя группы, к которой принадлежит слой
-      },
-    ], []);
-  map.init();
-}
- */
+        }, 
+        [
+          {
+            name: 'Territory1',
+            geojson: mapsData,
+            group: 'Territory', // имя группы, к которой принадлежит слой
+          },
+        ], 
+        [],
+        [
+          { 
+            name: 'zoomIn',
+            position: 'bottomright',
+            html: '<div class="controll controll_zoomIn"></div>',
+            onClick: function () {
+              console.log('zoom in');
+            }
+          },
+          { 
+            name: 'zoomOut',
+            position: 'bottomright',
+            html: '<div class="controll controll_zoomOut"></div>',
+            onClick: function () {
+              console.log('zoom out');
+            }
+          },
+          { 
+            name: 'center',
+            position: 'bottomright',
+            html: '<div class="controll controll_center"></div>',
+            onClick: function () {
+              console.log('center');
+            }
+          },
+        ]);
+        
+    document.addEventListener('DOMContentLoaded', (e)=> {
+       if (e.target.location.hash === '#mapview'){
+         map.init();
+       }
+      },{ once: true })  
 
-
-
-
-import dataTabletInfo from '../utils/data2y';
-let $table = $('#table').bootstrapTable(
-  {
-    data: dataTabletInfo,
-  });
+     mapBtn.addEventListener('click', ()=> {
+       if ( ! mapContainer.classList.contains('leaflet-container')) {
+          map.init();
+        }
+      },{ once: true })
+    } 
+  }
 
   
-let $ok = $('#ok');
 
 
-$table[0].classList.remove('table-bordered');
-
-
+ 

@@ -14,4 +14,8 @@ const presets = [
   }]
 ];
 
-module.exports = { presets }; 
+const plugins = [
+  "@babel/plugin-syntax-jsx"
+]
+
+module.exports = { presets,plugins }; 

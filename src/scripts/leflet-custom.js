@@ -11,12 +11,8 @@ class LeafletMap {
     this.layers = {};
     this.groupLayers = {};
   }
-
-  init() {
-    // create map instance
-    this.map = L.map(this.containerId, { ...this.options });
-
-    // create base layers
+  
+  addBaseLayers() {
     const baseLayers = {};
     for (const layer of this.options.baseLayers) {
       const baseLayer = L.tileLayer(layer.url, layer.options);
@@ -26,45 +22,42 @@ class LeafletMap {
       }
     }
     L.control.layers(baseLayers).addTo(this.map);
+  }
 
-    // create geojson layers
+  addNewLayers() {
     for (const layer of this.layerOptions) {
       const options = layer.options || {};
       const layerStyle = layer.style || {};
       const groupOptions = this.groupLayerOptions.find(group => group.name === layer.group)?.options || {};
       const geojsonLayer = L.geoJSON(layer.geojson, {
-        style: layerStyle,
-        interactive: options.interactive || false,
-        ...groupOptions,
-      });
+                                        style: layerStyle,
+                                        interactive: options.interactive || false,
+                                        ...groupOptions,
+                                        onEachFeature: (feature, layer) => {
+                                          if (feature.geometry.type === 'Point') {
+                                            layer.bindPopup(`<div class="popup"><img src="${feature.properties.img}"/><h4>${feature.properties.name}</h4><p>${feature.properties.adress}</p><a href="${feature.properties.link}">К проекту</a></div>`);
+                                          }
+                                        },
+                                      });
+                                      
       if (options.handleMouseEnter) {
         geojsonLayer.on('mouseover', options.handleMouseEnter);
         geojsonLayer.on('mouseout', options.handleMouseLeave);
       }
-      this.layers[layer.name] = geojsonLayer;
+      this.layers.name  = geojsonLayer;
     }
+  }
 
-    // create group layers
-    for (const group of this.groupLayerOptions) {
-      const groupLayer = L.layerGroup([]);
-      for (const layerName of group.layers) {
-        const layer = this.layers[layerName];
-        if (layer) {
-          groupLayer.addLayer(layer);
-        }
-      }
-      this.groupLayers[group.name] = groupLayer;
-    }
-
-    // add layers to map
+  addLayersToMap (){
     for (const layerName in this.layers) {
       const layer = this.layers[layerName];
       const groupLayer = this.groupLayers[this.layerOptions.find(l => l.name === layerName)?.group];
       const addToLayer = groupLayer || this.map;
       addToLayer.addLayer(layer);
     }
+  }
 
-    // add controllers to map
+  addControllers (){
     for (const controller of this.controllers) {
       let div ='';
       const control = L.control({ position: controller.position });
@@ -95,11 +88,23 @@ class LeafletMap {
             div.appendChild(label);
           }
         }
-      } else {
-        control.addTo(this.map);
-      }
+        } else {
+          control.addTo(this.map);
+        }
     }
+  }
+
+
+
+  init() {
+    this.map = L.map(this.containerId, { ...this.options });
+    this.addBaseLayers();
+    this.addNewLayers();
+    this.addLayersToMap();
+    this.addControllers();
   }
 }
 
-export default LeafletMap;
+export default function createMap(containerId, options, layerOptions, groupLayerOptions, controllers) {
+	return new LeafletMap(containerId, options, layerOptions, groupLayerOptions, controllers);
+}

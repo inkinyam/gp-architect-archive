@@ -1,6 +1,5 @@
 .header {
-  @include  standart-block-width;
-  max-width: calc(100% - 128px);
+  @include  wide-block-width;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,8 +21,8 @@
   .header__title {
     @include circe-uppercase;
     margin: 0 auto;
-    font-size: 50px;
-    line-height: 62px;
+    font-size: 24px;
+    line-height: 28px;
     font-weight: 700
   }
 
@@ -76,6 +75,14 @@
     top: -100vh;
     right: -64px;
     opacity: 0;
+
+    @media screen and (max-width: $tablet) {
+      right: -40px;
+    }
+    @media screen and (max-width: $mobile) {
+      right: -32px;
+      width: 100%;
+    }
 
    }
 

@@ -6,6 +6,22 @@
   }
 }
 
+@mixin wide-block-width {
+  @include transition;
+  transition-property: max-width;
+  width: 100%;
+  max-width: calc(100% - 128px);
+  margin:  0 auto;
+
+  @media screen and (max-width: $tablet) {
+    max-width: calc(100% - 80px);
+  }
+
+  @media screen and (max-width: $mobile) {
+    max-width: calc(100% - 64px);
+  }
+}
+
 @mixin standart-block-width {
   @include transition;
   transition-property: max-width;

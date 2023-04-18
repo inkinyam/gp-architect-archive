@@ -19,10 +19,14 @@
           border-right-width: 0px;
         }
 
+        .no-filter-control {
+          margin-bottom: 12px;
+        }
 
         .filter-control {
           input {
-            border-radius: 25px;
+            border-radius: 0;
+            margin-bottom: 12px;
 
             &:focus {
               box-shadow: none;
@@ -31,7 +35,8 @@
           }
 
           select {
-            border-radius: 25px;
+            border-radius: 0;
+            margin-bottom: 12px;
             &:focus {
               box-shadow: none;
               border-color: $primary-color-hovered;
@@ -55,9 +60,6 @@
     border-top-color: transparent !important;
   }
 
-
-
-  
   .aa-tablet__raiting {
     font-size: 18px;
     color: $primary-color-hovered;
@@ -66,7 +68,18 @@
   .aa-tablet__link {
     @include silly-link;
     color: $dark-color-default;
-    font-weight: 700;
+    font-weight: 1024;
+
+    @media screen and (max-width: 1024px) {
+      text-align: right;
+    }
+  }
+
+  .aa-tablet__text {
+    text-align: center;
+    @media screen and (max-width: 1024px) {
+      text-align: right !important;
+    }
   }
 
   &.table-hover {
@@ -75,13 +88,19 @@
         &.selected {
           background-color: rgba(31, 132, 233, 0.05);
           &:hover {
-            box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.25);
+            @media screen  and (max-width: 1024px){
+              box-shadow: none;
+            }
           }
         }
         
         &:hover {
           td {
             background-color: rgb(230, 241, 252);
+            @media screen  and (max-width: 1024px){
+              background-color: transparent;
+            }
           }
         }
       }
@@ -93,8 +112,8 @@
       display: flex;
       border-radius: 3px;
       position: relative;
-      width: 15px;
-      height: 15px;
+      width: 17px;
+      height: 17px;
       border: 0.5px solid #201E33; 
       align-items: center;
       justify-content: center; 
@@ -106,31 +125,102 @@
           position: absolute;
           top: 50%;
           left: 50%;
-          transform: translate(-50%, -80%) rotate(135deg);
-          width: 10px;
-          height: 5px;
+          transform: translate(-50%, -90%) rotate(135deg);
+          width: 12px;
+          height: 6px;
           border-width: 1px;
           border-style: solid;
           border-color: #201E33 #201E33 transparent transparent;
       }
     }
   }
+
+  @media screen and (max-width: 1024px) {
+    tbody {
+      tr {
+        td {
+         padding: 0;
+         border-bottom-width: 0;
+         padding: 0 10px;
+        }
+        &.selected {
+          background-color: transparent !important;
+          .card-views {
+            background-color: rgba(31,132,233,.05);
+          }
+        }
+      }
+    }
+    
+    .card-views {
+      margin: 0 0 25px 0;
+      width: 100%;
+      padding: 10px 0 0;
+      box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      
+
+      .card-view {
+        order: 3;
+        min-height: 40px;
+
+        border-bottom: .5px solid rgba(0, 0, 0, 0.15);
+        &:last-of-type {
+          border-bottom: none
+        }
+
+        &:nth-of-type(1) {
+          order: 1;
+          padding: 5px 15px;
+        }
+        &:nth-of-type(4) {
+          order: 2;
+        }
+
+        .card-view-title  {
+          padding:  0 0 0 15px;
+          background-color: #E8F1FC;
+          display: flex !important;
+          align-items: center;
+          font-weight: 400 !important;
+          min-width: 40% !important;
+          max-width: 40%;
+        }
+
+        .card-view-value   {
+          padding:  5px 15px 5px 0;
+          display: flex !important;
+          align-items: center;
+          justify-content: flex-end;
+         
+        }
+      }
+    }
+  }
 }  
+
+
 
 .table-hover>tbody>tr:hover>* {
   --bs-table-accent-bg:  rgb(230, 241, 252);
+
+  @media screen and (max-width: 1024px) {
+    --bs-table-accent-bg:  rgba(255, 255, 255, 0);
+  }
 }
 
 .bootstrap-table .fixed-table-container .table tbody tr.selected td {
   background-color: transparent;
 }
+
 .bootstrap-table .fixed-table-container .table thead .sortable {
- @include silly-link
-  
+  @include silly-link;  
 }
 
 .bootstrap-table .fixed-table-container .table thead th .both {
-  
   background-image: url(../../images/sortableUpDown.png);
   background-position: right 10px bottom 50%;
 }
