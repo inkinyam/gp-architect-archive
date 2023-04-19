@@ -95,7 +95,7 @@ if (window.innerHeight > 950) {
 }
 
 
-const mediaQuerySmallSize = window.matchMedia('(max-width: 1024px)'); // проверяем мобилка или десктоп
+const mediaQuerySmallSize = window.matchMedia('(max-width: 1240px)'); // проверяем мобилка или десктоп
 import dataTabletInfo from '../utils/data2y';
 
 let tabletContainer = document.querySelector('.aa-tablet');

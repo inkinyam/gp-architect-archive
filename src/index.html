@@ -74,10 +74,14 @@
 
 
       <form action="" class="search" id="toolbarCustom">
-        <div class="search__main-block  ">
+        <div class="search__main-block">
+          <svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2833 13.7808C10.24 14.4769 9.00078 14.8789 7.67841 14.8789C4.02128 14.8789 1 11.8038 1 7.93946C1 4.07513 4.02128 1 7.67841 1C11.3355 1 14.3568 4.07513 14.3568 7.93946C14.3568 9.66337 13.7555 11.2302 12.7648 12.4371L12.7578 12.4287L11.2747 13.7706L11.2833 13.7808ZM11.9336 14.5493C10.7156 15.3893 9.25232 15.8789 7.67841 15.8789C3.43774 15.8789 0 12.3243 0 7.93946C0 3.55462 3.43774 0 7.67841 0C11.9191 0 15.3568 3.55462 15.3568 7.93946C15.3568 9.96269 14.6249 11.8092 13.4199 13.2112L19.9201 20.8925L18.437 22.2344L11.9336 14.5493Z" fill="black"/>
+          </svg>
           <input type="search" class=" form-control search-input search__main-input " placeholder="Поиск" >
         </div>
       </form>
+
       <div class="tabs__content">
         <div class="tabs__panel" data-tab-name="tableview">
           <section class="represent represent_tableview " >
@@ -93,17 +97,86 @@
                    data-toolbar           = "#toolbarCustom">
               <thead>
                 <tr>
-                  <th data-field="state"      data-checkbox="true"                                     data-width="3,5"   data-width-unit="%"   data-searchable="true"></th>
-                  <th data-field="id"         data-filter-control="input"      data-sortable="true"   data-width="3,5"   data-width-unit="%"   data-searchable="true">ID</th>
-                  <th data-field="raiting"    data-filter-control="select"     data-sortable="true"   data-width="7"     data-width-unit="%"   data-searchable="true">Рейтинг</th>
-                  <th data-field="name"       data-filter-control="input"      data-sortable="true"   data-width="14"    data-width-unit="%"   data-searchable="true">Название</th>
-                  <th data-field="customer"   data-filter-control="input"      data-sortable="true"   data-width="10.5"  data-width-unit="%"   data-searchable="true">Заказчик</th>
-                  <th data-field="projector"  data-filter-control="input"      data-sortable="true"   data-width="14"    data-width-unit="%"   data-searchable="true">Проектировщик</th>
-                  <th data-field="date"       data-filter-control="datepicker" data-sortable="true"   data-width="7"     data-width-unit="%"   data-searchable="true">Дата ввода</th>
-                  <th data-field="district"   data-filter-control="select"     data-sortable="true"   data-width="7"     data-width-unit="%"   data-searchable="true">Округ</th>
-                  <th data-field="archmain"   data-filter-control="select"     data-sortable="true"   data-width="7"     data-width-unit="%"   data-searchable="true">Архзначимый</th>
-                  <th data-field="tags"       data-filter-control="input"      data-sortable="true"   data-width="10.5"  data-width-unit="%"   data-searchable="true">ТЭГИ</th>
-                  <th data-field="function"   data-filter-control="input"      data-sortable="true"   data-width="10.5"  data-width-unit="%"   data-searchable="true">Функции</th>           
+                  <th data-field="state"      
+                      data-checkbox="true"
+                      data-width="3,5"   
+                      data-width-unit="%"   
+                      data-searchable="true"></th>
+
+                  <th data-field="id"         
+                      data-filter-control="input"      
+                      data-sortable="true"   
+                      data-width="3,5"   
+                      data-width-unit="%"   
+                      data-searchable="true">ID</th>
+
+                  <th data-field="raiting"    
+                      data-filter-control="select"     
+                      data-sortable="true"   
+                      data-width="7"     
+                      data-width-unit="%"   
+                      data-searchable="true">Рейтинг</th>
+
+                  <th data-field="name"       
+                      data-filter-control="input"      
+                      data-sortable="true"   
+                      data-width="14"    
+                      data-width-unit="%"   
+                      data-searchable="true"
+                      data-align="left">Название</th>
+
+                  <th data-field="customer"   
+                      data-filter-control="input"      
+                      data-sortable="true"   
+                      data-width="10.5"  
+                      data-width-unit="%"   
+                      data-searchable="true"
+                      data-align="left">Заказчик</th>
+
+                  <th data-field="projector"  
+                      data-filter-control="input"      
+                      data-sortable="true"   
+                      data-width="14"    
+                      data-width-unit="%"   
+                      data-searchable="true"
+                      data-align="left">Проектировщик</th>
+
+                  <th data-field="date"       
+                      data-filter-control="datepicker" 
+                      data-sortable="true"   
+                      data-width="7"     
+                      data-width-unit="%"   
+                      data-searchable="true">Дата ввода</th>
+
+                  <th data-field="district"   
+                      data-filter-control="select"     
+                      data-sortable="true"   
+                      data-width="7"     
+                      data-width-unit="%"   
+                      data-searchable="true">Округ</th>
+
+                  <th data-field="archmain"   
+                      data-filter-control="select"     
+                      data-sortable="true"   
+                      data-width="7"     
+                      data-width-unit="%"   
+                      data-searchable="true">Архзначимый</th>
+
+                  <th data-field="tags"       
+                      data-filter-control="input"      
+                      data-sortable="true"   
+                      data-width="10.5"  
+                      data-width-unit="%"   
+                      data-searchable="true"
+                      data-align="left">ТЭГИ</th>
+
+                  <th data-field="function"   
+                      data-filter-control="input"      
+                      data-sortable="true"   
+                      data-width="10.5"  
+                      data-width-unit="%"   
+                      data-searchable="true"
+                      data-align="left">Функции</th>           
                 </tr>
               </thead>
             </table> 

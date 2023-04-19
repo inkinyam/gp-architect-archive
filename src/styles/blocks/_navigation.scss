@@ -92,15 +92,15 @@
       padding: 0 10px;
 
       &:hover {
-        background-color: rgba(45, 139, 241, 0.07);
+        background-color: rgba(22, 120, 226, 0.03);
       }
 
     }
 
     &.active {
       a {
-        background-color: $primary-color-default;
-        color: white;
+        background-color: rgba(22, 120, 226, 0.1);
+        color: $primary-color-onclick;
       }
     }
     @media screen and (max-width: $tablet) {
@@ -114,24 +114,36 @@
   }
 
   .navigation__nav-print {
-    height: 100%;
-    min-width: 40px;
+
     a {
       @include silly-link;
-      @include circe-uppercase;
+      @include button;
       @include transition;
+
+      text-transform: capitalize;
       display: flex;
-      background-color: transparent;
-      color: $dark-color-default;
+      background-color: $primary-color-hovered;
+      color: white;
       justify-content: center;
       align-items: center;
       width: 100%;
       height: 100%;
       box-sizing: border-box;
       padding: 0 10px;
+      font-size: 14px;
+      line-height: 21px;
+      min-height: 40px;
+      box-sizing: border-box;
+      padding: 10px 15px;
+
+      img {
+        width: 15px;
+        height: 17px;
+        margin-left: 10px;
+      }
 
       &:hover {
-        background-color: rgba(45, 139, 241, 0.07);
+        background-color: $primary-color-onclick;
       }
     }
 

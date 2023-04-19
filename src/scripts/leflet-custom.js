@@ -1,4 +1,18 @@
 import * as L from 'leaflet';
+import icon from '../images/pin.png';
+
+let iconClass = L.Icon.extend({
+  options: {
+    shadowUrl: icon,
+    iconSize: [22, 33],
+    shadowSize:   [0, 0],
+    iconAnchor:   [11, 33],
+    shadowAnchor: [1, 1],
+    popupAnchor:  [-3, -33]
+
+  }
+})
+let darkIcon = new iconClass({iconUrl: icon});
 
 class LeafletMap {
   constructor(containerId, options, layerOptions, groupLayerOptions, controllers) {
@@ -35,7 +49,7 @@ class LeafletMap {
                                         ...groupOptions,
                                         onEachFeature: (feature, layer) => {
                                           if (feature.geometry.type === 'Point') {
-                                            layer.bindPopup(`<div class="popup"><img src="${feature.properties.img}"/><h4>${feature.properties.name}</h4><p>${feature.properties.adress}</p><a href="${feature.properties.link}">К проекту</a></div>`);
+                                            L.marker(layer._latlng, { icon: darkIcon }).addTo(this.map).bindPopup(`<div class="popup"><img src="${feature.properties.img}"/><h4>${feature.properties.name}</h4><p>${feature.properties.adress}</p><a href="${feature.properties.link}">К проекту</a></div>`);
                                           }
                                         },
                                       });
