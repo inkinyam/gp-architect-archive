@@ -2,20 +2,25 @@
   @include  standart-block-width;
   display: flex;
   flex-direction: column;
-
-  margin-bottom: 60px;
+  margin-bottom: 125px;
 
   .lead__title {
-    @include  standart-block-width;
-    @include section-title ;
+    @include  page-title;
   }
 
   .lead__text {
-    @include  standart-block-width;
     @include circe-lowercase;
     font-size: 16px;
     line-height: 23.5px;
     column-count: 2;
     column-gap: 40px;
+
+    @media screen and (max-width: $tablet) {
+      column-count: 1;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    margin: 50px auto;
   }
 }

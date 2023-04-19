@@ -1,11 +1,12 @@
 .slider {
-  margin: 40px auto 60px;
+  margin: 0 auto 100px;
    
   .slider__slide {
    @include standart-block-width;
     height: 100%;
     margin: 0 auto;
     overflow: hidden;
+    width: 100%;
 
     img {
       width: 100%;
@@ -48,5 +49,22 @@
     &:hover {
       background-color: rgba(45, 139, 241, 0.07);
     }
+  }
+
+  @media screen and (max-width: $tablet) {
+    margin: 0 auto 70px;
+
+      .f-carousel__nav {
+        display: none;
+      }
+  }
+
+
+  .is-horizontal .f-carousel__nav .f-button.is-next, .is-horizontal .fancybox__nav .f-button.is-next {
+    right: -45px;
+  }
+
+  .is-horizontal .f-carousel__nav .f-button.is-prev, .is-horizontal .fancybox__nav .f-button.is-prev {
+    left:  -45px;
   }
 }

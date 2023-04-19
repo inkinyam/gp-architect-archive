@@ -1,11 +1,11 @@
 .teps {
   @include standart-block-width;
-  margin: 60px auto;
+  margin: 125px auto;
   display: flex;
   flex-direction: column;
 
   .teps__title {
-    @include section-title ;
+    @include  page-title;
   }
 
   .teps__table {
@@ -17,12 +17,13 @@
   .teps__item {
     @include circe-lowercase;
     @include transition;
-    font-size: 16px;
-    line-height: 23.5px;
+    font-size: 18px;
+    line-height: 24px;
 
     min-height: 56px;
     display: grid;
-    grid-template-columns: 0.8fr 1.5fr 1fr 0.5fr ;
+    width: 100%;
+    grid-template-columns: 10% 45% 22% 22% ;
     align-items: center;
     align-content: center;
     box-sizing: border-box;
@@ -37,11 +38,42 @@
       &:hover {
         background: rgba(0, 0, 0, 0.05);
       }
+
+      @media screen and (max-width: $tablet) {
+        align-items: flex-start;
+        text-align: center;
+      }
+    }
+
+    @media screen and (max-width: $tablet) {
+      font-size: 14px;
+      line-height: 21px;
+      align-items: flex-start;
     }
   }
 
   .teps__cell {
     box-sizing: border-box;
     padding: 4px 20px;
+
+    @media screen and (max-width: $tablet) {
+      padding: 4px 4px;
+    }
+
+    &.teps__cell_units {
+      @media screen and (max-width: $tablet) {
+        text-align: center;
+      }
+    }
+
+    &.teps__cell_amount {
+      @media screen and (max-width: $tablet) {
+        text-align: center;
+      }
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    margin: 50px auto;
   }
 }

@@ -18,23 +18,23 @@
   }
 
   @media screen and (max-width: $mobile) {
-    max-width: calc(100% - 64px);
+    max-width: calc(100% - 32px);
   }
 }
 
 @mixin standart-block-width {
   @include transition;
   transition-property: max-width;
-  width: 100%;
-  max-width: calc(1140px - 128px);
+  width:90%;
+  max-width: calc(1440px - 258px);
   margin:  0 auto;
 
   @media screen and (max-width: $tablet) {
-    max-width: calc(1440px - 80px);
+    max-width: calc(1440px - 160px);
   }
 
   @media screen and (max-width: $mobile) {
-    max-width: calc(1440px - 64px);
+    max-width: calc(1440px - 32px);
   }
 }
 
@@ -47,6 +47,7 @@
   text-transform: uppercase;
 }
 
+
 @mixin circe-lowercase{
   font-family: 'Circe';
   font-style: normal;
@@ -55,10 +56,26 @@
   line-height: 21px;
 }
 
-@mixin section-title {
-  @include circe-uppercase;
+@mixin page-title {
+  font-family: 'Circe';
+  font-style: normal;
   font-weight: 700;
-  margin-bottom: 25px;
+  font-size: 48px;
+  line-height: 71px;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 28px;
+    line-height: 51px;
+    margin-bottom: 30px;    
+  }
+
+  @media screen and (max-width: $mobile) {
+    font-size: 18px;
+    line-height: 31px;    
+    margin-bottom: 20px; 
+  }
 }
 
 @mixin transition {
@@ -74,14 +91,13 @@
   background-color: $primary-color-default;
   color: white;
   min-width: 100px;
-  min-height: 44px;
+  min-height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   padding: 8px 16px;
-  border-radius: 20px;
-
+  
   &:hover {
     background-color: $primary-color-hovered;
   }

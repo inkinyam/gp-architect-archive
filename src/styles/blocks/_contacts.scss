@@ -9,24 +9,46 @@
 
   .contacts__title {
     @include standart-block-width;
-    @include section-title ;
+    @include  page-title;
   }
+
   .contacts__list {
     @include standart-block-width;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    column-gap: 36px
+    column-gap: 36px;
+
+    @media screen  and (max-width: $tablet){
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 20px;
+    }
+
+    @media screen  and (max-width: $mobile){
+      grid-template-columns: 1fr;
+      row-gap: 40px;
+    }
   }
+
   .contacts__item {
     width: 100%;
+    text-align: center;
   }
+
   .contacts__item-title {
     @include circe-lowercase;
     font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 6px;
   }
+
   .contacts__item-desc {
     @include circe-lowercase;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 21px;
+  }
+
+  @media screen and (max-width: $tablet) {
+    padding: 30px 0;
   }
 }

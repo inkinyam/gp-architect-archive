@@ -6,7 +6,6 @@
   left: 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
   padding: 0 64px;
@@ -24,22 +23,31 @@
     height: 80px;
 
     .navigation__back {
+      @include circe-uppercase;
       @include silly-link;
       @include transition;
+      font-size: 14px;
+      line-height: 21px;
+      color: $dark-color-default;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       &:hover {
-        opacity: 0.6;
+        opacity: 0.7;
       }
+      img {
+        margin-right: 10px;
+
+        @media screen and (max-width: $tablet) {
+          width: 27px;
+
+        }
+      }
+      
     }
 
-    .navigation__title {
-      @include circe-uppercase;
-      max-width: 538px;
-
-    }
+    
   }
 
   .navigation__rightblock {
@@ -47,43 +55,102 @@
     flex-direction: row;
     align-items: center;
     height: 80px;
+    margin-left: auto;
+    margin-right: 10px;
 
-    .navigation__nav-button {
-      height: 100%;
-      min-width: 100px;
+    @media screen and (max-width: $tablet) {
+      order: 3;
+      margin: 0;
+
       
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      width: 100%;
+      justify-items: center;
+      justify-content: center;
+    }
+  }
+
+  .navigation__nav-button {
+    height: 100%;
+    min-width: 100px;
+    
+    a {
+      @include silly-link;
+      @include circe-uppercase;
+      @include transition;
+      font-size: 14px;
+      line-height: 21px;    
+      display: flex;
+      background-color: transparent;
+      color: $dark-color-default;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 0 10px;
+
+      &:hover {
+        background-color: rgba(45, 139, 241, 0.07);
+      }
+
+    }
+
+    &.active {
       a {
-        @include silly-link;
-        @include circe-uppercase;
-        @include transition;
-        font-size: 14px;
-        line-height: 24px;    
-        display: flex;
-        background-color: transparent;
-        color: $dark-color-default;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        padding: 0 10px;
-
-        &:hover {
-          background-color: rgba(45, 139, 241, 0.07);
-        }
-      }
-
-      &.active {
-        a {
-          background-color: $primary-color-default;
-          color: white;
-        }
-      }
-
-      &:last-child{
-        min-width: 45px;
+        background-color: $primary-color-default;
+        color: white;
       }
     }
-    
+    @media screen and (max-width: $tablet) {
+        width: 100%;
+    }
+
+    @media screen and (max-width: $mobile) {
+      min-width: 90px;
+     }
+
+  }
+
+  .navigation__nav-print {
+    height: 100%;
+    min-width: 40px;
+    a {
+      @include silly-link;
+      @include circe-uppercase;
+      @include transition;
+      display: flex;
+      background-color: transparent;
+      color: $dark-color-default;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 0 10px;
+
+      &:hover {
+        background-color: rgba(45, 139, 241, 0.07);
+      }
+    }
+
+    @media screen and (max-width: $tablet) {
+      order: 2;
+      margin-left: auto;
+      min-width: auto;
+     }
+
+
+  }
+
+  @media screen and (max-width: $tablet) {
+    flex-wrap: wrap;
+    padding: 0 40px;
+  }
+
+  @media screen and (max-width: $mobile) {
+    flex-wrap: wrap;
+    padding: 0 16px;
   }
 }

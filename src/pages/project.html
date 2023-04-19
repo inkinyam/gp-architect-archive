@@ -18,7 +18,7 @@
       </a>
     </div>
 
-    <h1 class="header__title">Ключевые проекты Москвы</h1>
+    <div class="header__title">Ключевые проекты Москвы</div>
 
     <button class="header__burger">
       <span></span>
@@ -43,8 +43,8 @@
       <div class="navigation__leftblock">
         <a href="../index.html" class="navigation__back">
           <img src="<%=require('../images/arrow-back.png')%>" alt="стрелка назад">
+          все проекты
         </a>
-        <h2 class="navigation__title">ЖК «бадаевский»</h2>
       </div>
 
       <ul class="navigation__rightblock">
@@ -67,14 +67,19 @@
 
           <a class="navigation__nav-link" href="#videos" >Видео</a>
         </li>
-        <li class="navigation__nav-button">
-          <a href="#" >
-            <img src="<%=require('../images/pdf.png')%>" alt="скачать презентацию">
-          </a>
-        </li>
+        
       </ul>
+
+      <div class="navigation__nav-print">
+        <a href="#" >
+          <img src="<%=require('../images/pdf.png')%>" alt="скачать презентацию">
+        </a>
+      </в>
     </nav>
    
+    <h1 class="main__title">
+      ЖК "Бадаевский"
+    </h1>
 
     <section class="slider">
       <div class="f-carousel" id="main-slider">
@@ -123,6 +128,10 @@
           <p class="contacts__item-desc">Легенда</p>
         </li>
         <li class="contacts__item">
+          <h3 class="contacts__item-title">Адрес</h3>
+          <p class="contacts__item-desc">ЗАО, район Раменки, между ул. Лобачевского и платформой «Матвеевская», квартал 4.1</p>
+        </li>
+        <li class="contacts__item">
           <h3 class="contacts__item-title">Авторы</h3>
           <p class="contacts__item-desc">Гусев И.И</p>
           <p class="contacts__item-desc">Слонов А.А</p>
@@ -133,10 +142,7 @@
           <p class="contacts__item-desc">Иванов Иван Иванович</p>
           <p class="contacts__item-desc">+7 (915) 971-93-11</p>
         </li>
-        <li class="contacts__item">
-          <h3 class="contacts__item-title">Адрес</h3>
-          <p class="contacts__item-desc">ЗАО, район Раменки, между ул. Лобачевского и платформой «Матвеевская», квартал 4.1</p>
-        </li>
+
       </ul>
     </section>
 
@@ -205,7 +211,7 @@
         </a>
       </div>
 
-      <div class="assets__pattern">
+      <div class="assets__columns">
         <a href="#" class="assets__pattern-block"  data-fancybox="gallery" data-src="../images/mosaic (1).png" data-caption="Выровнять здесь текст невозможно по ширине, его длина не зависит от длины фотки (настройки fancybox)">
           <img src="<%=require('../images/mosaic (1).png')%>" alt="gallery">
         </a>
@@ -268,7 +274,7 @@
     <section class="assets videos" >
       <div class="anchor" id="videos"></div>
       <div class="assets__titleblock">
-        <h2 class="assets__title">Видео колонками</h2>
+        <h2 class="assets__title">Видео</h2>
         <a href="#" class="assets__link"> Скачать 
           <img src="<%=require('../images/icon-download.png')%>" alt="icon">
         </a>

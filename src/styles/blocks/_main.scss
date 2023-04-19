@@ -64,4 +64,14 @@
       animation: wawes 12s infinite linear;
     }
   }
+
+  .main__title {
+    @include  page-title;
+    @include standart-block-width;
+    margin:  60px auto 30px;
+    text-align: center;
+    @media screen  and (max-width: $mobile) {
+      margin:  30px auto 30px;
+    }
+  }
 }
