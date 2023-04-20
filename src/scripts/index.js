@@ -112,100 +112,95 @@ if (tabletContainer) {
 }
 
 
-
-
-
-
-
-import createMap from './leflet-custom';
-
 import mapsData from '../utils/mapsdata';
+import createNewLeaflet from './leaflet';
+import zoomIn from '../images/zoom-in-icon.svg';
+import zoomOut from '../images/zoom-out-icon.svg';
+import pin from '../images/pin.png';
 
 
 
 
-import 'leaflet/dist/leaflet.css';
 let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
   if (mapBtn) {
     let mapContainer = document.querySelector('#mskmap');
 
     if (mapContainer) {
 
-      const map = createMap(
-        'mskmap', // id контейнера для карты
+
+    let map = createNewLeaflet('.mskmap', { zoom: 14,
+      attributionControl : false,
+      zoomControl: true,
+      keyboard: false,
+      scrollWheelZoom: false,
+      center: [55.753214, 37.623054],
+      tap: false,
+      zoomControl:false,
+      fullscreenControl: false,
+      clickFitBounds: false,
+      clickPanToLayer: false,
+      doubleClickZoom: false,
+
+      minZoom: 8,
+      maxZoom: 18,
+      baseLayers: [ // массив базовых слоев
         {
-          zoom: 13,
-          attributionControl : false,
-          zoomControl: true,
-          keyboard: false,
-          scrollWheelZoom: false,
-          center: [55.753214, 37.623054],
-          tap: false,
-          zoomControl:false,
-          fullscreenControl: false,
-          clickFitBounds: false,
-          clickPanToLayer: false,
-    
-          minZoom: 8,
-          maxZoom: 18,
-          baseLayers: [ // массив базовых слоев
-            {
-              name: 'OpenStreetMap',
-              url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              options: {},
-            },
-          ],
-        }, 
-        [
-          {
-            name: 'Territory1',
-            geojson: mapsData,
-            group: 'Territory', // имя группы, к которой принадлежит слой
-          },
-        ], 
-        [],
-        [
-          { 
-            name: 'zoomIn',
-            position: 'bottomright',
-            html: '<div class="controll controll_zoomIn"></div>',
-            onClick: function () {
-              console.log('zoom in');
-            }
-          },
-          { 
-            name: 'zoomOut',
-            position: 'bottomright',
-            html: '<div class="controll controll_zoomOut"></div>',
-            onClick: function () {
-              console.log('zoom out');
-            }
-          },
-          { 
-            name: 'center',
-            position: 'bottomright',
-            html: '<div class="controll controll_center"></div>',
-            onClick: function () {
-              console.log('center');
-            }
-          },
-        ]);
+          name: 'OpenStreetMap',
+          url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          options: {},
+        },
+      ],
+      groupLayers: [
+        {
+          name: 'Projects',
+          geojson: mapsData,
+          group: "layer",
+        },
+      ],
+      controllers: [
+        {
+          name: "center",
+          option: {
+            iconUrl: pin,
+            position: 'bottomright'
+          }
+        },
+        {
+          name: "zoomOut",
+          option: {
+            iconUrl: zoomOut,
+            position: 'bottomright'
+          }
+        },
+
+        {
+          name: "zoomIn",
+          option: {
+            iconUrl: zoomIn,
+            position: 'bottomright'
+          }
+        },
+      ]
+    });
         
     document.addEventListener('DOMContentLoaded', (e)=> {
        if (e.target.location.hash === '#mapview'){
-         map.init();
+        if ( ! mapContainer.classList.contains('leaflet-container')) {
+          map.renderMap();
+        }
        }
-      },{ once: true })  
+      })  
 
      mapBtn.addEventListener('click', ()=> {
-       if ( ! mapContainer.classList.contains('leaflet-container')) {
-          map.init();
-        }
-      },{ once: true })
+       
+          map.update();
+   
+      })
     } 
   }
 
-  
+   
 
 
- 
+
+

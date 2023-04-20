@@ -17,13 +17,13 @@
   .teps__item {
     @include circe-lowercase;
     @include transition;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: 16px;
+    line-height: 21px;
 
     min-height: 56px;
     display: grid;
     width: 100%;
-    grid-template-columns: 10% 45% 22% 22% ;
+    grid-template-columns: 15% 55% 15% 15% ;
     align-items: center;
     align-content: center;
     box-sizing: border-box;
@@ -40,6 +40,7 @@
       }
 
       @media screen and (max-width: $tablet) {
+        grid-template-columns: 10% 45% 22% 22% ;
         align-items: flex-start;
         text-align: center;
       }
