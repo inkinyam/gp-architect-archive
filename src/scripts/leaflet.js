@@ -1,5 +1,5 @@
 import * as L from 'leaflet'
-
+import blackPin from '../images/pin.png';
 import bluePin from '../images/pin2.png'
 
 
@@ -44,8 +44,8 @@ class MyLeaflet extends L.Class {
           onEachFeature: (feature, layer) => {
             if (feature.geometry.type === 'Point') {
              let marker =  L.marker( layer._latlng, { icon: L.icon({
-                                         iconUrl: '../images/pin.png',
-                                         shadowUrl:   '../images/pin.png',
+                                         iconUrl: blackPin,
+                                         shadowUrl:   blackPin,
                                          iconSize:    [22, 33],
                                          shadowSize:  [0, 0],
                                          iconAnchor:  [11, 33],
@@ -56,7 +56,7 @@ class MyLeaflet extends L.Class {
                           .bindPopup(`<div class="popup"><img src="${feature.properties.img}"/><h4>${feature.properties.name}</h4><p>${feature.properties.adress}</p><a href="${feature.properties.link}">К проекту</a></div>`);
             
                   marker.on('mouseover', () => { marker.setIcon(L.icon({iconUrl: bluePin })) })
-                  marker.on('mouseout', () => { marker.setIcon(L.icon({iconUrl: '../images/pin.png' })) })
+                  marker.on('mouseout',  () => { marker.setIcon(L.icon({iconUrl: blackPin })) })
        
             }
           }
