@@ -91,12 +91,13 @@
   background-color: $primary-color-default;
   color: white;
   min-width: 100px;
-  min-height: 50px;
+  min-height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   padding: 8px 16px;
+  border-radius: 5px;
   
   &:hover {
     background-color: $primary-color-hovered;

@@ -1,6 +1,6 @@
 .represent {
   @include circe-lowercase;
-  
+  position: relative;
 
 
   .represent__total {
@@ -11,6 +11,7 @@
     margin: 0 auto 8px;
   
   }
+  
   .represent__counter {
     font-weight: 600;
   }
@@ -27,6 +28,19 @@
         }
       }
     }
+
+    .bootstrap-table .fixed-table-toolbar .bs-bars, .bootstrap-table .fixed-table-toolbar .search, .bootstrap-table .fixed-table-toolbar .columns {
+      margin-top: 3px !important;
+    }
   }
 
+
+  &.represent_mosaicview .search,
+  &.represent_mapview .search{
+    position: absolute;
+    top: -54px;
+    left: 0;
+  }
+  
+ 
 }

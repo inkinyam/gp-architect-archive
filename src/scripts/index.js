@@ -1,7 +1,6 @@
 import '../styles/index.scss';
 import Tabs from './LinkedTabs';
 
-
 import { Carousel } from "@fancyapps/ui/dist/carousel/carousel.esm.js";
 import "@fancyapps/ui/dist/carousel/carousel.css";
 
@@ -119,10 +118,8 @@ import zoomOut from '../images/zoom-out-icon.svg';
 import pin from '../images/pin.png';
 
 
-
-
 let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
-  if (mapBtn) {
+if (mapBtn) {
     let mapContainer = document.querySelector('#mskmap');
 
     if (mapContainer) {
@@ -191,16 +188,50 @@ let mapBtn = document.querySelector('.tabs__nav-btn-map');
        }
       })  
 
-     mapBtn.addEventListener('click', ()=> {
-       
-          map.update();
-   
+    mapBtn.addEventListener('click', ()=> {
+        map.update();
       })
     } 
-  }
+}
 
    
+let openFilterButton = document.querySelector('.search__openfilter');
+if (openFilterButton) {
+  let filtersBlock = document.querySelector('.filters');
+  if (filtersBlock) {
+    openFilterButton.addEventListener('click', ()=> {
+      openFilterButton.classList.toggle('active');
+      filtersBlock.classList.toggle('active')
+    })
+
+  }
+}
 
 
 
+let selects = Array.from(document.querySelectorAll('.filters__select'));
 
+if (selects.length != 0 ) {
+  selects.map(item => {
+
+    const selectSingle_title = item.querySelector('.filters__select-title');
+    const selectSingle_labels = item.querySelectorAll('.filters__select-label');
+    
+    // Toggle menu
+    selectSingle_title.addEventListener('click', () => {
+      if ('active' === item.getAttribute('data-state')) {
+        item.setAttribute('data-state', '');
+      } else {
+        item.setAttribute('data-state', 'active');
+      }
+    });
+    
+    // Close when click to option
+    for (let i = 0; i < selectSingle_labels.length; i++) {
+      selectSingle_labels[i].addEventListener('click', (evt) => {
+        selectSingle_title.textContent = evt.target.textContent;
+        item.setAttribute('data-state', '');
+      });
+    }
+  })
+}

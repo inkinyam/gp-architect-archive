@@ -67,6 +67,60 @@
         </div>
         <div class="tabs__panel" data-tab-name="mosaicview">
           <section class="represent represent_mosaicview">
+            <form action="" class="search" id="mosaicSearch">
+              <div class="search__main-block"><svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2833 13.7808C10.24 14.4769 9.00078 14.8789 7.67841 14.8789C4.02128 14.8789 1 11.8038 1 7.93946C1 4.07513 4.02128 1 7.67841 1C11.3355 1 14.3568 4.07513 14.3568 7.93946C14.3568 9.66337 13.7555 11.2302 12.7648 12.4371L12.7578 12.4287L11.2747 13.7706L11.2833 13.7808ZM11.9336 14.5493C10.7156 15.3893 9.25232 15.8789 7.67841 15.8789C3.43774 15.8789 0 12.3243 0 7.93946C0 3.55462 3.43774 0 7.67841 0C11.9191 0 15.3568 3.55462 15.3568 7.93946C15.3568 9.96269 14.6249 11.8092 13.4199 13.2112L19.9201 20.8925L18.437 22.2344L11.9336 14.5493Z" fill="black" />
+                </svg> <input type="search" class="search__main-input" placeholder="Поиск"> <button class="search__openfilter"></button></div>
+              <div class="filters">
+                <div class="filters__block">
+                  <h4 class="filters__blocktitle">Выберите фильтры</h4>
+                  <div class="filters__select" data-state="">
+                    <div class="filters__select-title" data-default="Функция">Функции</div>
+                    <div class="filters__select-content"><input id="function_0" class="filters__select-input" type="checkbox" name="function" /> <label for="function_0" class="filters__select-label">Функции</label> <input id="function_1" class="filters__select-input" type="checkbox" name="function" /> <label for="function_1" class="filters__select-label">Функция 1</label> <input id="function_2" class="filters__select-input" type="checkbox" name="function" /> <label for="function_2" class="filters__select-label">Функция 2</label> <input id="function_3" class="filters__select-input" type="checkbox" name="function" /> <label for="function_3" class="filters__select-label">Функция 3</label></div>
+                  </div>
+                  <div class="filters__select" data-state="">
+                    <div class="filters__select-title" data-default="Рейтинг">Рейтинг</div>
+                    <div class="filters__select-content"><input id="raiting_0" class="filters__select-input" type="checkbox" name="raiting" /> <label for="raiting_0" class="filters__select-label">Рейтинг</label> <input id="raiting_1" class="filters__select-input" type="checkbox" name="raiting" /> <label for="raiting_1" class="filters__select-label">★★★</label> <input id="raiting_2" class="filters__select-input" type="checkbox" name="raiting" /> <label for="raiting_2" class="filters__select-label">★★</label> <input id="raiting_3" class="filters__select-input" type="checkbox" name="raiting" /> <label for="raiting_3" class="filters__select-label">★</label></div>
+                  </div>
+                  <div class="filters__select" data-state="">
+                    <div class="filters__select-title" data-default="Архбюро">Архбюро</div>
+                    <div class="filters__select-content"><input id="archburo_0" class="filters__select-input" type="checkbox" name="archburo" /> <label for="archburo_0" class="filters__select-label">Архбюро</label> <input id="archburo_1" class="filters__select-input" type="checkbox" name="archburo" /> <label for="archburo_1" class="filters__select-label">Архбюро 1</label> <input id="archburo_2" class="filters__select-input" type="checkbox" name="archburo" /> <label for="archburo_2" class="filters__select-label">Архбюро 2</label> <input id="archburo_3" class="filters__select-input" type="checkbox" name="archburo" /> <label for="archburo_3" class="filters__select-label">Архбюро 3</label></div>
+                  </div>
+                  <div class="filters__select" data-state="">
+                    <div class="filters__select-title" data-default="Автор">Автор</div>
+                    <div class="filters__select-content"><input id="author_0" class="filters__select-input" type="checkbox" name="author" /> <label for="author_0" class="filters__select-label">Автор</label> <input id="author_1" class="filters__select-input" type="checkbox" name="author" /> <label for="author_1" class="filters__select-label">Автор 1</label> <input id="author_2" class="filters__select-input" type="checkbox" name="author" /> <label for="author_2" class="filters__select-label">Автор 2</label> <input id="author_3" class="filters__select-input" type="checkbox" name="author" /> <label for="author_3" class="filters__select-label">Автор 3</label></div>
+                  </div>
+                  <div class="filters__select" data-state="">
+                    <div class="filters__select-title" data-default="Заказчик">Заказчик</div>
+                    <div class="filters__select-content"><input id="customer_0" class="filters__select-input" type="checkbox" name="customer" /> <label for="customer_0" class="filters__select-label">Заказчик</label> <input id="customer_1" class="filters__select-input" type="checkbox" name="customer" /> <label for="customer_1" class="filters__select-label">Заказчик 1</label> <input id="customer_2" class="filters__select-input" type="checkbox" name="customer" /> <label for="customer_2" class="filters__select-label">Заказчик 2</label> <input id="customer_3" class="filters__select-input" type="checkbox" name="customer" /> <label for="customer_3" class="filters__select-label">Заказчик 3</label></div>
+                  </div>
+                  <div class="filters__select" data-state="">
+                    <div class="filters__select-title" data-default="ТЭГИ">ТЭГИ</div>
+                    <div class="filters__select-content"><input id="tags_0" class="filters__select-input" type="checkbox" name="tags" /> <label for="tags_0" class="filters__select-label">ТЭГИ</label> <input id="tags_1" class="filters__select-input" type="checkbox" name="tags" /> <label for="tags_1" class="filters__select-label">ТЭГИ 1</label> <input id="tags_2" class="filters__select-input" type="checkbox" name="tags" /> <label for="tags_2" class="filters__select-label">ТЭГИ 2</label> <input id="tags_3" class="filters__select-input" type="checkbox" name="tags" /> <label for="tags_3" class="filters__select-label">ТЭГИ 3</label></div>
+                  </div>
+                </div>
+                <div class="filters__block">
+                  <h4 class="filters__blocktitle">Местоположение</h4>
+                  <div class="filters__select" data-state="">
+                    <div class="filters__select-title" data-default="Адрес">Адрес</div>
+                    <div class="filters__select-content"><input id="adress_0" class="filters__select-input" type="checkbox" name="adress" /> <label for="adress_0" class="filters__select-label">Адрес</label> <input id="adress_1" class="filters__select-input" type="checkbox" name="adress" /> <label for="adress_1" class="filters__select-label">Адрес 1</label> <input id="adress_2" class="filters__select-input" type="checkbox" name="adress" /> <label for="adress_2" class="filters__select-label">Адрес 2</label> <input id="adress_3" class="filters__select-input" type="checkbox" name="adress" /> <label for="adress_3" class="filters__select-label">Адрес 3</label></div>
+                  </div>
+                  <div class="filters__select" data-state="">
+                    <div class="filters__select-title" data-default="Адрес">Округ</div>
+                    <div class="filters__select-content"><input id="district_0" class="filters__select-input" type="checkbox" name="district" /> <label for="district_0" class="filters__select-label">Округ</label> <input id="district_1" class="filters__select-input" type="checkbox" name="district" /> <label for="district_1" class="filters__select-label">Округ 1</label> <input id="district_2" class="filters__select-input" type="checkbox" name="district" /> <label for="district_2" class="filters__select-label">Округ 2</label> <input id="district_3" class="filters__select-input" type="checkbox" name="district" /> <label for="district_3" class="filters__select-label">Округ 3</label></div>
+                  </div>
+                  <div class="filters__select" data-state="">
+                    <div class="filters__select-title" data-default="Адрес">Дата ввода</div>
+                    <div class="filters__select-content"><input id="data_0" class="filters__select-input" name="data" /> <label for="data_0" class="filters__select-label">Дата ввода</label> <input id="data_0" class="filters__select-input" type="data" name="data" /> <label for="data_0" class="filters__select-label">Дата ввода</label></div>
+                  </div>
+                  <div class="filters__select" data-state="">
+                    <div class="filters__select-title" data-default="Адрес">Дата АГР</div>
+                    <div class="filters__select-content"><input id="data_0" class="filters__select-input" name="data" /> <label for="data_0" class="filters__select-label">Дата АГР</label> <input id="data_0" class="filters__select-input" type="data" name="data" /> <label for="data_0" class="filters__select-label">Дата АГР</label></div>
+                  </div>
+                </div>
+                <div class="filter__button-block"><button class="filters__button filters__button_reset" type="reset">Отменить</button> <button class="filters__button filters__button_submit" type="submit">Применить</button></div>
+              </div>
+            </form>
             <p class="represent__total">всего проектов: <span class="represent__counter">120</span></p>
             <div class="mosaic"><a class="mosaic__card" href="#"><img src="images/mosaic (1).png" alt="фото проекта" class="mosaic__img">
                 <h3 class="mosaic__card-title">RED 7</h3>
@@ -91,8 +145,13 @@
         </div>
         <div class="tabs__panel" data-tab-name="mapview">
           <section class="represent represent_mapview">
+            <form action="" class="search" id="mapSearch">
+              <div class="search__main-block"><svg width="20" height="23" viewBox="0 0 20 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2833 13.7808C10.24 14.4769 9.00078 14.8789 7.67841 14.8789C4.02128 14.8789 1 11.8038 1 7.93946C1 4.07513 4.02128 1 7.67841 1C11.3355 1 14.3568 4.07513 14.3568 7.93946C14.3568 9.66337 13.7555 11.2302 12.7648 12.4371L12.7578 12.4287L11.2747 13.7706L11.2833 13.7808ZM11.9336 14.5493C10.7156 15.3893 9.25232 15.8789 7.67841 15.8789C3.43774 15.8789 0 12.3243 0 7.93946C0 3.55462 3.43774 0 7.67841 0C11.9191 0 15.3568 3.55462 15.3568 7.93946C15.3568 9.96269 14.6249 11.8092 13.4199 13.2112L19.9201 20.8925L18.437 22.2344L11.9336 14.5493Z" fill="black" />
+                </svg> <input type="search" class="search__main-input" placeholder="Поиск"></div>
+            </form>
             <p class="represent__total">всего проектов: <span class="represent__counter">120</span></p>
-            <div class="map" id="mskmap">здесь будет карта</div>
+            <div class="map mskmap" id="mskmap">Пожалуйста, обновите страницу</div>
           </section>
         </div>
       </div>
