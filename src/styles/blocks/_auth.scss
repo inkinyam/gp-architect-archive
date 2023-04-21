@@ -75,7 +75,7 @@ $blueQueen: rgba(0, 0, 0, 0.05);
       color: $middle-dark-color-default;
     }
     &:focus {
-      border-color: $primary-color-default;
+      border-color: $primary-color-hovered;
     }
 
     &:invalid {
@@ -84,7 +84,7 @@ $blueQueen: rgba(0, 0, 0, 0.05);
   }
   
   > button {
-    @include silly-link;
+    @include button;
     @include transition;
     @include circe-uppercase;
     color: #fff;
@@ -94,7 +94,7 @@ $blueQueen: rgba(0, 0, 0, 0.05);
     border: 0;
     padding:  0 16px;
     margin-top: 10px;
-    background-color: $primary-color-default;
+    background-color: $primary-color-hovered;
     z-index: 2;
     
     &:hover {

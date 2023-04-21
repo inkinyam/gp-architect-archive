@@ -4,7 +4,7 @@ button:focus {
   border: none;
 }
 .f-carousel {
-  color: $primary-color-default;
+  color: $primary-color-hovered;
   --carousel-button-bg: transparent;
   --carousel-button-shadow: none;
   --carousel-button-svg-width: 28px;
@@ -50,8 +50,8 @@ button:focus {
 }
 
 .fancybox__container .fancybox__toolbar .f-button:hover svg {
-  fill: $primary-color-default;
-  stroke: $primary-color-default;
+  fill: $primary-color-hovered;
+  stroke: $primary-color-hovered;
   background: transparent;
   
 }
@@ -68,7 +68,7 @@ body:not(.is-using-mouse) .fancybox__container :focus {
 
 .fancybox__nav .f-button.is-next:hover {
   @include silly-link;
-  color: $primary-color-default;
+  color: $primary-color-hovered;
 }
 
 .fancybox__nav .f-button.is-next:active {
@@ -95,7 +95,7 @@ body:not(.is-using-mouse) .fancybox__container :focus {
 }
 
 .f-carousel__dot  {
-  color: $primary-color-default;
+  color: $primary-color-hovered;
 }
 
 
@@ -124,7 +124,7 @@ body:not(.is-using-mouse) .fancybox__container :focus {
   --f-thumb-height: 60px;
   --f-thumb-border-radius: 0;
   --f-thumb-outline: 4px !important;
-  --f-thumb-outline-color: $primary-color-default !important;
+  --f-thumb-outline-color: $primary-color-hovered !important;
 }
 
 @media screen and (max-width: 800px) {

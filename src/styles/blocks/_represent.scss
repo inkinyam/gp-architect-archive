@@ -5,6 +5,8 @@
 
   .represent__total {
     @include circe-uppercase;
+    font-size: 14px;
+    line-height: 21px;
     display: flex;
     flex-direction: row;
     column-gap: 4px;
@@ -38,7 +40,7 @@
   &.represent_mosaicview .search,
   &.represent_mapview .search{
     position: absolute;
-    top: -54px;
+    top: -76px;
     left: 0;
   }
   

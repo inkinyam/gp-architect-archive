@@ -21,8 +21,8 @@
   .header__title {
     @include circe-uppercase;
     margin: 0 auto;
-    font-size: 24px;
-    line-height: 28px;
+    font-size: 18px;
+    line-height: 24px;
     font-weight: 700;
 
     @media screen and (max-width: 1240px ) {

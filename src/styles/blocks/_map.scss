@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
 
-  color: $primary-color-default;
+  color: $primary-color-hovered;
   //**************************************************
 
   .leaflet-bottom  {
@@ -83,8 +83,8 @@
       
       width: 76px;
       max-height: 27px;
-      
-      background-color: $primary-color-default;
+      border-radius: 5px;
+      background-color: $primary-color-hovered;
       color: white;
     }
 

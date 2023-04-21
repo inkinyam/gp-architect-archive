@@ -115,7 +115,7 @@ import mapsData from '../utils/mapsdata';
 import createNewLeaflet from './leaflet';
 import zoomIn from '../images/zoom-in-icon.svg';
 import zoomOut from '../images/zoom-out-icon.svg';
-import pin from '../images/pin.png';
+import pin from '../images/pin2.png';
 
 
 let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
@@ -199,7 +199,8 @@ let openFilterButton = document.querySelector('.search__openfilter');
 if (openFilterButton) {
   let filtersBlock = document.querySelector('.filters');
   if (filtersBlock) {
-    openFilterButton.addEventListener('click', ()=> {
+    openFilterButton.addEventListener('click', (e)=> {
+      e.preventDefault();
       openFilterButton.classList.toggle('active');
       filtersBlock.classList.toggle('active')
     })
@@ -207,10 +208,17 @@ if (openFilterButton) {
   }
 }
 
-
-
 let selects = Array.from(document.querySelectorAll('.filters__select'));
-
+/* import AirDatepicker  from 'air-datepicker';     
+new AirDatepicker('#dataTo', {
+  view: 'years',
+  minView: 'years',
+  dateFormat: 'yyyy',
+  minDate: '1990',
+  maxDate: nowDate,
+  position: 'bottom right'
+})
+ */
 if (selects.length != 0 ) {
   selects.map(item => {
 
@@ -227,11 +235,16 @@ if (selects.length != 0 ) {
     });
     
     // Close when click to option
-    for (let i = 0; i < selectSingle_labels.length; i++) {
+   /*  for (let i = 0; i < selectSingle_labels.length; i++) {
       selectSingle_labels[i].addEventListener('click', (evt) => {
         selectSingle_title.textContent = evt.target.textContent;
         item.setAttribute('data-state', '');
       });
-    }
+    } */
   })
 }
+
+
+import Filter from './filter.js'
+let block = new Filter('.filters', '.filter-tags', dataTabletInfo);
+

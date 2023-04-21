@@ -16,6 +16,7 @@
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
     "@fancyapps/ui": "^5.0.15",
+    "air-datepicker": "^3.3.5",
     "autoprefixer": "^10.4.14",
     "babel-loader": "^9.1.2",
     "bootstrap": "^5.2.3",
