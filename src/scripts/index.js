@@ -1,15 +1,34 @@
 import '../styles/index.scss';
-import Tabs from './LinkedTabs';
-
-import { Carousel } from "@fancyapps/ui/dist/carousel/carousel.esm.js";
 import "@fancyapps/ui/dist/carousel/carousel.css";
-
-import { Autoplay } from "@fancyapps/ui/dist/carousel/carousel.autoplay.esm.js";
 import "@fancyapps/ui/dist/carousel/carousel.autoplay.css";
-
-import { Fancybox } from '@fancyapps/ui';
 import "@fancyapps/ui/dist/fancybox/fancybox.css"
 
+import { Carousel } from "@fancyapps/ui/dist/carousel/carousel.esm.js";
+import { Autoplay } from "@fancyapps/ui/dist/carousel/carousel.autoplay.esm.js";
+import { Fancybox } from '@fancyapps/ui';
+
+import Tabs from './LinkedTabs';                // табы
+import Filter from './filter.js'                // работа фильтра
+import Api from './api.js';                     // работа с апи
+import initSubmenu from './submenu';            // меню на стр.одного проекта
+import createNewLeaflet from './leaflet';       // работа карты
+import Section from './section';
+
+
+//иконки для карты
+import zoomIn from '../images/zoom-in-icon.svg';
+import zoomOut from '../images/zoom-out-icon.svg';
+import pin from '../images/pin2.png';
+
+//данные "заглушки" для таблицы и карты
+import dataTabletInfo from '../utils/data2y'; 
+import mapsData from '../utils/mapsdata';
+
+let block = new Filter('.filters', '.filter-tags', dataTabletInfo);
+
+
+
+// работа бургер-меню
 let burgerButton = document.querySelector('.header__burger');
 if (burgerButton) {
   burgerButton.addEventListener('click', ()=>{
@@ -17,11 +36,13 @@ if (burgerButton) {
   })
 }
 
+// переключение табов на главной странице
 let presentTab = document.querySelector('.representation-tabs');
 if (presentTab) {
   new Tabs('.representation-tabs').init();
 }
 
+// слайдер на стр.проекта
 const sliderBlock = document.getElementById("main-slider");
 if (sliderBlock) {
   const options = {
@@ -42,7 +63,7 @@ if (sliderBlock) {
   new Carousel(sliderBlock, options, { Autoplay });
 }
 
-import initSubmenu from './submenu';
+//навигация на стр. проекта
 const navBar = document.querySelector('.navigation');
 if (navBar) {
   initSubmenu('.navigation');
@@ -94,30 +115,174 @@ if (window.innerHeight > 950) {
 }
 
 
-const mediaQuerySmallSize = window.matchMedia('(max-width: 1240px)'); // проверяем мобилка или десктоп
-import dataTabletInfo from '../utils/data2y';
+//инициализация таблицы
+const initTable = (tableData) => {
+  const mediaQuerySmallSize = window.matchMedia('(max-width: 1240px)'); // проверяем мобилка или десктоп
+  let tabletContainer = document.querySelector('.aa-tablet');
 
-let tabletContainer = document.querySelector('.aa-tablet');
-if (tabletContainer) {
-  let $table = $('#table').bootstrapTable(
-    {
-      data: dataTabletInfo,
+  function raitingFormatter(value) {
+   let str = '';
+    for (let i=0; i<value; i++){
+    str = str + '★';
+   }
+   return str;
+  }
+
+  function nameFormatter (value, row) {
+    return '<a class="aa-tablet__link" href="' + row._links.self.href + '">' + value + '</a>';
+  }
+
+  if (tabletContainer) {
+    let $table = $('#table').bootstrapTable({ 
+      data: tableData,
+      toggle: 'table',
+      filterControl: true,
+      clickToSelect: true,
+      locale: 'ru-RU',
+      search: true,
+      
+      columns: [
+        {
+          field: 'state',
+          checkbox: true,
+          align: 'center',
+          valign: 'middle',
+          width: '3.5',
+          widthUnit: '%',
+          searchable: true,
+          align:'left',
+          valign: 'middle',
+        },
+        {
+          field: 'project_id',
+          title: 'ID',
+          searchable: true,
+          sortable: true,
+          width: '3.5',
+          widthUnit: '%',
+          align:'left',
+          valign: 'middle',
+          filterControl:'input'
+        },
+        {
+          field: 'rating',
+          title: 'Рейтинг',
+          searchable: true,
+          sortable: true,
+          width: '3.5',
+          widthUnit: '%',
+          align:'center',
+          valign: 'middle',
+          filterControl:'select',
+          formatter: raitingFormatter
+        },{
+          field: 'name',
+          title: 'Название',
+          searchable: true,
+          sortable: true,
+          width: '14',
+          widthUnit: '%',
+          align:'left',
+          valign: 'middle',
+          filterControl:'input',
+          formatter: nameFormatter
+        },
+        {
+          field: 'customer',
+          title: 'Заказчик',
+          searchable: true,
+          sortable: true,
+          width: '10.5',
+          widthUnit: '%',
+          align:'left',
+          valign: 'middle',
+          filterControl:'input'
+        },
+        {
+          field: 'project_organization',
+          title: 'Проектировщик',
+          searchable: true,
+          sortable: true,
+          width: '14',
+          widthUnit: '%',
+          align:'left',
+          valign: 'middle',
+          filterControl:'input'
+        },
+        {
+          field: 'commissioning_date',
+          title: 'Дата ввода',
+          searchable: true,
+          sortable: true,
+          width:'7',
+          widthUnit: '%',
+          align:'center',
+          valign: 'middle',
+          filterControl:'datepicker'
+        },
+        {
+          field: 'district',
+          title: 'Округ',
+          searchable: true,
+          sortable: true,
+          width: '7',
+          widthUnit: '%',
+          align:'center',
+          valign: 'middle',
+          filterControl:'select'
+        },
+        {
+          field: 'arch_significant_date',
+          title: 'Архзначимый',
+          searchable: true,
+          sortable: true,
+          width: '7',
+          widthUnit: '%',
+          align:'center',
+          valign: 'middle',
+          filterControl:'datepicker'
+
+        },
+        {
+          field: 'tags',
+          title: 'ТЭГИ',
+          searchable: true,
+          sortable: true,
+          width: '10.5',
+          widthUnit: '%',
+          align:'left',
+          valign: 'middle',
+          filterControl:'input'
+        },
+        {
+          field: 'functions',
+          title: 'Функции',
+          searchable: true,
+          sortable: true,
+          width: '10.5',
+          widthUnit: '%',
+          align:'left',
+          valign: 'middle',
+          filterControl:'input'
+        }
+      ] 
     });
-  $table[0].classList.remove('table-bordered');
-  
-  if (mediaQuerySmallSize.matches) {
-    $table.bootstrapTable('toggleView')
+   
+    $table[0].classList.remove('table-bordered');
+    if (mediaQuerySmallSize.matches) {
+      $('#table').bootstrapTable('toggleView');
+      $('#table').bootstrapTable('resetView');
+    } 
   }
 }
 
-
-import mapsData from '../utils/mapsdata';
-import createNewLeaflet from './leaflet';
-import zoomIn from '../images/zoom-in-icon.svg';
-import zoomOut from '../images/zoom-out-icon.svg';
-import pin from '../images/pin2.png';
+const renderMosaicCard = (tableData) => {
+  // сделать класс для мозаичных карточек
+  
+}
 
 
+// инициализация карты
 let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
 if (mapBtn) {
     let mapContainer = document.querySelector('#mskmap');
@@ -194,7 +359,8 @@ if (mapBtn) {
     } 
 }
 
-   
+  
+//фильтры, открывание фильтра, работа селектов, потом убрать в класс с фильтрами
 let openFilterButton = document.querySelector('.search__openfilter');
 if (openFilterButton) {
   let filtersBlock = document.querySelector('.filters');
@@ -206,45 +372,56 @@ if (openFilterButton) {
     })
 
   }
-}
 
-let selects = Array.from(document.querySelectorAll('.filters__select'));
-/* import AirDatepicker  from 'air-datepicker';     
-new AirDatepicker('#dataTo', {
-  view: 'years',
-  minView: 'years',
-  dateFormat: 'yyyy',
-  minDate: '1990',
-  maxDate: nowDate,
-  position: 'bottom right'
-})
- */
-if (selects.length != 0 ) {
-  selects.map(item => {
 
-    const selectSingle_title = item.querySelector('.filters__select-title');
-    const selectSingle_labels = item.querySelectorAll('.filters__select-label');
-    
-    // Toggle menu
-    selectSingle_title.addEventListener('click', () => {
-      if ('active' === item.getAttribute('data-state')) {
-        item.setAttribute('data-state', '');
-      } else {
-        item.setAttribute('data-state', 'active');
-      }
-    });
-    
-    // Close when click to option
-   /*  for (let i = 0; i < selectSingle_labels.length; i++) {
-      selectSingle_labels[i].addEventListener('click', (evt) => {
-        selectSingle_title.textContent = evt.target.textContent;
-        item.setAttribute('data-state', '');
+
+  let selects = Array.from(document.querySelectorAll('.filters__select'));
+  if (selects.length != 0 ) {
+    selects.map(item => {
+
+      const selectSingle_title = item.querySelector('.filters__select-title');
+      const selectSingle_labels = item.querySelectorAll('.filters__select-label');
+      
+      // Toggle menu
+      selectSingle_title.addEventListener('click', () => {
+        if ('active' === item.getAttribute('data-state')) {
+          item.setAttribute('data-state', '');
+        } else {
+          item.setAttribute('data-state', 'active');
+        }
       });
-    } */
-  })
+      
+      // Close when click to option
+    /*  for (let i = 0; i < selectSingle_labels.length; i++) {
+        selectSingle_labels[i].addEventListener('click', (evt) => {
+          selectSingle_title.textContent = evt.target.textContent;
+          item.setAttribute('data-state', '');
+        });
+      } */
+    })
+  }
 }
 
 
-import Filter from './filter.js'
-let block = new Filter('.filters', '.filter-tags', dataTabletInfo);
+
+
+
+//cоздание экземпляра класса Api
+const api = new Api ('https://projectsmsk.genplanmos.ru/api/v1/project', {
+  headers: {
+     'Content-Type': 'application/json'
+  }
+})
+
+api.getAllProjects()
+  .then((data) => {
+    console.log(data);
+    initTable(data); // инициализируем таблицу
+                     // отрисовываем карточки
+                     // отрисовываем картуы
+  })
+  .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
+
+
+
 
