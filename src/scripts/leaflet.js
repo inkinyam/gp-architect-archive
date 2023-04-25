@@ -7,18 +7,17 @@ class MyLeaflet extends L.Class {
   constructor (id, options) {
     super();
 
-    this.id = id;
-    this.container = document.querySelector(this.id);
-    this.options = options;
-
-    this.layers = {};
+    this.id          = id;
+    this.container   = document.querySelector(this.id);
+    this.options     = options;
+    this.layers      = {};
     this.groupLayers = {};
     this.controllers = {};
 
     this.renderMap() 
   }
 
-
+  //добавить тайлы на карты
   _addTiles () {
     let baseLayers = {};
     this.options.baseLayers.forEach(layer => {
@@ -28,44 +27,41 @@ class MyLeaflet extends L.Class {
         this.map.addLayer(baseLayer);
       }
     });
-/* 
-    let controller = this.options.controllers;
-    let baseLayersControl = L.control.layers(baseLayers).addTo(this.map); */
   }
 
+  // добавить слои на карту (geojson)
   _addLayers() {
     this.options.groupLayers.forEach(layer => {
       let layerOptions = layer.options || {};
-      let layerStyle = layer.style || {};
-      let geoLayer = L.geoJSON(
+      let layerStyle   = layer.style || {};
+      let geoLayer     = L.geoJSON (
         layer.geojson, 
         { style: layerStyle,
           interactive: layerOptions.interactive || false,
           onEachFeature: (feature, layer) => {
             if (feature.geometry.type === 'Point') {
-             let marker =  L.marker( layer._latlng, { icon: L.icon({
-                                         iconUrl: blackPin,
-                                         shadowUrl:   blackPin,
-                                         iconSize:    [22, 33],
-                                         shadowSize:  [0, 0],
-                                         iconAnchor:  [11, 33],
-                                         shadowAnchor:[1, 1],
-                                         popupAnchor: [-3, -33]
-                                        })
-                         }).addTo(this.map)
-                          .bindPopup(`<div class="popup"><img src="${feature.properties.img}"/><h4>${feature.properties.name}</h4><p>${feature.properties.adress}</p><a href="${feature.properties.link}">К проекту</a></div>`);
-            
+             let marker =  L.marker( layer._latlng, 
+                                     { icon: L.icon({
+                                       iconUrl: blackPin,
+                                       shadowUrl:   blackPin,
+                                       iconSize:    [22, 33],
+                                       shadowSize:  [0, 0],
+                                       iconAnchor:  [11, 33],
+                                       shadowAnchor:[1, 1],
+                                       popupAnchor: [-3, -33]
+                                      })})
+                                    .addTo(this.map)
+                                    .bindPopup(`<div class="popup"><img src="${feature.properties.image}" alt="${feature.properties.name}"/><h4>${feature.properties.name}</h4><p>${feature.properties.address}</p><a href="${feature.properties._links.url_frontend.href}">К проекту</a></div>`);
                   marker.on('mouseover', () => { marker.setIcon(L.icon({iconUrl: bluePin})) })
                   marker.on('mouseout',  () => { marker.setIcon(L.icon({iconUrl: blackPin })) })
-       
             }
           }
-
         }) 
       this.layers.name  = geoLayer;
-  })
-}
+    })
+  }
 
+  // контроллеры на карту
   _addControllers () {
     this.options.controllers.forEach(controller => {
       let controlIcon = L.icon({
@@ -95,14 +91,14 @@ class MyLeaflet extends L.Class {
       newController.addTo(this.map);
     })
 
- }  
+  }  
 
- update() {
-  this.map._onResize();
- }
+ // обновление карты
+  update() {
+   this.map._onResize();
+  }
 
-            
-  
+  // рендер карты
   renderMap() {
     this.map = new L.map(this.container, {...this.options});
     this._addTiles();

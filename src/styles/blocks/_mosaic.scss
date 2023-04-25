@@ -25,6 +25,7 @@
   .mosaic__img {
     width: 100%;
     height: auto; 
+    min-height: 100%;
     max-height: 520px;
     object-fit: cover;
     object-position: center;

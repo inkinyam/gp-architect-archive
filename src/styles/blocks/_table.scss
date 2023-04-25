@@ -10,7 +10,7 @@
     border-bottom-color: transparent !important;
     tr {
       th{
-        text-align: left;
+        text-align: left !important;
         &:first-of-type {
           border-top-left-radius: 10px;
           border-bottom-left-radius: 10px;
@@ -223,6 +223,8 @@
 
 .bootstrap-table .fixed-table-container .table thead .sortable {
   @include silly-link;  
+  padding-left: 10px !important;
+  padding-right: 30px !important;
 }
 
 .bootstrap-table .fixed-table-container .table thead th .both {

@@ -20,4 +20,11 @@ export default class Api {
     .then (res => {return this._checkRes(res)})
   }
 
+  getGeoJson() {
+    return fetch (`${this.baseUrl}/geo-json/`, {
+      headers: this.headers
+    })
+    .then (res => {return this._checkRes(res)})
+  }
+
 }

@@ -13,6 +13,7 @@ import Api from './api.js';                     // работа с апи
 import initSubmenu from './submenu';            // меню на стр.одного проекта
 import createNewLeaflet from './leaflet';       // работа карты
 import Section from './section';
+import MosaicCard from './mosaicCard';
 
 
 //иконки для карты
@@ -20,11 +21,6 @@ import zoomIn from '../images/zoom-in-icon.svg';
 import zoomOut from '../images/zoom-out-icon.svg';
 import pin from '../images/pin2.png';
 
-//данные "заглушки" для таблицы и карты
-import dataTabletInfo from '../utils/data2y'; 
-import mapsData from '../utils/mapsdata';
-
-let block = new Filter('.filters', '.filter-tags', dataTabletInfo);
 
 
 
@@ -132,6 +128,19 @@ const initTable = (tableData) => {
     return '<a class="aa-tablet__link" href="' + row._links.self.href + '">' + value + '</a>';
   }
 
+  function objFormatter (value) {
+    let str = '';
+
+    value.forEach((item, inx) => {
+      if (inx != 0) {
+        str = str + ', ' + item.name;
+      } else {
+        str = str+item.name
+      }
+    });
+    return str;
+  }
+
   if (tabletContainer) {
     let $table = $('#table').bootstrapTable({ 
       data: tableData,
@@ -169,7 +178,7 @@ const initTable = (tableData) => {
           title: 'Рейтинг',
           searchable: true,
           sortable: true,
-          width: '3.5',
+          width: '5.5',
           widthUnit: '%',
           align:'center',
           valign: 'middle',
@@ -221,7 +230,7 @@ const initTable = (tableData) => {
           filterControl:'datepicker'
         },
         {
-          field: 'district',
+          field: 'district.abbreviation',
           title: 'Округ',
           searchable: true,
           sortable: true,
@@ -252,7 +261,8 @@ const initTable = (tableData) => {
           widthUnit: '%',
           align:'left',
           valign: 'middle',
-          filterControl:'input'
+          filterControl:'input',
+          formatter: objFormatter
         },
         {
           field: 'functions',
@@ -263,7 +273,8 @@ const initTable = (tableData) => {
           widthUnit: '%',
           align:'left',
           valign: 'middle',
-          filterControl:'input'
+          filterControl:'input', 
+          formatter: objFormatter
         }
       ] 
     });
@@ -276,21 +287,33 @@ const initTable = (tableData) => {
   }
 }
 
-const renderMosaicCard = (tableData) => {
-  // сделать класс для мозаичных карточек
-  
+
+const initMosaic = (data) => {
+// создаем рендер-блок для карточек
+  const cardList = new Section ((item) => {
+    const cardElement = createCard(item);
+    cardList.addItem(cardElement);
+    }, '.mosaic');
+
+
+  //функция создания карточки
+  function createCard (item) {
+    const card = new MosaicCard ({card: item});
+    return card.createCard();
+  }
+  cardList.renderItems(data) ;  // отрисовываем карточки в мозаичном отображении
 }
 
-
 // инициализация карты
-let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
-if (mapBtn) {
+const initMap = (data) => {
+  let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
+  if (mapBtn) {
     let mapContainer = document.querySelector('#mskmap');
 
     if (mapContainer) {
 
 
-    let map = createNewLeaflet('.mskmap', { zoom: 14,
+    let map = createNewLeaflet('#mskmap', { zoom: 12,
       attributionControl : false,
       zoomControl: true,
       keyboard: false,
@@ -303,8 +326,8 @@ if (mapBtn) {
       clickPanToLayer: false,
       doubleClickZoom: false,
 
-      minZoom: 8,
-      maxZoom: 18,
+      minZoom: 11,
+      maxZoom: 17,
       baseLayers: [ // массив базовых слоев
         {
           name: 'OpenStreetMap',
@@ -315,7 +338,7 @@ if (mapBtn) {
       groupLayers: [
         {
           name: 'Projects',
-          geojson: mapsData,
+          geojson: data,
           group: "layer",
         },
       ],
@@ -357,7 +380,10 @@ if (mapBtn) {
         map.update();
       })
     } 
+  }
 }
+
+
 
   
 //фильтры, открывание фильтра, работа селектов, потом убрать в класс с фильтрами
@@ -371,34 +397,6 @@ if (openFilterButton) {
       filtersBlock.classList.toggle('active')
     })
 
-  }
-
-
-
-  let selects = Array.from(document.querySelectorAll('.filters__select'));
-  if (selects.length != 0 ) {
-    selects.map(item => {
-
-      const selectSingle_title = item.querySelector('.filters__select-title');
-      const selectSingle_labels = item.querySelectorAll('.filters__select-label');
-      
-      // Toggle menu
-      selectSingle_title.addEventListener('click', () => {
-        if ('active' === item.getAttribute('data-state')) {
-          item.setAttribute('data-state', '');
-        } else {
-          item.setAttribute('data-state', 'active');
-        }
-      });
-      
-      // Close when click to option
-    /*  for (let i = 0; i < selectSingle_labels.length; i++) {
-        selectSingle_labels[i].addEventListener('click', (evt) => {
-          selectSingle_title.textContent = evt.target.textContent;
-          item.setAttribute('data-state', '');
-        });
-      } */
-    })
   }
 }
 
@@ -415,13 +413,18 @@ const api = new Api ('https://projectsmsk.genplanmos.ru/api/v1/project', {
 
 api.getAllProjects()
   .then((data) => {
+    initTable(data);   // отрисовываем таблицу          
+    initMosaic(data);  // отрисовываем мозайку
+    
     console.log(data);
-    initTable(data); // инициализируем таблицу
-                     // отрисовываем карточки
-                     // отрисовываем картуы
+    let block = new Filter('.filters', '.filter-tags', data);
   })
   .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
 
 
-
+  api.getGeoJson()
+  .then((data) => {
+    initMap(data);
+  })
+  .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
 
