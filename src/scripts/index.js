@@ -313,7 +313,7 @@ const initMap = (data) => {
     if (mapContainer) {
 
 
-    let map = createNewLeaflet('#mskmap', { zoom: 12,
+    let map = createNewLeaflet('#mskmap', { zoom: 16,
       attributionControl : false,
       zoomControl: true,
       keyboard: false,
@@ -331,7 +331,7 @@ const initMap = (data) => {
       baseLayers: [ // массив базовых слоев
         {
           name: 'OpenStreetMap',
-          url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          url: 'https://projectsmsk.genplanmos.ru/static/tileset/{z}/{x}/{y}.png',
           options: {},
         },
       ],
