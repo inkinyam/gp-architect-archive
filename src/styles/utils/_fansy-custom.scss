@@ -93,6 +93,9 @@ body:not(.is-using-mouse) .fancybox__container :focus {
 .f-carousel__dots  {
   bottom: -50px !important;
 }
+.f-carousel__dots li button {
+  @include silly-link;
+}
 
 .f-carousel__dot  {
   color: $primary-color-hovered;
@@ -106,14 +109,28 @@ body:not(.is-using-mouse) .fancybox__container :focus {
 
   .f-button {
     @include silly-link;
+    
     svg {
+      
       width: 40px;
       height: 40px;
+      rect {
+        @include transition;
+      }
       path {
         stroke-width: 0.5px;
       }
     }
-
+    &:hover {
+      svg {
+        rect {
+          fill-opacity: 1;
+        }
+        path{
+          fill:white;
+        }
+      }
+    }
   }
 }
 

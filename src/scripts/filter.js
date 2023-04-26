@@ -1,10 +1,16 @@
 class Filter {
   constructor(selectorFilterBlock, selectorTagsBlock, data){
+    this.openButton = document.querySelector('.search__openfilter');
     this.filterBlock = document.querySelector(selectorFilterBlock);
     this.tagsBlock   = document.querySelector(selectorTagsBlock);
     this.data = data;
-    this.dateSelect     = this.filterBlock.querySelector('.block-date');
-    this.agrDateSelect  = this.filterBlock.querySelector('.block-agr-date');
+    this.dateSelect   = this.filterBlock.querySelector('.block-date');
+    this.clearButton  = this.filterBlock.querySelector('.filters__button_reset');
+    this.submitButton = this.filterBlock.querySelector('.filters__button_submit');
+    let represent     = document.querySelector('.represent_mosaicview');
+    this.totalResult  = represent.querySelector('.represent__counter');
+    this._searchQuery = {};
+    this.result       = {};
 
     //слушатель на esc
     this._handleEscListener = function (evt) {
@@ -14,11 +20,35 @@ class Filter {
     }
     this._handleEscListener = this._handleEscListener.bind(this);
 
-    // вызов функции инициализации
+    
+
     this.initFilter();
+
+    //слушатель на клик мимо фильтра проверить как работает?!
+   /*   this._handleMouseClickListener = function (evt) {
+      if (!evt.target.classList.contains('filters')) {
+        this._closeFilter();
+      }
+    }
+    this._handleEscListener = this._handleMouseClickListener.bind(this);
+ */
   }
 
-  // получаем все ключи из объекта json
+// открыть блок фильтров
+  _openFilter(){
+    this.filterBlock.classList.add('active');
+    this.openButton.classList.add('active');
+     /* document.addEventListener('click',e => this._handleMouseClickListener(e));  */
+  }
+
+  // закрыть блок фильтров
+  _closeFilter(){
+    this.filterBlock.classList.remove('active');
+    this.openButton.classList.remove('active');
+   /*  document.removeEventListener('click', this._handleMouseClickListener());  */
+  }
+
+  // получаем все ключи из объекта data
   _getKeys(){
     let line = this.data[0];
     this.keys = Object.keys(line);
@@ -64,36 +94,45 @@ class Filter {
   }
 
 // создаем одну полоску в селект
-  _renderSelectElement (el, arrName, inx) {
+  _renderSelectElement (el) {
    let card = this._getSelectElement();
-    const input = card.querySelector('.filters__select-input');
-    const label = card.querySelector('.filters__select-label');
-    input.id = `${arrName}_${inx}`;
-
+    const text = card.querySelector('.filter__select-text');
+   
     if (el instanceof Object) {
       el = el.name;
     }
-    label.textContent = el;
-    label.setAttribute('for', `${input.id}`);
-
+    text.textContent = el;
+    
     this._addListenersToSelectElement(card);
     return card;
   }
-
   
   // слушатели на каждый элемент селекта
   _addListenersToSelectElement (el) {
     el.addEventListener('click', (e)=> {
-
-      // лучше записывать в массив теги, и потом на кнопку "применить" уже отрисовывать
-      if (e.target.closest('.filters__select-input').checked) {
-        let newTag = this._renderTagElement(el.textContent)
-        this.tagsBlock.append(newTag);   
+      let id = el.parentElement.parentElement.classList[1].split('_')[1];
+      let text = el.querySelector('.filter__select-text').textContent;
+      
+      if (el.classList.contains('active')) {
+        el.classList.remove('active');
+        let code = `${id}`;
+        if (this._searchQuery.hasOwnProperty(code)) {
+          let index = this._searchQuery[code].indexOf(text);
+          if (index !== -1) {
+            this._searchQuery[code].splice(index, 1);
+          }
+        }
       } else {
-        //удалить тег из массива
-        //отжать галочку на селекте
-      }       
-     
+        el.classList.add('active');
+        let code = `${id}`;
+        if (this._searchQuery.hasOwnProperty(code)) {
+          if (!this._searchQuery[code].includes(text)) {
+            this._searchQuery[code].push(text);
+          }
+        } else {
+          this._searchQuery[code] = [text];
+        }
+      }  
     })
   }
 
@@ -106,7 +145,7 @@ class Filter {
     return str;
   }
 
-  // заполняем селекты всеми возможными полями, которые есть в json
+  // заполняем селекты всеми возможными полями, которые есть в data
   _fillSelect() {
     this.keys.forEach((key) => {
       const select = document.querySelector(`.block_${key}`); 
@@ -157,15 +196,12 @@ class Filter {
           })
             select.setAttribute('data-state', 'active');
           }
-          
           //на документ навесить клик на esc
           document.addEventListener('keydown',this._handleEscListener);
         });
       }
     })
   }
-
-
   
   // темплейт для одного элемента тега 
   _getTagElement () {
@@ -179,6 +215,7 @@ class Filter {
     let cardText = card.querySelector('.tag__text');
     cardText.textContent = el;
     let deleteBtn = card.querySelector('.tag__delete');
+   
     deleteBtn.addEventListener('click', e => {
       card.remove();
     })
@@ -186,12 +223,55 @@ class Filter {
     return card;
   }
 
+  // очищение формы фильтров
+  _resetFilter(){
+    let selectsElement = Array.from(this.filterBlock.querySelector('.filter__select-item'));
+    selectsElement.forEach(item => item.classList.remove('active'));
+    this._searchQuery = {};
+  }
+
+
+  // отрисовка тэгов
+  _renderAllTags(){
+    for (let key in this._searchQuery) {
+      this._searchQuery[key].forEach(el => {
+        this.tagsBlock.append(this._renderTagElement(el))
+      })
+    }
+  }
+
+  // САБМИТ ФОРМЫ
+  _submitFilter(){
+    this._renderAllTags();  
+    this._closeFilter();
+    this.search();
+  }
+
+  // функция поиска
+  search() {
+    this.totalResult.textContent = this.data.length;
+  }
+
+
 
   // инициализация фильтра на странице
   initFilter () {
     this._getSelectItems();
     this._fillSelect();
     this._addListenersToSelect();
+
+    this.openButton.addEventListener('click', (e)=> {
+      if (e.currentTarget.classList.contains('active')) {
+        this._closeFilter();
+      } else {
+        this._openFilter();
+      }
+    })
+
+    this.clearButton.addEventListener('click', () => {this._resetFilter()})
+    this.submitButton.addEventListener('click',(e) => {this._submitFilter()});
+
+    console.log(this);
   }
 }
 

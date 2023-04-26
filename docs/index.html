@@ -53,15 +53,15 @@
               <div class="filters">
                 <div class="filters__block">
                   <h4 class="filters__blocktitle">Выберите фильтры</h4>
-                  <div class="filters__select block_function" data-state="">
+                  <div class="filters__select block_functions" data-state="">
                     <div class="filters__select-title" data-default="Функция">Функции</div>
                     <div class="filters__select-content"></div>
                   </div>
-                  <div class="filters__select block_raiting" data-state="">
+                  <div class="filters__select block_rating" data-state="">
                     <div class="filters__select-title" data-default="Рейтинг">Рейтинг</div>
                     <div class="filters__select-content"></div>
                   </div>
-                  <div class="filters__select block_archburo" data-state="">
+                  <div class="filters__select block_project_organization" data-state="">
                     <div class="filters__select-title" data-default="Архбюро">Архбюро</div>
                     <div class="filters__select-content"></div>
                   </div>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="filters__block">
                   <h4 class="filters__blocktitle">Местоположение</h4>
-                  <div class="filters__select block_adress" data-state="">
+                  <div class="filters__select block_address" data-state="">
                     <div class="filters__select-title" data-default="Адрес">Адрес</div>
                     <div class="filters__select-content"></div>
                   </div>
@@ -92,19 +92,15 @@
                     <div class="filters__select-title" data-default="Адрес">Дата ввода</div>
                     <div class="filters__select-content"></div>
                   </div>
-                  <div class="filters__select block_agr-date" data-state="">
+                  <div class="filters__select block_agr_date" data-state="">
                     <div class="filters__select-title" data-default="Адрес">Дата АГР</div>
-                    <div class="filters__select-content"><input id="data_0" class="filters__select-input" name="data" /> <label for="data_0" class="filters__select-label">Дата АГР</label> <input id="data_0" class="filters__select-input" type="data" name="data" /> <label for="data_0" class="filters__select-label">Дата АГР</label></div>
+                    <div class="filters__select-content"></div>
                   </div>
                 </div>
                 <div class="filter__button-block"><button class="filters__button filters__button_reset" type="reset">Отменить</button> <button class="filters__button filters__button_submit" type="submit">Применить</button></div>
               </div>
             </form>
-            <div class="filter-tags">
-              <div class="tag">Функция 1 <button class="tag__delete"></button></div>
-              <div class="tag">Архитектор 1 <button class="tag__delete"></button></div>
-              <div class="tag">★★★ <button class="tag__delete"></button></div>
-            </div>
+            <div class="filter-tags"></div>
             <p class="represent__total">всего проектов: <span class="represent__counter">120</span></p>
             <div class="mosaic"></div>
           </section>
@@ -134,10 +130,16 @@
     </div>
   </footer>
 </body><template id="select" class="select_template">
-  <div class="filter__select-item"><input id="" class="filters__select-input" type="checkbox" /> <label for="" class="filters__select-label"></label></div>
+  <div class="filter__select-item"><span class="filter__select-label"></span>
+    <p class="filter__select-text"></p>
+  </div>
 </template><template id="mosaicCard" class="mosaic_template"><a class="mosaic__card" href="#"><img src="" alt="" class="mosaic__img">
     <h3 class="mosaic__card-title"></h3>
     <h3 class="mosaic__card-subtitle"></h3>
-  </a></template>
+  </a></template><template id="tag" class="tag_template">
+  <div class="tag">
+    <p class="tag__text"></p><button class="tag__delete"></button>
+  </div>
+</template>
 
 </html>

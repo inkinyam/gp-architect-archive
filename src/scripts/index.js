@@ -50,9 +50,9 @@ if (sliderBlock) {
       showProgress: false,
       timeout: 10000,
     },
-    Navigation: {
-      nextTpl: "<svg width='44' height='44' viewBox='0 0 44 44' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M28.3536 22.3536C28.5488 22.1583 28.5488 21.8417 28.3536 21.6464L25.1716 18.4645C24.9763 18.2692 24.6597 18.2692 24.4645 18.4645C24.2692 18.6597 24.2692 18.9763 24.4645 19.1716L27.2929 22L24.4645 24.8284C24.2692 25.0237 24.2692 25.3403 24.4645 25.5355C24.6597 25.7308 24.9763 25.7308 25.1716 25.5355L28.3536 22.3536ZM16 22.5L28 22.5V21.5L16 21.5V22.5Z' fill='black'/><rect x='43.75' y='43.75' width='43.5' height='43.5' rx='21.75' transform='rotate(180 43.75 43.75)' stroke='black' stroke-width='0.5'/></svg>",
-      prevTpl: "<svg width='44' height='44' viewBox='0 0 44 44' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M15.6464 21.6464C15.4512 21.8417 15.4512 22.1583 15.6464 22.3536L18.8284 25.5355C19.0237 25.7308 19.3403 25.7308 19.5355 25.5355C19.7308 25.3403 19.7308 25.0237 19.5355 24.8284L16.7071 22L19.5355 19.1716C19.7308 18.9763 19.7308 18.6597 19.5355 18.4645C19.3403 18.2692 19.0237 18.2692 18.8284 18.4645L15.6464 21.6464ZM28 21.5H16V22.5H28V21.5Z' fill='black'/> <rect x='0.25' y='0.25' width='43.5' height='43.5' rx='21.75' stroke='black' stroke-width='0.5'/></svg>" 
+    Navigation: { 
+      nextTpl: "<svg width='44' height='44' viewBox='0 0 44 44' fill='none' xmlns='http://www.w3.org/2000/svg'><rect x='44' y='44' width='44' height='44' rx='22' transform='rotate(180 44 44)' fill='#1678E2' fill-opacity='0.1' stroke='none'/> <path d='M28.3536 22.3536C28.5488 22.1583 28.5488 21.8417 28.3536 21.6464L25.1716 18.4645C24.9763 18.2692 24.6597 18.2692 24.4645 18.4645C24.2692 18.6597 24.2692 18.9763 24.4645 19.1716L27.2929 22L24.4645 24.8284C24.2692 25.0237 24.2692 25.3403 24.4645 25.5355C24.6597 25.7308 24.9763 25.7308 25.1716 25.5355L28.3536 22.3536ZM16 22.5L28 22.5V21.5L16 21.5V22.5Z' fill='black'/></svg>",
+      prevTpl: "<svg width='44' height='44' viewBox='0 0 44 44' fill='none' xmlns='http://www.w3.org/2000/svg'><rect width='44' height='44' rx='22' fill='#1678E2' fill-opacity='0.1' stroke='none'/><path d='M15.6464 21.6464C15.4512 21.8417 15.4512 22.1583 15.6464 22.3536L18.8284 25.5355C19.0237 25.7308 19.3403 25.7308 19.5355 25.5355C19.7308 25.3403 19.7308 25.0237 19.5355 24.8284L16.7071 22L19.5355 19.1716C19.7308 18.9763 19.7308 18.6597 19.5355 18.4645C19.3403 18.2692 19.0237 18.2692 18.8284 18.4645L15.6464 21.6464ZM28 21.5H16V22.5H28V21.5Z' fill='black'/></svg>" 
     }
   };
   
@@ -116,14 +116,16 @@ const initTable = (tableData) => {
   const mediaQuerySmallSize = window.matchMedia('(max-width: 1240px)'); // проверяем мобилка или десктоп
   let tabletContainer = document.querySelector('.aa-tablet');
 
+  // рейтинг в звездочки
   function raitingFormatter(value) {
    let str = '';
     for (let i=0; i<value; i++){
     str = str + '★';
    }
-   return str;
+   return '<p style="color: #106CD1">'+ str + '</p>'
   }
 
+  // если 
   function nameFormatter (value, row) {
     return '<a class="aa-tablet__link" href="' + row._links.self.href + '">' + value + '</a>';
   }
@@ -138,6 +140,28 @@ const initTable = (tableData) => {
         str = str+item.name
       }
     });
+    return str;
+  }
+
+  function commissioningDateFormatter (value, row) {
+    if (value === null) {
+      return row.commissioning_year;
+    } else return value;
+  }
+
+
+  function arrayTextFormatter (value){
+    let str ='';
+    
+    if (Array.isArray(value)){
+      value.forEach((item, inx) => {
+        if (inx != 0) {
+          str = str + ', ' + item;
+        } else {
+          str = str+item;
+        }
+      });
+    }
     return str;
   }
 
@@ -216,7 +240,8 @@ const initTable = (tableData) => {
           widthUnit: '%',
           align:'left',
           valign: 'middle',
-          filterControl:'input'
+          filterControl:'input',
+          formatter: arrayTextFormatter
         },
         {
           field: 'commissioning_date',
@@ -227,7 +252,8 @@ const initTable = (tableData) => {
           widthUnit: '%',
           align:'center',
           valign: 'middle',
-          filterControl:'datepicker'
+          filterControl:'datepicker',
+          formatter: commissioningDateFormatter
         },
         {
           field: 'district.abbreviation',
@@ -382,26 +408,6 @@ const initMap = (data) => {
     } 
   }
 }
-
-
-
-  
-//фильтры, открывание фильтра, работа селектов, потом убрать в класс с фильтрами
-let openFilterButton = document.querySelector('.search__openfilter');
-if (openFilterButton) {
-  let filtersBlock = document.querySelector('.filters');
-  if (filtersBlock) {
-    openFilterButton.addEventListener('click', (e)=> {
-      e.preventDefault();
-      openFilterButton.classList.toggle('active');
-      filtersBlock.classList.toggle('active')
-    })
-
-  }
-}
-
-
-
 
 
 //cоздание экземпляра класса Api

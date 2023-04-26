@@ -102,14 +102,14 @@
                   <h4 class="filters__blocktitle">Выберите фильтры</h4>
                   
 
-                  <div class="filters__select block_function" data-state="">
+                  <div class="filters__select block_functions" data-state="">
                     <div class="filters__select-title" data-default="Функция">Функции</div>
                     <div class="filters__select-content">
                     
                     </div>
                   </div>
 
-                  <div class="filters__select block_raiting" data-state="">
+                  <div class="filters__select block_rating" data-state="">
                     <div class="filters__select-title" data-default="Рейтинг">Рейтинг</div>
                     <div class="filters__select-content">
 
@@ -117,7 +117,7 @@
                     </div>
                   </div>
 
-                  <div class="filters__select block_archburo" data-state="">
+                  <div class="filters__select block_project_organization" data-state="">
                     <div class="filters__select-title" data-default="Архбюро">Архбюро</div>
                     <div class="filters__select-content">
                     
@@ -149,7 +149,7 @@
                   <h4 class="filters__blocktitle">Местоположение</h4>
 
 
-                  <div class="filters__select block_adress" data-state="">
+                  <div class="filters__select block_address" data-state="">
                     <div class="filters__select-title" data-default="Адрес">Адрес</div>
                     <div class="filters__select-content">
                    
@@ -170,14 +170,9 @@
                     </div>
                   </div>
 
-                  <div class="filters__select block_agr-date" data-state="">
+                  <div class="filters__select block_agr_date" data-state="">
                     <div class="filters__select-title" data-default="Адрес">Дата АГР</div>
                     <div class="filters__select-content">
-                      <input id="data_0" class="filters__select-input" type="text" name="data" />
-                      <label for="data_0" class="filters__select-label">Дата АГР</label>
-        
-                      <input id="data_0" class="filters__select-input" type="data" name="data" />
-                      <label for="data_0" class="filters__select-label">Дата АГР</label>
                     </div>
                   </div>
                 </div>
@@ -191,17 +186,7 @@
 
 
             <div class="filter-tags">
-              <div class="tag">Функция 1
-                <button class="tag__delete"></button>
-              </div>
-
-              <div class="tag">Архитектор 1
-                <button class="tag__delete"></button>
-              </div>
-
-              <div class="tag">★★★
-                <button class="tag__delete"></button>
-              </div>
+             
             </div>
             
             <p class="represent__total">всего проектов:  
@@ -272,8 +257,8 @@
   <!-- описание темплейта карточки-->
   <template id="select" class='select_template'>
     <div class="filter__select-item">
-      <input id="" class="filters__select-input" type="checkbox"  />
-      <label for="" class="filters__select-label"></label>
+      <span class="filter__select-label"></span>
+        <p class="filter__select-text"></p>
     </div>
   </template>
 
@@ -284,5 +269,12 @@
       <h3 class="mosaic__card-subtitle"></h3>
     </a>
   </template>
+
+  <template id="tag" class='tag_template'>
+    <div class="tag">
+      <p class="tag__text"></p>
+      <button class="tag__delete"></button>
+    </div>
+</template>
 
 </html>

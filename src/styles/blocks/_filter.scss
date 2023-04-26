@@ -1,12 +1,12 @@
 .filters {
-  display: flex;
+  display: none;
   position: relative;
   background-color: rgb(255, 255, 255);
   z-index: 100;
   box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   padding: 28px;
-  width: 550px;
+  width: 645px;
 
   flex-direction: column;
   row-gap: 40px;
@@ -31,7 +31,7 @@
     @include circe-lowercase;
     @include transition;
     position: relative;
-    width: 160px;
+    width: 190px;
     height: 33px;
     border: 0.5px solid rgba(0, 0, 0, 0.5);
     border-radius: 20px;
@@ -68,23 +68,16 @@
         color: $dark-color-default;
         max-height: unset;
         height: fit-content;
-
-        .filter__select-item {
-          min-height: 40px;
-          max-height: unset;
-          height: fit-content;
-          background-color: #fff;
-        }
+        z-index: 3;
       }
 
-
-      
-     .filters__select-label  {
-        min-height: 40px !important;
-        max-height: unset !important;
-        border-top-width: 1px;
+      .filter__select-item {
+        min-height: 40px;
+        max-height: unset;
+        height: fit-content;
+        background-color: #fff;
+        padding: 4px 10px;
       }
-
     }
 
     .filters__select-title {
@@ -128,97 +121,79 @@
     }
   
     .filters__select-content {
-      @include transition;
       position: absolute;
       top: 32px;
       left: -1px;
       max-height: 0;
       display: flex;
-      row-gap: 6px;
+      row-gap: 2px;
       flex-direction: column;
       width: calc(100% + 2px);
       background-color: #ffffff;
       box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.15);
       opacity: 0;
-      z-index: 8;
-      .filter__select-item {
-        max-height: 0;
-        overflow: hidden;
-      }
-
+      z-index: 0;
     }
-  
-    .filters__select-input {
-      display: none;
-    
-      &:checked + label {
-        background-color: $primary-color-hovered;
-        color: white;
 
-        &::before {
-          position: absolute;
-          content: '';
-          width: 5px;
-          height: 10px;
-          left: 15px;
-        /*   top: 14px; */
-          border-right: 1px solid #201E33;
-          border-bottom: 1px solid #201E33;
-          transform: rotate(45deg) translate(-1px, -2px);
-          
-          z-index: 500;
-        }
-
-
-      }
-      &:disabled + label {
-        opacity: 0.6;
-        pointer-events: none;
-        
-      }
-    }
-  
-    .filters__select-label {
+    .filter__select-item {
+      @include silly-link;
       display: flex;
-      align-items: center;
-      /* width: 100%; */
-      height: fit-content;
       max-height: 0;
-      position: relative;
-      padding: 0 8px 0 35px;
-
-      &::after {
-        position: absolute;
-        content: '';
-        width: 15px;
-        height: 15px;
-        border: 0.5px solid #201E33;
-        background-color: #fff;
-        border-radius: 3px;
-        left: 10px;
-      }
-      &::before {
-        position: absolute;
-        content: '';
-        width: 10px;
-        height: 5px;
-        border-color: transparent;
-      }
-
-
-      
-      @include transition;
-      cursor: pointer;
       overflow: hidden;
+      align-items: center;
+      box-sizing: border-box;
+      column-gap: 6px;
     
-      & + input + & {
-        border-top: 0.4px solid  $primary-color-hovered;
-      }
-    
+
       &:hover {
-        background-color: rgba(22, 120, 226, 0.1) !important;
-        color: #000000 !important;
+        background-color: rgba(22, 120, 226, 0.1);
       }
+
+      &.active {
+        .filter__select-label {
+          &:before {
+            content: '';
+            left: 3px;
+            top: 5px;
+            position: absolute;
+            width: 14.5px;
+            height: 1px;
+            background-color: $dark-color-default;
+            transform: rotate(-45deg) ;
+            transform-origin: center;
+          }
+
+          &:after {
+            content: '';
+            left: 1px;
+            top: 8px;
+            position: absolute;
+            width: 6px;
+            height: 1px;
+            background-color: $dark-color-default;
+            transform: rotate(45deg) ;
+            transform-origin: center;
+          }
+        }
+      }
+    }
+
+    .filter__select-text {
+      @include circe-lowercase;
+      font-size: 14px;
+      word-break: break-word;
+      margin: 0;
+    }
+    
+   
+    .filter__select-label {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      border-radius: 3px;
+      border: 0.5px solid $dark-color-default;
+      background-color: #fff;
+      position: relative;
     }
   }
 
@@ -267,6 +242,7 @@
     justify-content: center;
     column-gap: 8px;
 
+      max-height: 40px;
     box-sizing: border-box;
     padding: 5px 15px;
     border-radius: 5px;

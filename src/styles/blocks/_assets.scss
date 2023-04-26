@@ -24,11 +24,11 @@
   .assets__link {
     @include button;
     @include transition;
-
+    text-transform: unset;
     color: white;
     flex-direction: row;
     column-gap: 10px;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 21px;
     background-color: $primary-color-hovered;
 
