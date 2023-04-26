@@ -393,6 +393,7 @@ const initMap = (data) => {
         },
       ]
     });
+    
         
     document.addEventListener('DOMContentLoaded', (e)=> {
        if (e.target.location.hash === '#mapview'){

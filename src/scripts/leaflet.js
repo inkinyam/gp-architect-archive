@@ -59,6 +59,8 @@ class MyLeaflet extends L.Class {
         }) 
       this.layers.name  = geoLayer;
     })
+
+   
   }
 
   // контроллеры на карту
@@ -104,7 +106,9 @@ class MyLeaflet extends L.Class {
     this._addTiles();
     this._addLayers();
     this._addControllers();
-  }
+
+/*     this.map.fitBounds(this.layers.getBounds());  */
+    }
 }
 
 export default function createNewLeaflet(containerId, options) {
