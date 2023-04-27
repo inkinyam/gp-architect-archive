@@ -317,20 +317,13 @@ const initTable = (projectData, tagsData) => {
   }
 }
 
-
-
-
-
-
 // инициализация карты
-  const initMap = (data) => {
-    let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
-    if (mapBtn) {
-      let mapContainer = document.querySelector('#mskmap');
-
-      if (mapContainer) {
-
-      let map = createNewLeaflet('#mskmap', { 
+const initMap = (data) => {
+  let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
+  if (mapBtn) {
+    let mapContainer = document.querySelector('#mskmap');
+    if (mapContainer) {
+    let map = createNewLeaflet('#mskmap', { 
         attributionControl : false,
         zoomControl: true,
         keyboard: false,
@@ -383,24 +376,22 @@ const initTable = (projectData, tagsData) => {
             }
           },
         ]
-      });
-      
-          
-      document.addEventListener('DOMContentLoaded', (e)=> {
-        if (e.target.location.hash === '#mapview'){
-          if ( ! mapContainer.classList.contains('leaflet-container')) {
-            map.renderMap();
-          }
+    });
+    
+        
+    document.addEventListener('DOMContentLoaded', (e)=> {
+      if (e.target.location.hash === '#mapview'){
+        if ( ! mapContainer.classList.contains('leaflet-container')) {
+          map.renderMap();
         }
-      })  
-
-      mapBtn.addEventListener('click', ()=> {
-          map.update();
-        })
-      } 
-    }
+      }
+    })  
+    mapBtn.addEventListener('click', ()=> {
+        map.update();
+      })
+    } 
   }
-
+}
 
 
 // инициализация фильтров
