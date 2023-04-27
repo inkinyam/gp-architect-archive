@@ -112,9 +112,13 @@ if (window.innerHeight > 950) {
 
 
 //инициализация таблицы
-const initTable = (tableData) => {
+const initTable = (projectData, tagsData) => {
   const mediaQuerySmallSize = window.matchMedia('(max-width: 1240px)'); // проверяем мобилка или десктоп
   let tabletContainer = document.querySelector('.aa-tablet');
+
+  window.formatedFilterTagsData = [];
+  tagsData.forEach((item) => {formatedFilterTagsData.push(item.name)})
+
 
   // рейтинг в звездочки
   function raitingFormatter(value) {
@@ -125,9 +129,8 @@ const initTable = (tableData) => {
    return '<p style="color: #106CD1">'+ str + '</p>'
   }
 
-  // если 
   function nameFormatter (value, row) {
-    return '<a class="aa-tablet__link" href="' + row._links.self.href + '">' + value + '</a>';
+    return '<a class="aa-tablet__link" href="' + row._links.self.url_frontend + '">' + value + '</a>';
   }
 
   function objFormatter (value) {
@@ -149,7 +152,6 @@ const initTable = (tableData) => {
     } else return value;
   }
 
-
   function arrayTextFormatter (value){
     let str ='';
     
@@ -167,7 +169,7 @@ const initTable = (tableData) => {
 
   if (tabletContainer) {
     let $table = $('#table').bootstrapTable({ 
-      data: tableData,
+      data: projectData,
       toggle: 'table',
       filterControl: true,
       clickToSelect: true,
@@ -288,6 +290,7 @@ const initTable = (tableData) => {
           align:'left',
           valign: 'middle',
           filterControl:'input',
+        /*   filterData: 'var:formatedFilterTagsData',   */
           formatter: objFormatter
         },
         {
@@ -312,23 +315,27 @@ const initTable = (tableData) => {
     } 
   }
 }
+// инициализация мозайки
+  const initMosaic = (data) => {
+    let mosaicRepresent = document.querySelector('.mosaic');
+    if (mosaicRepresent) {
+    // создаем рендер-блок для карточек
+    const cardList = new Section ((item) => {
+      const cardElement = createCard(item);
+      cardList.addItem(cardElement);
+      }, '.mosaic');
 
 
-const initMosaic = (data) => {
-// создаем рендер-блок для карточек
-  const cardList = new Section ((item) => {
-    const cardElement = createCard(item);
-    cardList.addItem(cardElement);
-    }, '.mosaic');
+    //функция создания карточки
+    function createCard (item) {
+      const card = new MosaicCard ({card: item});
+      return card.createCard();
+    }
+    
+    cardList.renderItems(data) ;  // отрисовываем карточки в мозаичном отображении
+    }
 
-
-  //функция создания карточки
-  function createCard (item) {
-    const card = new MosaicCard ({card: item});
-    return card.createCard();
   }
-  cardList.renderItems(data) ;  // отрисовываем карточки в мозаичном отображении
-}
 
 // инициализация карты
 const initMap = (data) => {
@@ -338,8 +345,7 @@ const initMap = (data) => {
 
     if (mapContainer) {
 
-
-    let map = createNewLeaflet('#mskmap', { zoom: 16,
+    let map = createNewLeaflet('#mskmap', { 
       attributionControl : false,
       zoomControl: true,
       keyboard: false,
@@ -396,12 +402,12 @@ const initMap = (data) => {
     
         
     document.addEventListener('DOMContentLoaded', (e)=> {
-       if (e.target.location.hash === '#mapview'){
+      if (e.target.location.hash === '#mapview'){
         if ( ! mapContainer.classList.contains('leaflet-container')) {
           map.renderMap();
         }
-       }
-      })  
+      }
+    })  
 
     mapBtn.addEventListener('click', ()=> {
         map.update();
@@ -410,9 +416,19 @@ const initMap = (data) => {
   }
 }
 
+// инициализация фильтров
+const initFilter = (data) => {
+  let filterBlock = document.querySelector('.filters'); 
+
+  if (filterBlock){
+    let block = new Filter('.filters', '.filter-tags', data);
+    return block;
+  }
+}
+
 
 //cоздание экземпляра класса Api
-const api = new Api ('https://projectsmsk.genplanmos.ru/api/v1/project', {
+const api = new Api ('https://projectsmsk.genplanmos.ru/api/v1', {
   headers: {
      'Content-Type': 'application/json'
   }
@@ -420,11 +436,8 @@ const api = new Api ('https://projectsmsk.genplanmos.ru/api/v1/project', {
 
 api.getAllProjects()
   .then((data) => {
-    initTable(data);   // отрисовываем таблицу          
-    initMosaic(data);  // отрисовываем мозайку
-    
-    console.log(data);
-    let block = new Filter('.filters', '.filter-tags', data);
+    initMosaic(data);  
+    initFilter(data);
   })
   .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
 
@@ -435,3 +448,8 @@ api.getAllProjects()
   })
   .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
 
+
+  Promise.all([api.getAllProjects(), api.getTags()])
+    .then(([projectData, tagsData])=> {
+      initTable(projectData, tagsData);   // отрисовываем таблицу        
+    })

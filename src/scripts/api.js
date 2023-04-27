@@ -14,14 +14,21 @@ export default class Api {
 
 //метод, который реализует получение карточки с сервера
   getAllProjects () {
-    return fetch (`${this.baseUrl}/projects/`, {
+    return fetch (`${this.baseUrl}/project/projects/`, {
       headers: this.headers
     })
     .then (res => {return this._checkRes(res)})
   }
 
   getGeoJson() {
-    return fetch (`${this.baseUrl}/geo-json/`, {
+    return fetch (`${this.baseUrl}/project/geo-json/`, {
+      headers: this.headers
+    })
+    .then (res => {return this._checkRes(res)})
+  }
+
+  getTags () {
+    return fetch (`${this.baseUrl}/project/tags/`, {
       headers: this.headers
     })
     .then (res => {return this._checkRes(res)})

@@ -31,6 +31,7 @@ class MyLeaflet extends L.Class {
 
   // добавить слои на карту (geojson)
   _addLayers() {
+    let groupLayers = {};
     this.options.groupLayers.forEach(layer => {
       let layerOptions = layer.options || {};
       let layerStyle   = layer.style || {};
@@ -40,27 +41,30 @@ class MyLeaflet extends L.Class {
           interactive: layerOptions.interactive || false,
           onEachFeature: (feature, layer) => {
             if (feature.geometry.type === 'Point') {
-             let marker =  L.marker( layer._latlng, 
-                                     { icon: L.icon({
-                                       iconUrl: blackPin,
-                                       shadowUrl:   blackPin,
-                                       iconSize:    [22, 33],
-                                       shadowSize:  [0, 0],
-                                       iconAnchor:  [11, 33],
-                                       shadowAnchor:[1, 1],
-                                       popupAnchor: [-3, -33]
+              let marker =  L.marker( layer._latlng, 
+                                      { icon: L.icon({
+                                        iconUrl: blackPin,
+                                        shadowUrl:   blackPin,
+                                        iconSize:    [22, 33],
+                                        shadowSize:  [0, 0],
+                                        iconAnchor:  [11, 33],
+                                        shadowAnchor:[1, 1],
+                                        popupAnchor: [-3, -33]
                                       })})
                                     .addTo(this.map)
                                     .bindPopup(`<div class="popup"><img src="${feature.properties.image}" alt="${feature.properties.name}"/><h4>${feature.properties.name}</h4><p>${feature.properties.address}</p><a href="${feature.properties._links.url_frontend.href}">К проекту</a></div>`);
-                  marker.on('mouseover', () => { marker.setIcon(L.icon({iconUrl: bluePin})) })
-                  marker.on('mouseout',  () => { marker.setIcon(L.icon({iconUrl: blackPin })) })
+              marker.on('mouseover', () => { marker.setIcon(L.icon({iconUrl: bluePin})) })
+              marker.on('mouseout',  () => { marker.setIcon(L.icon({iconUrl: blackPin })) })
             }
           }
-        }) 
-      this.layers.name  = geoLayer;
-    })
-
-   
+        }); 
+      groupLayers[layer.name] = geoLayer;
+      this.layers[layer.name]  = geoLayer;
+    });
+    
+    // получить границы всех маркеров и выставить зум карты
+    const group = new L.featureGroup(Object.values(groupLayers));
+    this.map.fitBounds(group.getBounds());
   }
 
   // контроллеры на карту

@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="120x120" href="./images/favicons/favicon-120x120.png">
+  <!-- For Google and Android -->
+  <link rel="icon" type="image/png" sizes="48x48" href="./images/favicons/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./images/favicons/favicon-192x192.png">
+  <!-- For iPad -->
+  <link rel="apple-touch-icon" type="image/png" sizes="167x167" href="./images/favicons/favicon-167x167.png">
+  <!-- For iPhone -->
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="./images/favicons/favicon-180x180.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,15 +22,15 @@
 <body class="page">
   <header class="header">
     <div class="header__logos">
-      <a href="#" class="header__logo">
+      <a href="https://www.mos.ru/mka/" target="_blank" title="Комитет по архитектуре и градостроительству города Москвы" class="header__logo">
         <img src="<%=require('../images/mka-logo-black.svg')%>" alt="logo1">
       </a>
-      <a href="#" class="header__logo">
+      <a href="https://genplanmos.ru/" target="_blank" title="Институт Генплана Москвы" class="header__logo">
         <img src="<%=require('../images/main-logo-old-black.svg')%>" alt="logo2">
       </a>
     </div>
 
-    <div class="header__title">Ключевые проекты Москвы</div>
+    <div class="header__title"><a href="index.html" class="">Ключевые проекты Москвы</a></div>
 
     <button class="header__burger">
       <span></span>
@@ -30,10 +42,7 @@
     <div class="header__sidepanel">
       <div class="header__sidepanel-inner">
         <a href="./index.html" class="header__sidepanel-link">Главная</a>
-        <a href="./project.html" class="header__sidepanel-link">Страница проекта</a>
-        <a href="./login.html" class="header__sidepanel-link">Залогиниться</a>
-        <a href="./resume-pass.html" class="header__sidepanel-link">Восстановить пароль</a>
-        <a href="./404.html" class="header__sidepanel-link">404</a>
+        <a href="./login.html" class="header__sidepanel-link">Выйти</a>
       </div>
     </div>
   </header>
@@ -64,8 +73,10 @@
           <a class="navigation__nav-link" href="#renders" >Рендеры</a>
         </li>
         <li class="navigation__nav-button">
-
           <a class="navigation__nav-link" href="#videos" >Видео</a>
+        </li>
+        <li class="navigation__nav-button">
+          <a class="navigation__nav-link" href="#presentations" >Презентации</a>
         </li>
         
       </ul>
@@ -270,7 +281,6 @@
       </div>
     </section>
 
-
     <section class="assets videos" >
       <div class="anchor" id="videos"></div>
       <div class="assets__titleblock">
@@ -322,21 +332,82 @@
         </div>
       </div>
     </section>
+
+    <section class="assets presentations" >
+      <div class="anchor" id="presentations"></div>
+      <div class="assets__titleblock">
+        <h2 class="assets__title">Презентации</h2>
+        <a href="#" class="assets__link"> Скачать все
+          <img src="<%=require('../images/icon-download.png')%>" alt="icon">
+        </a>
+      </div>
+
+      <div class="assets__presentations">
+        <div class="assets__card">
+          <a href="#" class="assets__card-img">
+            <img src="<%=require('../images/main-photo-2.jpg')%>" alt="название презы" class="">
+          </a>
+          <a href="#" class="assets__card-title">Крайне длинное название презентации зачем-то, вдруг кто-то укажет что-то невозможное</a>
+        </div>
+
+        <div class="assets__card">
+          <a href="#" class="assets__card-img">
+            <img src="<%=require('../images/main-photo-2.jpg')%>" alt="название презы" class="">
+          </a>
+          <a href="#" class="assets__card-title">Название презы</a>
+        </div>
+
+        <div class="assets__card">
+          <a href="#" class="assets__card-img">
+            <img src="<%=require('../images/main-photo-2.jpg')%>" alt="сюда обложку" class="">
+          </a>
+          <a href="#" class="assets__card-title">Сюда название презы</a>
+        </div>
+
+        <div class="assets__card">
+          <a href="#" class="assets__card-img">
+            <img src="<%=require('../images/mosaic (1).png')%>" alt="преза без названия" class="">
+          </a>
+          <a href="#" class="assets__card-title"></a>
+        </div>
+
+        <div class="assets__card">
+          <a href="#" class="assets__card-img">
+            <img src="<%=require('../images/mosaic (1).png')%>" alt="название презы" class="">
+          </a>
+          <a href="#" class="assets__card-title">Давай презы без фотки не будет?</a>
+        </div>
+
+        <div class="assets__card">
+          <a href="#" class="assets__card-img">
+            <img src="<%=require('../images/mosaic (1).png')%>" alt="название презы" class="">
+          </a>
+          <a href="#" class="assets__card-title">Название презы</a>
+        </div>
+
+        <div class="assets__card">
+          <a href="#" class="assets__card-img">
+            <img src="<%=require('../images/mosaic (1).png')%>" alt="название презы" class="">
+          </a>
+          <a href="#" class="assets__card-title">Название презы</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     <div class="footer__container">
       <div class="footer__link">
-        <img src="<%=require('../images/logo-institute.svg')%>" alt="logo" class="footer__img">
+        <img src="<%=require('../images/logo-pravitelstvo.svg')%>" alt="Правительство Москвы" class="footer__img">
         <p class="footer__link-description">
-          <a href="#">Комплекс градостроительной политики и строительства</a> 
-          <a href="#">Комитет по архитектуре и градостроительству</a>
+          <a href="https://stroi.mos.ru/"  target="_blank" title="Комплекс градостроительной политики и строительства">Комплекс градостроительной политики и строительства</a> 
+          <a href="https://www.mos.ru/mka/" target="_blank" title="Комитет по архитектуре и градостроительству">Комитет по архитектуре и градостроительству</a>
         </p>
       </div>
       <div class="footer__link">
         <img src="<%=require('../images/main-logo-white.svg')%>" alt="logo" class="footer__img">
         <p class="footer__link-description">
-          <a href="#">
+          <a href="https://genplanmos.ru/" target="_blank" title="Институт Генплана Москвы">
             Государственное автономное учреждение «Научно-исследовательский и проектный институт Генерального плана города Москвы»
           </a>
         </p>

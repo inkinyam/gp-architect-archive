@@ -1,3 +1,4 @@
+
 class Filter {
   constructor(selectorFilterBlock, selectorTagsBlock, data){
     this.openButton = document.querySelector('.search__openfilter');
@@ -19,19 +20,10 @@ class Filter {
       }
     }
     this._handleEscListener = this._handleEscListener.bind(this);
-
     
-
     this.initFilter();
 
-    //слушатель на клик мимо фильтра проверить как работает?!
-   /*   this._handleMouseClickListener = function (evt) {
-      if (!evt.target.classList.contains('filters')) {
-        this._closeFilter();
-      }
-    }
-    this._handleEscListener = this._handleMouseClickListener.bind(this);
- */
+
   }
 
 // открыть блок фильтров
@@ -110,7 +102,7 @@ class Filter {
   // слушатели на каждый элемент селекта
   _addListenersToSelectElement (el) {
     el.addEventListener('click', (e)=> {
-      let id = el.parentElement.parentElement.classList[1].split('_')[1];
+      let id = el.parentElement.parentElement.classList[1].substring(6);
       let text = el.querySelector('.filter__select-text').textContent;
       
       if (el.classList.contains('active')) {
@@ -120,6 +112,9 @@ class Filter {
           let index = this._searchQuery[code].indexOf(text);
           if (index !== -1) {
             this._searchQuery[code].splice(index, 1);
+          }
+          if (this._searchQuery[code].length === 0) {
+            delete this._searchQuery[code];
           }
         }
       } else {
@@ -218,8 +213,22 @@ class Filter {
    
     deleteBtn.addEventListener('click', e => {
       card.remove();
-    })
 
+      for (let key in this._searchQuery) {
+        if (this._searchQuery.hasOwnProperty(key)) {
+          let index = this._searchQuery[key].indexOf(cardText.textContent);
+          if (index != -1) {
+            this._searchQuery[key].splice(index,1);
+          }
+          if (this._searchQuery[key].length === 0) {
+            delete this._searchQuery[key];
+          }
+        }
+      }
+
+      this.search();
+    })
+    
     return card;
   }
 
@@ -228,6 +237,7 @@ class Filter {
     let selectsElement = Array.from(this.filterBlock.querySelector('.filter__select-item'));
     selectsElement.forEach(item => item.classList.remove('active'));
     this._searchQuery = {};
+    this.search();
   }
 
 
@@ -249,9 +259,41 @@ class Filter {
 
   // функция поиска
   search() {
-    this.totalResult.textContent = this.data.length;
+    let result;
+    if (Object.keys(this._searchQuery).length === 0) {
+      this.totalResult.textContent = this.data.length;
+      return this.data;
+    }
+     result = this.data.filter(item => {
+      for (let key in this._searchQuery) {
+        if (Array.isArray(item[key])) {
+          // если значение ключа - массив
+          for (let i = 0; i < item[key].length; i++) {
+            if (this._searchQuery[key].includes(item[key][i])) {
+              return true;
+            }
+          }
+        } else if (typeof item[key] === 'object') {
+          // если значение ключа - объект
+          for (let subKey in this._searchQuery[key][0]) {
+            if (this._searchQuery[key][0][subKey] !== item[key][subKey]) {
+              return false;
+            }
+          }
+          return true;
+        } else {
+          // если значение ключа - простое значение
+          if (this._searchQuery[key].includes(item[key])) {
+            return true;
+          }
+        }
+      }
+      return false;
+    });
+ 
+    this.totalResult.textContent = result.length;
+    return result;
   }
-
 
 
   // инициализация фильтра на странице
@@ -270,22 +312,12 @@ class Filter {
 
     this.clearButton.addEventListener('click', () => {this._resetFilter()})
     this.submitButton.addEventListener('click',(e) => {this._submitFilter()});
+    this.totalResult.textContent = this.data.length;
 
-    console.log(this);
   }
 }
 
 export default Filter;
 
 
-
-
-
-  // при нажатии на кнопку "применить" 
-          // - создаем плашки тэгов в соответствующей линии
-          // - ищем соответствия в json data
-          // - возвращаем результат в какой-то json, который будем отрисовывать
-
-  // на каждую плашку тега навесить обработчик события, который удаляет плашку и запускает поиск заново
-  // при нажатии на кнопку "отменить" нужно обновить все фильтры до нулевого значения, все плашки тегов из линейки
 

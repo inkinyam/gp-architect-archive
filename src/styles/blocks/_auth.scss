@@ -86,7 +86,7 @@ $blueQueen: rgba(0, 0, 0, 0.05);
   > button {
     @include button;
     @include transition;
-    @include circe-uppercase;
+    text-transform: unset;
     color: #fff;
     line-height: 44px;
     width: fit-content;

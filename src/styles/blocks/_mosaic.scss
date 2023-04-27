@@ -28,9 +28,21 @@
     transition-property: box-shadow,transform;
     width: auto;
     height: 100%; 
+    max-height: 275px;
+    min-height: 275px;
  
     object-fit: cover;
     object-position: center;
+    @media screen and (max-width: $tablet) {
+      min-height: 300px;
+      max-height: 300px;
+    }
+
+    @media screen and (max-width: 800px) {
+      min-height: 200px;
+      max-height: 200px;
+    }
+
   }
 
   .mosaic__card-title {

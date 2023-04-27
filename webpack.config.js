@@ -99,10 +99,6 @@ module.exports = {
             {
               source: path.join('src', 'favicons'),
               destination: 'docs/favicons',    
-            },
-            {
-              source: path.join('src', 'utils'),
-              destination: 'docs/utils',    
             }
           ]
         }
