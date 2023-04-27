@@ -1,6 +1,6 @@
 
 class Filter {
-  constructor(selectorFilterBlock, selectorTagsBlock, data){
+  constructor(selectorFilterBlock, selectorTagsBlock, {data, renderMosaicCardList}){
     this.openButton = document.querySelector('.search__openfilter');
     this.filterBlock = document.querySelector(selectorFilterBlock);
     this.tagsBlock   = document.querySelector(selectorTagsBlock);
@@ -10,8 +10,11 @@ class Filter {
     this.submitButton = this.filterBlock.querySelector('.filters__button_submit');
     let represent     = document.querySelector('.represent_mosaicview');
     this.totalResult  = represent.querySelector('.represent__counter');
+    this.searchTextInput = represent.querySelector('.search__main-input');
     this._searchQuery = {};
     this.result       = {};
+
+    this.renderMosaicCardList = renderMosaicCardList;
 
     //слушатель на esc
     this._handleEscListener = function (evt) {
@@ -115,6 +118,11 @@ class Filter {
           }
           if (this._searchQuery[code].length === 0) {
             delete this._searchQuery[code];
+          }
+          let tags = Array.from(this.tagsBlock.querySelectorAll('.tag'));
+          if (tags.length != 0){
+            let tag = tags.filter(item => item.querySelector('.tag__text').textContent === text);
+            tag[0].remove();
           }
         }
       } else {
@@ -232,10 +240,17 @@ class Filter {
     return card;
   }
 
+
+  // очистить выбранные пункты в селектах
+  _resetSelectsItem () {
+    let selectsElement = Array.from(document.querySelectorAll('.filter__select-item'));
+    selectsElement.forEach(item => item.classList.remove('active'));
+  }
+
+
   // очищение формы фильтров
   _resetFilter(){
-    let selectsElement = Array.from(this.filterBlock.querySelector('.filter__select-item'));
-    selectsElement.forEach(item => item.classList.remove('active'));
+   this._resetSelectsItem();
     this._searchQuery = {};
     this.search();
   }
@@ -243,6 +258,7 @@ class Filter {
 
   // отрисовка тэгов
   _renderAllTags(){
+    this.tagsBlock.textContent = '';
     for (let key in this._searchQuery) {
       this._searchQuery[key].forEach(el => {
         this.tagsBlock.append(this._renderTagElement(el))
@@ -254,7 +270,9 @@ class Filter {
   _submitFilter(){
     this._renderAllTags();  
     this._closeFilter();
+    this._closeSelects();
     this.search();
+    
   }
 
   // функция поиска
@@ -262,6 +280,7 @@ class Filter {
     let result;
     if (Object.keys(this._searchQuery).length === 0) {
       this.totalResult.textContent = this.data.length;
+      this.renderMosaicCardList(this.data)
       return this.data;
     }
      result = this.data.filter(item => {
@@ -292,7 +311,69 @@ class Filter {
     });
  
     this.totalResult.textContent = result.length;
+    this.renderMosaicCardList(result);
     return result;
+  }
+
+
+/*   search() {
+    let result = [];
+  
+    if (this.searchTextInput.value === '' && Object.keys(this._searchQuery).length === 0) { // случай 1
+      result = this.data;
+    } else {
+      for (let i = 0; i < this.data.length; i++) {
+        let item = this.data[i];
+        let match = true;
+  
+        if (this.searchTextInput.value !== '') { 
+          let values = Object.values(item);
+          if (!values.some(value => value.toString().toLowerCase().includes(this.searchTextInput.value.toLowerCase()))) {
+            match = false;
+          }
+        }
+  
+        if (Object.keys(this._searchQuery).length > 0) { 
+          for (let key in this._searchQuery) {
+            if (searchQuery.hasOwnProperty(key)) {
+              let value = this._searchQuery[key];
+              if (Array.isArray(item[key])) { // если значение ключа - массив
+                if (!item[key].some(val => val.toString().toLowerCase() === value.toLowerCase())) {
+                  match = false;
+                }
+              } else if (typeof item[key] === 'object') {
+                for (let subKey in value) {
+                  if (value.hasOwnProperty(subKey)) {
+                    if (item[key][subKey].toString().toLowerCase() !== value[subKey].toLowerCase()) {
+                      match = false;
+                    }
+                  }
+                }
+              } else {
+                if (item[key].toString().toLowerCase() !== value.toLowerCase()) {
+                  match = false;
+                }
+              }
+            }
+          }
+        }
+  
+        if (match) {
+          result.push(item);
+        }
+      }
+    }
+  
+    this.totalResult.textContent = result.length;
+    this.renderMosaicCardList(result);
+    return result;
+  }
+   */
+  
+  _addEventListenerToInput () {
+    this.searchTextInput.addEventListener('input', (e) => {
+      this.search();
+    })
   }
 
 
@@ -301,6 +382,8 @@ class Filter {
     this._getSelectItems();
     this._fillSelect();
     this._addListenersToSelect();
+    this._addEventListenerToInput();
+    this.renderMosaicCardList(this.data);
 
     this.openButton.addEventListener('click', (e)=> {
       if (e.currentTarget.classList.contains('active')) {
@@ -311,7 +394,7 @@ class Filter {
     })
 
     this.clearButton.addEventListener('click', () => {this._resetFilter()})
-    this.submitButton.addEventListener('click',(e) => {this._submitFilter()});
+    this.submitButton.addEventListener('click',() => {this._submitFilter()});
     this.totalResult.textContent = this.data.length;
 
   }

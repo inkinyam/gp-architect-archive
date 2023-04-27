@@ -130,7 +130,7 @@ const initTable = (projectData, tagsData) => {
   }
 
   function nameFormatter (value, row) {
-    return '<a class="aa-tablet__link" href="' + row._links.self.url_frontend + '">' + value + '</a>';
+    return '<a class="aa-tablet__link" href="' + row._links.url_frontend.href + '">' + value + '</a>';
   }
 
   function objFormatter (value) {
@@ -231,7 +231,8 @@ const initTable = (projectData, tagsData) => {
           widthUnit: '%',
           align:'left',
           valign: 'middle',
-          filterControl:'input'
+          filterControl:'input',
+          formatter: arrayTextFormatter
         },
         {
           field: 'project_organization',
@@ -315,11 +316,99 @@ const initTable = (projectData, tagsData) => {
     } 
   }
 }
-// инициализация мозайки
-  const initMosaic = (data) => {
-    let mosaicRepresent = document.querySelector('.mosaic');
-    if (mosaicRepresent) {
-    // создаем рендер-блок для карточек
+
+
+
+
+
+
+// инициализация карты
+  const initMap = (data) => {
+    let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
+    if (mapBtn) {
+      let mapContainer = document.querySelector('#mskmap');
+
+      if (mapContainer) {
+
+      let map = createNewLeaflet('#mskmap', { 
+        attributionControl : false,
+        zoomControl: true,
+        keyboard: false,
+        scrollWheelZoom: false,
+        center: [55.753214, 37.623054],
+        tap: false,
+        zoomControl:false,
+        fullscreenControl: false,
+        clickFitBounds: false,
+        clickPanToLayer: false,
+        doubleClickZoom: false,
+
+        minZoom: 11,
+        maxZoom: 17,
+        baseLayers: [ // массив базовых слоев
+          {
+            name: 'OpenStreetMap',
+            url: 'https://projectsmsk.genplanmos.ru/static/tileset/{z}/{x}/{y}.png',
+            options: {},
+          },
+        ],
+        groupLayers: [
+          {
+            name: 'Projects',
+            geojson: data,
+            group: "layer",
+          },
+        ],
+        controllers: [
+          {
+            name: "center",
+            option: {
+              iconUrl: pin,
+              position: 'bottomright'
+            }
+          },
+          {
+            name: "zoomOut",
+            option: {
+              iconUrl: zoomOut,
+              position: 'bottomright'
+            }
+          },
+
+          {
+            name: "zoomIn",
+            option: {
+              iconUrl: zoomIn,
+              position: 'bottomright'
+            }
+          },
+        ]
+      });
+      
+          
+      document.addEventListener('DOMContentLoaded', (e)=> {
+        if (e.target.location.hash === '#mapview'){
+          if ( ! mapContainer.classList.contains('leaflet-container')) {
+            map.renderMap();
+          }
+        }
+      })  
+
+      mapBtn.addEventListener('click', ()=> {
+          map.update();
+        })
+      } 
+    }
+  }
+
+
+
+// инициализация фильтров
+const initFilter = (data) => {
+  let filterBlock = document.querySelector('.filters'); 
+
+  if (filterBlock){
+    // инициализация мозайки
     const cardList = new Section ((item) => {
       const cardElement = createCard(item);
       cardList.addItem(cardElement);
@@ -331,98 +420,17 @@ const initTable = (projectData, tagsData) => {
       const card = new MosaicCard ({card: item});
       return card.createCard();
     }
-    
-    cardList.renderItems(data) ;  // отрисовываем карточки в мозаичном отображении
-    }
 
-  }
-
-// инициализация карты
-const initMap = (data) => {
-  let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
-  if (mapBtn) {
-    let mapContainer = document.querySelector('#mskmap');
-
-    if (mapContainer) {
-
-    let map = createNewLeaflet('#mskmap', { 
-      attributionControl : false,
-      zoomControl: true,
-      keyboard: false,
-      scrollWheelZoom: false,
-      center: [55.753214, 37.623054],
-      tap: false,
-      zoomControl:false,
-      fullscreenControl: false,
-      clickFitBounds: false,
-      clickPanToLayer: false,
-      doubleClickZoom: false,
-
-      minZoom: 11,
-      maxZoom: 17,
-      baseLayers: [ // массив базовых слоев
-        {
-          name: 'OpenStreetMap',
-          url: 'https://projectsmsk.genplanmos.ru/static/tileset/{z}/{x}/{y}.png',
-          options: {},
-        },
-      ],
-      groupLayers: [
-        {
-          name: 'Projects',
-          geojson: data,
-          group: "layer",
-        },
-      ],
-      controllers: [
-        {
-          name: "center",
-          option: {
-            iconUrl: pin,
-            position: 'bottomright'
-          }
-        },
-        {
-          name: "zoomOut",
-          option: {
-            iconUrl: zoomOut,
-            position: 'bottomright'
-          }
-        },
-
-        {
-          name: "zoomIn",
-          option: {
-            iconUrl: zoomIn,
-            position: 'bottomright'
-          }
-        },
-      ]
-    });
-    
-        
-    document.addEventListener('DOMContentLoaded', (e)=> {
-      if (e.target.location.hash === '#mapview'){
-        if ( ! mapContainer.classList.contains('leaflet-container')) {
-          map.renderMap();
-        }
-      }
-    })  
-
-    mapBtn.addEventListener('click', ()=> {
-        map.update();
-      })
-    } 
-  }
-}
-
-// инициализация фильтров
-const initFilter = (data) => {
-  let filterBlock = document.querySelector('.filters'); 
-
-  if (filterBlock){
-    let block = new Filter('.filters', '.filter-tags', data);
+    let block = new Filter('.filters', 
+                           '.filter-tags', 
+                           { data, 
+                            renderMosaicCardList: (data)=> {
+                              cardList.renderItems(data);
+                            }
+                          });
     return block;
+
+    
   }
 }
 
@@ -436,7 +444,6 @@ const api = new Api ('https://projectsmsk.genplanmos.ru/api/v1', {
 
 api.getAllProjects()
   .then((data) => {
-    initMosaic(data);  
     initFilter(data);
   })
   .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
@@ -444,7 +451,7 @@ api.getAllProjects()
 
   api.getGeoJson()
   .then((data) => {
-    initMap(data);
+    initMap(data)
   })
   .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
 

@@ -15,6 +15,8 @@ export default class Section {
   
 // метод, который отвечает за отрисовку всех элементов
   renderItems(data) {
+    this._container.textContent ='';
+    
     data.forEach((item) => {
       this._renderer(item);
     });

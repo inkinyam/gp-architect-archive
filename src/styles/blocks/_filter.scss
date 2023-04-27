@@ -10,6 +10,11 @@
 
   flex-direction: column;
   row-gap: 40px;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
+
   &.active {
     display: flex;
   }
@@ -19,12 +24,20 @@
     grid-template-columns: repeat(3, 1fr);
     column-gap: 6px;
     row-gap: 10px;
+
+    @media screen and (max-width: 700px) {
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: center;
+    }
   }
 
   .filters__blocktitle {
     grid-column: span 3;
     @include circe-lowercase;
     font-weight: 700;
+    @media screen and (max-width: 700px) {
+      grid-column: span 2;
+    }
   }
 
   .filters__select {
@@ -233,7 +246,8 @@
   margin: 20px 0 30px;
   display: flex;
   flex-direction: row;
-  column-gap: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
 
   .tag {
     display: flex;
@@ -242,7 +256,7 @@
     justify-content: center;
     column-gap: 8px;
 
-      max-height: 40px;
+    max-height: 40px;
     box-sizing: border-box;
     padding: 5px 15px;
     border-radius: 5px;
