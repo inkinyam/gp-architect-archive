@@ -4,7 +4,7 @@ export default class Api {
     this.headers = headers;
   }
 
-//метод, проверяющий какой результат пришел, возвращает объект если ок, и ошибку, если нет
+  //метод, проверяющий какой результат пришел, возвращает объект если ок, и ошибку, если нет
   _checkRes(res) {
     if (res.ok) {
       return res.json();
@@ -12,14 +12,15 @@ export default class Api {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
-//метод, который реализует получение карточки с сервера
+//метод, который реализует получение данных по всем проектам из апи
   getAllProjects () {
     return fetch (`${this.baseUrl}/project/projects/`, {
       headers: this.headers
     })
     .then (res => {return this._checkRes(res)})
   }
-
+  
+  //метод, который реализует получение полного json
   getGeoJson() {
     return fetch (`${this.baseUrl}/project/geo-json/`, {
       headers: this.headers
@@ -27,6 +28,7 @@ export default class Api {
     .then (res => {return this._checkRes(res)})
   }
 
+  // метод, реализующий получения полного списка тэгов с АПИ
   getTags () {
     return fetch (`${this.baseUrl}/project/tags/`, {
       headers: this.headers

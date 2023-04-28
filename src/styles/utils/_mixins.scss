@@ -39,7 +39,7 @@
 }
 
 @mixin circe-uppercase {
-  font-family: 'Circe';
+  font-family: 'Circe', Tahoma, Verdana, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -49,7 +49,7 @@
 
 
 @mixin circe-lowercase{
-  font-family: 'Circe';
+  font-family: 'Circe', Tahoma, Verdana, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -57,7 +57,7 @@
 }
 
 @mixin page-title {
-  font-family: 'Circe';
+  font-family: 'Circe', Tahoma, Verdana, sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 48px;

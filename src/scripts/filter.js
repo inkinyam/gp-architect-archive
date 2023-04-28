@@ -1,18 +1,18 @@
 
 class Filter {
   constructor(selectorFilterBlock, selectorTagsBlock, {data, renderMosaicCardList}){
-    this.openButton = document.querySelector('.search__openfilter');
-    this.filterBlock = document.querySelector(selectorFilterBlock);
-    this.tagsBlock   = document.querySelector(selectorTagsBlock);
     this.data = data;
-    this.dateSelect   = this.filterBlock.querySelector('.block-date');
-    this.clearButton  = this.filterBlock.querySelector('.filters__button_reset');
-    this.submitButton = this.filterBlock.querySelector('.filters__button_submit');
-    let represent     = document.querySelector('.represent_mosaicview');
-    this.totalResult  = represent.querySelector('.represent__counter');
+    this.openButton      = document.querySelector('.search__openfilter');
+    this.filterBlock     = document.querySelector(selectorFilterBlock);
+    this.tagsBlock       = document.querySelector(selectorTagsBlock);
+    this.dateSelect      = this.filterBlock.querySelector('.block-date');
+    this.clearButton     = this.filterBlock.querySelector('.filters__button_reset');
+    this.submitButton    = this.filterBlock.querySelector('.filters__button_submit');
+    let represent        = document.querySelector('.represent_mosaicview');
+    this.totalResult     = represent.querySelector('.represent__counter');
     this.searchTextInput = represent.querySelector('.search__main-input');
-    this._searchQuery = {};
-    this.result       = {};
+    this._searchQuery    = {};
+    this.result          = {};
 
     this.renderMosaicCardList = renderMosaicCardList;
 
@@ -22,14 +22,12 @@ class Filter {
         this._closeSelects();
       }
     }
+
     this._handleEscListener = this._handleEscListener.bind(this);
-    
     this.initFilter();
-
-
   }
 
-// открыть блок фильтров
+ // открыть блок фильтров
   _openFilter(){
     this.filterBlock.classList.add('active');
     this.openButton.classList.add('active');
@@ -67,7 +65,7 @@ class Filter {
         let values = this._getValues(row);
         let code = `block_${this.keys[i]}`; 
 
-        if (!this[code].includes(values[i])) { // проверяем, есть ли уже такой объект в массиве
+        if (!this[code].includes(values[i])) { 
           if(Array.isArray(values[i])) {
             this[code].push(...values[i].filter(val => !this[code].includes(val)));
           } else {
@@ -88,7 +86,7 @@ class Filter {
     return cardTemplate;
   }
 
-// создаем одну полоску в селект
+// создаем одну полоску элемента селекта 
   _renderSelectElement (el) {
    let card = this._getSelectElement();
     const text = card.querySelector('.filter__select-text');
@@ -111,14 +109,18 @@ class Filter {
       if (el.classList.contains('active')) {
         el.classList.remove('active');
         let code = `${id}`;
+       
         if (this._searchQuery.hasOwnProperty(code)) {
           let index = this._searchQuery[code].indexOf(text);
+          
           if (index !== -1) {
             this._searchQuery[code].splice(index, 1);
           }
+         
           if (this._searchQuery[code].length === 0) {
             delete this._searchQuery[code];
           }
+
           let tags = Array.from(this.tagsBlock.querySelectorAll('.tag'));
           if (tags.length != 0){
             let tag = tags.filter(item => item.querySelector('.tag__text').textContent === text);
@@ -128,7 +130,9 @@ class Filter {
       } else {
         el.classList.add('active');
         let code = `${id}`;
+        
         if (this._searchQuery.hasOwnProperty(code)) {
+          
           if (!this._searchQuery[code].includes(text)) {
             this._searchQuery[code].push(text);
           }
@@ -183,6 +187,7 @@ class Filter {
   _addListenersToSelect () {
     this.keys.forEach((key) => {
       const select = document.querySelector(`.block_${key}`); 
+      
       if (select) {
         const selectSingle_title = select.querySelector('.filters__select-title');
     
@@ -250,7 +255,7 @@ class Filter {
 
   // очищение формы фильтров
   _resetFilter(){
-   this._resetSelectsItem();
+    this._resetSelectsItem();
     this._searchQuery = {};
     this.search();
   }
@@ -272,7 +277,6 @@ class Filter {
     this._closeFilter();
     this._closeSelects();
     this.search();
-    
   }
 
   // функция поиска
@@ -309,7 +313,11 @@ class Filter {
       }
       return false;
     });
- 
+    
+    console.log (this.data);
+    console.log(this._searchQuery);
+    console.log(result)
+
     this.totalResult.textContent = result.length;
     this.renderMosaicCardList(result);
     return result;
@@ -317,6 +325,8 @@ class Filter {
 
 
 /*   search() {
+
+  // с учетом инпута
     let result = [];
   
     if (this.searchTextInput.value === '' && Object.keys(this._searchQuery).length === 0) { // случай 1
@@ -372,6 +382,7 @@ class Filter {
   
   _addEventListenerToInput () {
     this.searchTextInput.addEventListener('input', (e) => {
+      // может все-таки на нажатие какой-то кнопки?
       this.search();
     })
   }
@@ -383,6 +394,7 @@ class Filter {
     this._fillSelect();
     this._addListenersToSelect();
     this._addEventListenerToInput();
+    
     this.renderMosaicCardList(this.data);
 
     this.openButton.addEventListener('click', (e)=> {

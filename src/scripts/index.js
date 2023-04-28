@@ -452,9 +452,9 @@ if (filterBlock){
 }
 
 
-  // переключение глазика на форме
-  let passwordField= document.querySelector('.form__field_password');
-  if (passwordField) {
+// переключение глазика на форме
+let passwordField= document.querySelector('.form__field_password');
+if (passwordField) {
     let passwordInput = passwordField.querySelector('.form__input');
     let showPassButton = passwordField.querySelector('.form__showPassword');
     let svgEye = showPassButton.querySelector('.form__svg');
@@ -471,5 +471,4 @@ if (filterBlock){
         }
       })
     }
-  }
-
+}

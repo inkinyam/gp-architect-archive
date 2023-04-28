@@ -46,6 +46,11 @@
     @include circe-lowercase;
     font-size: 16px;
     line-height: 21px;
+
+    a {
+      @include silly-link;
+      color: $primary-color-hovered;
+    }
   }
 
   @media screen and (max-width: $tablet) {
