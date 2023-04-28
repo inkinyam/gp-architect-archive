@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="./images/favicons/favicon-48x48.png">
+  <link rel="icon" type="image/png" sizes="120x120" href="./images/favicons/favicon-120x120.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="167x167" href="./images/favicons/favicon-167x167.png">
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="./images/favicons/favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="./images/favicons/favicon-192x192.png">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8">
+  <title>Ключевые проекты Москвы</title>
+  <script defer="defer" src="index.js"></script>
+  <link href="main.css" rel="stylesheet">
+</head>
+
+<body class="page">
+  <header class="header">
+    <div class="header__logos"><a href="https://www.mos.ru/mka/" target="_blank" title="Комитет по архитектуре и градостроительству города Москвы" class="header__logo"><img src="images/icons/mka-logo-black.svg" alt="logo1"> </a><a href="https://genplanmos.ru/" target="_blank" title="Институт Генплана Москвы" class="header__logo"><img src="images/icons/main-logo-old-black.svg" alt="logo2"></a></div>
+    <h1 class="header__title"><a href="index.html" class="">Ключевые проекты Москвы</a></h1><button class="header__burger"><span></span> <span></span> <span></span></button>
+    <div class="header__sidepanel">
+      <div class="header__sidepanel-inner"><a href="./index.html" class="header__sidepanel-link">Главная</a> <a href="./login.html" class="header__sidepanel-link">Войти</a></div>
+    </div>
+  </header>
+  <main class="main">
+    <section class="auth">
+      <form class="form" id="login-form" action="/login/" method="post">
+        <h2 class="form__title">Зайти</h2>
+        <fieldset class="form__field required has-error"><input class="form__input" type="email" id="loginform-username" name="LoginForm[username]" placeholder="Email" aria-required="true" aria-invalid="true">
+          <div class="form__error">Необходимо заполнить «Email».</div>
+        </fieldset>
+        <fieldset class="form__field form__field_password required"><input class="form__input" type="password" id="loginform-password" name="LoginForm[password]" placeholder="Пароль" aria-required="true" aria-invalid="true">
+          <div class="form__error">Необходимо заполнить «Пароль».</div><button class="form__showPassword"><svg class="form__svg" width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.06613 3.78521C4.11495 5.26563 1.00669 8.6651 0.111091 12.3387C-0.415733 14.5868 1.05937 14.3126 1.84961 12.0646C3.16667 8.22646 8.11881 4.60767 11.9646 4.55284C16.548 4.55284 21.7109 8.00713 23.1333 12.0097C23.9235 14.3126 25.4513 14.6416 24.8718 12.3387C23.2387 5.43012 14.9148 1.15337 8.06613 3.78521Z" fill="#1678E2" />
+              <path d="M9.68736 8.43684C7.68543 10.0817 7.10592 11.946 7.79079 14.194C8.52834 16.5517 10.1088 17.7031 12.5322 17.7031C14.9556 17.7031 16.5361 16.5517 17.2736 14.194C17.9585 11.946 17.379 10.0817 15.377 8.43684C13.5858 6.95643 11.4786 6.95643 9.68736 8.43684ZM14.1127 9.47861C15.7985 10.4107 16.378 12.1105 15.6931 13.9198C14.5341 16.771 10.5303 16.771 9.37126 13.9198C8.10689 10.7397 11.2151 7.88854 14.1127 9.47861Z" fill="#1678E2" />
+            </svg></button>
+        </fieldset>
+        <div class="form__button-container"><button class="form__submit" type="submit">Войти</button>
+          <fieldset class="form__field"><input type="checkbox" class="form__check" id="loginform-remember-me" checked="checked"> <label for="loginform-remember-me" class="form__check-label">Запомнить меня</label></fieldset><a class="form__link" href="./resume-pass.html">Забыли пароль?</a>
+        </div>
+      </form>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__link"><img src="images/icons/logo-pravitelstvo.svg" alt="Правительство Москвы" class="footer__img">
+        <p class="footer__link-description"><a href="https://stroi.mos.ru/" target="_blank" title="Комплекс градостроительной политики и строительства">Комплекс градостроительной политики и строительства</a> <a href="https://www.mos.ru/mka/" target="_blank" title="Комитет по архитектуре и градостроительству">Комитет по архитектуре и градостроительству</a></p>
+      </div>
+      <div class="footer__link"><img src="images/icons/main-logo-white.svg" alt="logo" class="footer__img">
+        <p class="footer__link-description"><a href="https://genplanmos.ru/" target="_blank" title="Институт Генплана Москвы">Государственное автономное учреждение «Научно-исследовательский и проектный институт Генерального плана города Москвы»</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>
