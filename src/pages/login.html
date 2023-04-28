@@ -50,12 +50,29 @@
   <main class="main">
 
     <section class="auth">
-      <form class="login">
+      <form  class="login" id="login-form" action="/login/" method="post">
         <h2 class="login__title">Зайти</h2>
-        <input type="email" placeholder="E-mail">
-        <input type="password" placeholder="Пароль">
-        <button type="submit">Войти</button>
-        <a href="./resume-pass.html" class="login__remember">Забыли пароль?</a>
+
+        <fieldset class="login__field required has-error">
+          <input class="login__input" type="email" id="loginform-username"  name="LoginForm[username]" placeholder="Email" aria-required="true" aria-invalid="true">
+          <div class="login__error">Необходимо заполнить «Email».</div>
+        </fieldset>      
+
+        <fieldset class="login__field field-loginform-password required ">
+          <input class="login__input" type="password" id="loginform-password" name="LoginForm[password]" placeholder="Пароль" aria-required="true" aria-invalid="true">
+          <div class="login__error">Необходимо заполнить «Пароль».</div>
+        </fieldset>   
+
+
+
+        <div class="login__button-container">
+          <button class="login__submit" type="submit">Войти</button>        
+          <div class="login__field">
+            <input type="checkbox" class="login__check" id="loginform-remember-me" checked>
+            <label for="loginform-remember-me" class="login__check-label">Запомнить меня</label>
+          </div>
+          <a class="login__link" href="/recovery/">Забыли пароль?</a>    
+        </div>
       </form>
      
     </section>

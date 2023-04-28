@@ -110,6 +110,7 @@ class MyLeaflet extends L.Class {
     this._addTiles();
     this._addLayers();
     this._addControllers();
+    this.update();
 
 /*     this.map.fitBounds(this.layers.getBounds());  */
     }

@@ -1,0 +1,193 @@
+$greenSeaweed: rgba(45, 139, 241, 0.07);
+$blueQueen: rgba(0, 0, 0, 0.05);
+
+.auth {
+  width: 100%;
+  height: calc(100vh - 300px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+.login {
+  overflow: hidden;
+  background-color: white;
+  padding: 40px 30px 30px 30px;
+  border-radius: 10px;
+  position: relative;
+  margin: auto;
+  width: 600px;
+  transition: transform 300ms, box-shadow 300ms;
+  box-shadow: 5px 10px 10px rgba($greenSeaweed, 0.2), -2px -2px 4px rgba($greenSeaweed, 0.02);
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    width: 900px;
+    height: 900px;
+
+    z-index: 0;
+  }
+  
+  &::before {
+    left: 30%;
+    bottom: -162%;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 45%;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 40%;
+    background-color: lighten($color: #0c60ba52, $amount: 8);
+    animation: wawes 9s infinite linear;
+  }
+  
+  &::after {
+    left: 6%;
+    bottom: -155%;
+    border-top-left-radius: 55%;
+    border-top-right-radius: 35%;
+    border-bottom-left-radius: 65%;
+    border-bottom-right-radius: 29%;
+    background-color: rgba($greenSeaweed, 0.2);
+    animation: wawes 12s infinite linear;
+  }
+  
+  .login__field {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+    padding: 0;
+    margin: 0;
+    z-index: 5;
+    position: relative;
+
+    .login__input {
+      @include transition;
+      @include circe-lowercase;
+      transition-property: border-color;
+      display: block;
+      border-radius: 5px;
+      font-size: 16px;
+      background: white;
+      width: 100%;
+      border: 0.5px solid rgba(235, 235, 235, 0.458);
+      padding: 10px 10px;
+      z-index: 2;
+      outline: none;
+      color: $primary-color-hovered;
+  
+      &::placeholder {
+        color: $middle-dark-color-default;
+      }
+      &:focus {
+        border-color: $primary-color-hovered;
+      }
+    }
+  
+    .login__error {
+      @include transition;
+      @include circe-lowercase;
+      opacity: 0;
+      font-size:14px;
+    }
+
+    &.has-error {
+      .login__input {
+        border: 0.5px solid $danger-color-default;
+      }
+      .login__error {
+        opacity: 1;
+      }
+    }
+
+    .login__check-label {
+      @include silly-link;
+      @include circe-lowercase;
+      padding: 5px 0 5px 20px;
+      position: relative;
+      z-index: 5;
+
+      &:before {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border: 1px solid $dark-color-default;
+        border-radius: 3px;
+        left: 0px;
+        top: 50%;
+        transform: translateY(-50%)
+      }
+
+      &:after {
+        @include transition;
+        content: '';
+        position: absolute;
+        width: 5px;
+        height: 15px;
+        border-bottom: 1px solid $dark-color-default;
+        border-right: 1px solid $dark-color-default;
+        transform: rotate(45deg);
+        opacity: 0;
+        left: 7px;
+      }
+    }
+
+    .login__check{
+      display: none;
+      &:checked ~ .login__check-label{
+        &:after {
+          opacity: 1;
+        } 
+      }
+    }
+  }
+
+
+  .login__submit {
+    @include button;
+    @include transition;
+    text-transform: unset;
+    color: #fff;
+    line-height: 44px;
+    width: fit-content;
+    height: 50px;
+    border: 0;
+    padding:  0 16px;
+    margin-top: 10px;
+    background-color: $primary-color-hovered;
+    z-index: 5;
+    position: relative;
+    
+    &:hover {
+      background-color: $primary-color-hovered;
+    }
+  }
+
+  .login__link {
+    @include circe-lowercase;
+    @include silly-link;
+    position: absolute;
+    right: 30px;
+    bottom: 34px;
+    z-index: 5;
+  }
+
+  .login__title {
+    @include circe-uppercase;
+    font-weight: 700;
+  }
+}
+
+@keyframes wawes {
+  from {
+    transform: rotate(0); 
+  }
+  to { 
+    transform: rotate(360deg); 
+  }
+}
+
