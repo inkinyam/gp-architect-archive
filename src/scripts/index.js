@@ -22,7 +22,12 @@ import zoomOut from '../images/zoom-out-icon.svg';
 import pin from '../images/pin2.png';
 
 
-
+//cоздание экземпляра класса Api
+const api = new Api ('https://projectsmsk.genplanmos.ru/api/v1', {
+  headers: {
+     'Content-Type': 'application/json'
+  }
+})
 
 // работа бургер-меню
 let burgerButton = document.querySelector('.header__burger');
@@ -110,64 +115,74 @@ if (window.innerHeight > 950) {
     : (upBtn.classList.remove('up_showed'));
 }
 
-
 //инициализация таблицы
-const initTable = (projectData, tagsData) => {
-  const mediaQuerySmallSize = window.matchMedia('(max-width: 1240px)'); // проверяем мобилка или десктоп
-  let tabletContainer = document.querySelector('.aa-tablet');
+let tabletContainer = document.querySelector('.aa-tablet');
+if (tabletContainer) {
+  Promise.all([api.getAllProjects(), api.getTags()])
+  .then(([projectData, tagsData])=> {
+    initTable(projectData, tagsData);   // отрисовываем таблицу        
+  })
 
-  window.formatedFilterTagsData = [];
-  tagsData.forEach((item) => {formatedFilterTagsData.push(item.name)})
 
 
-  // рейтинг в звездочки
-  function raitingFormatter(value) {
-   let str = '';
-    for (let i=0; i<value; i++){
-    str = str + '★';
-   }
-   return '<p style="color: #106CD1">'+ str + '</p>'
-  }
+  const initTable = (projectData, tagsData) => {
+    const mediaQuerySmallSize = window.matchMedia('(max-width: 1240px)'); // проверяем мобилка или десктоп
 
-  function nameFormatter (value, row) {
-    return '<a class="aa-tablet__link" href="' + row._links.url_frontend.href + '">' + value + '</a>';
-  }
+    window.formatedFilterTagsData = [];
+    tagsData.forEach((item) => {formatedFilterTagsData.push(item.name)})
 
-  function objFormatter (value) {
+    // рейтинг в звездочки
+    function raitingFormatter(value) {
     let str = '';
+      for (let i=0; i<value; i++){
+      str = str + '★';
+    }
+    return '<p style="color: #106CD1">'+ str + '</p>'
+    }
 
-    value.forEach((item, inx) => {
-      if (inx != 0) {
-        str = str + ', ' + item.name;
-      } else {
-        str = str+item.name
-      }
-    });
-    return str;
-  }
+    // ссылка в название проекта
+    function nameFormatter (value, row) {
+      return '<a class="aa-tablet__link" href="' + row._links.url_frontend.href + '">' + value + '</a>';
+    }
 
-  function commissioningDateFormatter (value, row) {
-    if (value === null) {
-      return row.commissioning_year;
-    } else return value;
-  }
+    //если поле в json объект -> строка
+    function objFormatter (value) {
+      let str = '';
 
-  function arrayTextFormatter (value){
-    let str ='';
-    
-    if (Array.isArray(value)){
       value.forEach((item, inx) => {
         if (inx != 0) {
-          str = str + ', ' + item;
+          str = str + ', ' + item.name;
         } else {
-          str = str+item;
+          str = str+item.name
         }
       });
+      return str;
     }
-    return str;
-  }
 
-  if (tabletContainer) {
+    // если конткретной даты ввода нет, указываем год
+    function commissioningDateFormatter (value, row) {
+      if (value === null) {
+        return row.commissioning_year;
+      } else return value;
+    }
+
+    // если поле в json массив -> строка
+    function arrayTextFormatter (value){
+      let str ='';
+      
+      if (Array.isArray(value)){
+        value.forEach((item, inx) => {
+          if (inx != 0) {
+            str = str + ', ' + item;
+          } else {
+            str = str+item;
+          }
+        });
+      }
+      return str;
+    }
+
+    // создание таблицы
     let $table = $('#table').bootstrapTable({ 
       data: projectData,
       toggle: 'table',
@@ -175,7 +190,6 @@ const initTable = (projectData, tagsData) => {
       clickToSelect: true,
       locale: 'ru-RU',
       search: true,
-      
       columns: [
         {
           field: 'state',
@@ -308,7 +322,8 @@ const initTable = (projectData, tagsData) => {
         }
       ] 
     });
-   
+
+    // отображение в карточки, если экран меньше 102
     $table[0].classList.remove('table-bordered');
     if (mediaQuerySmallSize.matches) {
       $('#table').bootstrapTable('toggleView');
@@ -318,93 +333,106 @@ const initTable = (projectData, tagsData) => {
 }
 
 // инициализация карты
-const initMap = (data) => {
-  let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
-  if (mapBtn) {
+let mapBtn = document.querySelector('.tabs__nav-btn-map'); 
+if (mapBtn) {
+
+  // отправляем запрос в апи, вызываем функцию инициализации карты
+  api.getGeoJson()
+  .then((data) => {
+    initMap(data)
+  })
+  .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
+ 
+  const initMap = (data) => {
     let mapContainer = document.querySelector('#mskmap');
     if (mapContainer) {
-    let map = createNewLeaflet('#mskmap', { 
-        attributionControl : false,
-        zoomControl: true,
-        keyboard: false,
-        scrollWheelZoom: false,
-        center: [55.753214, 37.623054],
-        tap: false,
-        zoomControl:false,
-        fullscreenControl: false,
-        clickFitBounds: false,
-        clickPanToLayer: false,
-        doubleClickZoom: false,
+      //  создаем карту
+      let map = createNewLeaflet('#mskmap', { 
+            attributionControl : false,
+            zoomControl: true,
+            keyboard: false,
+            scrollWheelZoom: false,
+            center: [55.753214, 37.623054],
+            tap: false,
+            zoomControl:false,
+            fullscreenControl: false,
+            clickFitBounds: false,
+            clickPanToLayer: false,
+            doubleClickZoom: false,
 
-        minZoom: 11,
-        maxZoom: 17,
-        baseLayers: [ // массив базовых слоев
-          {
-            name: 'OpenStreetMap',
-            url: 'https://projectsmsk.genplanmos.ru/static/tileset/{z}/{x}/{y}.png',
-            options: {},
-          },
-        ],
-        groupLayers: [
-          {
-            name: 'Projects',
-            geojson: data,
-            group: "layer",
-          },
-        ],
-        controllers: [
-          {
-            name: "center",
-            option: {
-              iconUrl: pin,
-              position: 'bottomright'
-            }
-          },
-          {
-            name: "zoomOut",
-            option: {
-              iconUrl: zoomOut,
-              position: 'bottomright'
-            }
-          },
+            minZoom: 11,
+            maxZoom: 17,
+            baseLayers: [ // массив базовых слоев
+              {
+                name: 'OpenStreetMap',
+                url: 'https://projectsmsk.genplanmos.ru/static/tileset/{z}/{x}/{y}.png',
+                options: {},
+              },
+            ],
+            groupLayers: [
+              {
+                name: 'Projects',
+                geojson: data,
+                group: "layer",
+              },
+            ],
+            controllers: [
+              {
+                name: "center",
+                option: {
+                  iconUrl: pin,
+                  position: 'bottomright'
+                }
+              },
+              {
+                name: "zoomOut",
+                option: {
+                  iconUrl: zoomOut,
+                  position: 'bottomright'
+                }
+              },
 
-          {
-            name: "zoomIn",
-            option: {
-              iconUrl: zoomIn,
-              position: 'bottomright'
-            }
-          },
-        ]
-    });
-    
-        
-    document.addEventListener('DOMContentLoaded', (e)=> {
-      if (e.target.location.hash === '#mapview'){
-        if ( ! mapContainer.classList.contains('leaflet-container')) {
-          map.renderMap();
+              {
+                name: "zoomIn",
+                option: {
+                  iconUrl: zoomIn,
+                  position: 'bottomright'
+                }
+              },
+            ]
+      });
+
+      // слушатели на элементы
+      document.addEventListener('DOMContentLoaded', (e)=> {
+        if (e.target.location.hash === '#mapview'){
+          if ( ! mapContainer.classList.contains('leaflet-container')) {
+            map.renderMap();
+          }
         }
-      }
-    })  
-    mapBtn.addEventListener('click', ()=> {
-        map.update();
-      })
-    } 
-  }
+      })  
+
+      mapBtn.addEventListener('click', ()=> {
+          map.update();
+        })
+      } 
+    }
 }
 
-
 // инициализация фильтров
-const initFilter = (data) => {
-  let filterBlock = document.querySelector('.filters'); 
+let filterBlock = document.querySelector('.filters'); 
+if (filterBlock){
+  api.getAllProjects()
+  .then((data) => {
+    initFilter(data);
+  })
+  .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
 
-  if (filterBlock){
-    // инициализация мозайки
+  // инициализация мозайки
+  const initFilter= (data) => {
     const cardList = new Section ((item) => {
       const cardElement = createCard(item);
       cardList.addItem(cardElement);
       }, '.mosaic');
-
 
     //функция создания карточки
     function createCard (item) {
@@ -413,41 +441,35 @@ const initFilter = (data) => {
     }
 
     let block = new Filter('.filters', 
-                           '.filter-tags', 
-                           { data, 
+                          '.filter-tags', 
+                          { data, 
                             renderMosaicCardList: (data)=> {
                               cardList.renderItems(data);
                             }
                           });
     return block;
-
-    
   }
 }
 
 
-//cоздание экземпляра класса Api
-const api = new Api ('https://projectsmsk.genplanmos.ru/api/v1', {
-  headers: {
-     'Content-Type': 'application/json'
+  // переключение глазика на форме
+  let passwordField= document.querySelector('.form__field_password');
+  if (passwordField) {
+    let passwordInput = passwordField.querySelector('.form__input');
+    let showPassButton = passwordField.querySelector('.form__showPassword');
+    let svgEye = showPassButton.querySelector('.form__svg');
+
+    if (showPassButton) {
+      showPassButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          svgEye.innerHTML = '<path d="M11.7338 9.87801C6.33366 15.2899 1.92969 20.0187 1.92969 20.3865C1.92969 21.6476 3.2404 20.9645 5.91424 18.3374C8.27351 16.0255 8.74537 15.7102 9.68908 16.2357C11.2095 17.0763 14.0931 16.9713 15.4038 16.0255C16.0329 15.6052 16.8193 14.3967 17.1339 13.3984C17.6057 11.8746 17.6057 11.2441 16.9242 9.87801C16.0853 8.24919 16.0853 8.1441 17.2912 6.98817L18.497 5.72714L20.4369 7.67122C21.4854 8.77461 22.6389 10.4034 23.0059 11.4017C23.5826 13.0306 24.9981 13.8187 24.9981 12.5051C24.9981 11.1916 22.7437 7.30342 21.2233 6.0424L19.598 4.67629L21.2757 2.94239C22.9534 1.20848 23.3729 -2.05525e-07 22.2194 -2.05525e-07C21.8524 -2.05525e-07 17.1339 4.41358 11.7338 9.87801ZM15.561 10.5611C16.0329 11.4017 16.0329 12.0323 15.561 13.1882C14.827 14.8696 13.2018 15.5526 10.9998 15.0272L9.63665 14.6594L12.2056 12.0323C13.5688 10.6136 14.7746 9.45767 14.8795 9.45767C14.9319 9.45767 15.2465 9.93055 15.561 10.5611Z" fill="#1678E2"/><path d="M8.02739 3.45933C4.09519 4.878 1.00186 8.13571 0.110558 11.6561C-0.413736 13.8104 1.05429 13.5477 1.84073 11.3934C2.57474 9.34421 5.14378 6.5594 7.39824 5.40344C8.28954 4.93055 10.3867 4.45766 12.012 4.40511C15.4199 4.24748 16.6258 3.77459 15.5248 3.09152C14.4238 2.40845 10.3343 2.61863 8.02739 3.45933Z" fill="#1678E2"/><path d="M9.62071 7.92535C8.30998 8.97622 6.89438 11.4458 7.36625 11.8661C7.47111 11.9712 8.67698 10.8678 10.0926 9.44911C12.714 6.76939 12.3995 5.71851 9.62071 7.92535Z" fill="#1678E2"/>';
+        } else {
+          passwordInput.type = 'password';
+          svgEye.innerHTML = ' <path d="M8.06613 3.78521C4.11495 5.26563 1.00669 8.6651 0.111091 12.3387C-0.415733 14.5868 1.05937 14.3126 1.84961 12.0646C3.16667 8.22646 8.11881 4.60767 11.9646 4.55284C16.548 4.55284 21.7109 8.00713 23.1333 12.0097C23.9235 14.3126 25.4513 14.6416 24.8718 12.3387C23.2387 5.43012 14.9148 1.15337 8.06613 3.78521Z" fill="#1678E2"/><path d="M9.68736 8.43684C7.68543 10.0817 7.10592 11.946 7.79079 14.194C8.52834 16.5517 10.1088 17.7031 12.5322 17.7031C14.9556 17.7031 16.5361 16.5517 17.2736 14.194C17.9585 11.946 17.379 10.0817 15.377 8.43684C13.5858 6.95643 11.4786 6.95643 9.68736 8.43684ZM14.1127 9.47861C15.7985 10.4107 16.378 12.1105 15.6931 13.9198C14.5341 16.771 10.5303 16.771 9.37126 13.9198C8.10689 10.7397 11.2151 7.88854 14.1127 9.47861Z" fill="#1678E2"/>';
+        }
+      })
+    }
   }
-})
 
-api.getAllProjects()
-  .then((data) => {
-    initFilter(data);
-  })
-  .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
-
-
-  api.getGeoJson()
-  .then((data) => {
-    initMap(data)
-  })
-  .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
-
-
-  Promise.all([api.getAllProjects(), api.getTags()])
-    .then(([projectData, tagsData])=> {
-      initTable(projectData, tagsData);   // отрисовываем таблицу        
-    })

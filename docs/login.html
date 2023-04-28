@@ -29,16 +29,19 @@
   </header>
   <main class="main">
     <section class="auth">
-      <form class="login" id="login-form" action="/login/" method="post">
-        <h2 class="login__title">Зайти</h2>
-        <fieldset class="login__field required has-error"><input class="login__input" type="email" id="loginform-username" name="LoginForm[username]" placeholder="Email" aria-required="true" aria-invalid="true">
-          <div class="login__error">Необходимо заполнить «Email».</div>
+      <form class="form" id="login-form" action="/login/" method="post">
+        <h2 class="form__title">Зайти</h2>
+        <fieldset class="form__field required has-error"><input class="form__input" type="email" id="loginform-username" name="LoginForm[username]" placeholder="Email" aria-required="true" aria-invalid="true">
+          <div class="form__error">Необходимо заполнить «Email».</div>
         </fieldset>
-        <fieldset class="login__field field-loginform-password required"><input class="login__input" type="password" id="loginform-password" name="LoginForm[password]" placeholder="Пароль" aria-required="true" aria-invalid="true">
-          <div class="login__error">Необходимо заполнить «Пароль».</div>
+        <fieldset class="form__field form__field_password required"><input class="form__input" type="password" id="loginform-password" name="LoginForm[password]" placeholder="Пароль" aria-required="true" aria-invalid="true">
+          <div class="form__error">Необходимо заполнить «Пароль».</div><button class="form__showPassword"><svg class="form__svg" width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.06613 3.78521C4.11495 5.26563 1.00669 8.6651 0.111091 12.3387C-0.415733 14.5868 1.05937 14.3126 1.84961 12.0646C3.16667 8.22646 8.11881 4.60767 11.9646 4.55284C16.548 4.55284 21.7109 8.00713 23.1333 12.0097C23.9235 14.3126 25.4513 14.6416 24.8718 12.3387C23.2387 5.43012 14.9148 1.15337 8.06613 3.78521Z" fill="#1678E2" />
+              <path d="M9.68736 8.43684C7.68543 10.0817 7.10592 11.946 7.79079 14.194C8.52834 16.5517 10.1088 17.7031 12.5322 17.7031C14.9556 17.7031 16.5361 16.5517 17.2736 14.194C17.9585 11.946 17.379 10.0817 15.377 8.43684C13.5858 6.95643 11.4786 6.95643 9.68736 8.43684ZM14.1127 9.47861C15.7985 10.4107 16.378 12.1105 15.6931 13.9198C14.5341 16.771 10.5303 16.771 9.37126 13.9198C8.10689 10.7397 11.2151 7.88854 14.1127 9.47861Z" fill="#1678E2" />
+            </svg></button>
         </fieldset>
-        <div class="login__button-container"><button class="login__submit" type="submit">Войти</button>
-          <div class="login__field"><input type="checkbox" class="login__check" id="loginform-remember-me" checked="checked"> <label for="loginform-remember-me" class="login__check-label">Запомнить меня</label></div><a class="login__link" href="/recovery/">Забыли пароль?</a>
+        <div class="form__button-container"><button class="form__submit" type="submit">Войти</button>
+          <fieldset class="form__field"><input type="checkbox" class="form__check" id="loginform-remember-me" checked="checked"> <label for="loginform-remember-me" class="form__check-label">Запомнить меня</label></fieldset><a class="form__link" href="./resume-pass.html">Забыли пароль?</a>
         </div>
       </form>
     </section>
