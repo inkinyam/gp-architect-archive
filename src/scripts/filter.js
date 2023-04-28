@@ -280,11 +280,11 @@ class Filter {
   }
 
   // функция поиска
-  search() {
+/*   search() {
     let result;
     if (Object.keys(this._searchQuery).length === 0) {
       this.totalResult.textContent = this.data.length;
-      this.renderMosaicCardList(this.data)
+      this.renderMosaicCardList(this.data);
       return this.data;
     }
      result = this.data.filter(item => {
@@ -321,64 +321,142 @@ class Filter {
     this.totalResult.textContent = result.length;
     this.renderMosaicCardList(result);
     return result;
-  }
+  } */
 
 
-/*   search() {
-
+  search() {
   // с учетом инпута
-    let result = [];
-  
-    if (this.searchTextInput.value === '' && Object.keys(this._searchQuery).length === 0) { // случай 1
-      result = this.data;
-    } else {
-      for (let i = 0; i < this.data.length; i++) {
-        let item = this.data[i];
-        let match = true;
-  
-        if (this.searchTextInput.value !== '') { 
-          let values = Object.values(item);
-          if (!values.some(value => value.toString().toLowerCase().includes(this.searchTextInput.value.toLowerCase()))) {
-            match = false;
-          }
-        }
-  
-        if (Object.keys(this._searchQuery).length > 0) { 
-          for (let key in this._searchQuery) {
-            if (searchQuery.hasOwnProperty(key)) {
-              let value = this._searchQuery[key];
-              if (Array.isArray(item[key])) { // если значение ключа - массив
-                if (!item[key].some(val => val.toString().toLowerCase() === value.toLowerCase())) {
-                  match = false;
-                }
-              } else if (typeof item[key] === 'object') {
-                for (let subKey in value) {
-                  if (value.hasOwnProperty(subKey)) {
-                    if (item[key][subKey].toString().toLowerCase() !== value[subKey].toLowerCase()) {
-                      match = false;
-                    }
+      let result = [];
+    // если запрос пустой, рисуем чоесть
+      if (this.searchTextInput.value === '' && Object.keys(this._searchQuery).length === 0) {
+        result = this.data;
+      } else {
+
+        // проверяем запрос
+        this.data.map(item => {
+          let match = true;
+
+          if (this.searchTextInput.value != '') {
+            let values = Object.values(item);
+           
+          let allElements  = [];
+          values.map(elem => {
+            if (elem === null) {
+              return;
+            }
+              if (typeof elem === 'string') {
+                allElements.push(elem);
+              } 
+              else if (typeof elem === 'number') {
+                allElements.push(elem);
+              } 
+              else if (Array.isArray(elem)) {
+                for (let i=0; i<=elem.length-1; i++) {
+                  if ( typeof elem[i] === 'number') {
+                     allElements.push(elem[i]);
+                  }
+                  if (typeof elem[i] === 'string'){
+                    allElements.push(elem[i]);
+                  } 
+                  else if (typeof elem[i] === 'object') {
+                    if ( elem[i].hasOwnProperty('name')) {
+                     allElements.push(elem[i].name)
+                    } 
+                    else return;
                   }
                 }
-              } else {
-                if (item[key].toString().toLowerCase() !== value.toLowerCase()) {
-                  match = false;
+              } 
+              else if (typeof elem === 'object') {
+                if ( typeof elem['name'] !== 'undefined') {
+                  allElements.push(elem.name)
+                 } else {
+                  allElements.push(elem.url_frontend.href)
+                 }
+              }
+            })
+         
+            if (!allElements.some(value => value.toString().toLowerCase().includes(this.searchTextInput.value.toLowerCase()))) {
+              match = false;
+              console.log('FIND!')
+            }
+          }
+        })
+
+      }
+
+
+    /*   if (this.searchTextInput.value === '' && Object.keys(this._searchQuery).length === 0) { // случай 1
+        result = this.data;
+      } else {
+        for (let i = 0; i < this.data.length; i++) {
+          let item = this.data[i];
+          let match = true;
+    
+          if (this.searchTextInput.value !== '') { 
+            let values = [];
+            if (typeof item === 'string') {
+              values.push(item);
+            } else if (Array.isArray(item)) {
+              for (let i=0; i<=item.length; i++) {
+                values = push(item[i])
+              }
+              
+            } else if (typeof item === 'object') {
+              values = Object.values(item);
+            }
+            if (!values.some(value => value.toString().toLowerCase().includes(this.searchTextInput.value.toLowerCase()))) {
+              match = false;
+            }
+          }
+    
+          if (Object.keys(this._searchQuery).length > 0) { 
+            for (let key in this._searchQuery) {
+              if (searchQuery.hasOwnProperty(key)) {
+                let value = this._searchQuery[key];
+                if (Array.isArray(item[key])) { // если значение ключа - массив
+                  if (!item[key].some(val => val.toString().toLowerCase() === value.toLowerCase())) {
+                    match = false;
+                  }
+                } else if (typeof item[key] === 'object') {
+                  for (let subKey in value) {
+                    if (value.hasOwnProperty(subKey)) {
+                      if (item[key][subKey].toString().toLowerCase() !== value[subKey].toLowerCase()) {
+                        match = false;
+                      }
+                    }
+                  }
+                } else {
+                  if (item[key].toString().toLowerCase() !== value.toLowerCase()) {
+                    match = false;
+                  }
                 }
               }
             }
           }
+    
+          if (match) {
+            result.push(item);
+          }
         }
+      } */
+    
   
-        if (match) {
-          result.push(item);
-        }
-      }
+   /*    console.log('исходные данные:')
+      console.log(this.data);
+
+      console.log('фильтры:');
+      console.log(this._searchQuery)
+
+      console.log('запрос в инпуте:'+ this.searchTextInput.value)
+
+      console.log('результат:')
+      console.log(result) */
+  
+      this.totalResult.textContent = result.length;
+      this.renderMosaicCardList(result);
+      return result;
     }
-  
-    this.totalResult.textContent = result.length;
-    this.renderMosaicCardList(result);
-    return result;
-  }
-   */
+ 
   
   _addEventListenerToInput () {
     this.searchTextInput.addEventListener('input', (e) => {
@@ -394,11 +472,13 @@ class Filter {
     this._fillSelect();
     this._addListenersToSelect();
     this._addEventListenerToInput();
-    
+
     this.renderMosaicCardList(this.data);
 
     this.openButton.addEventListener('click', (e)=> {
+      e.preventDefault();
       if (e.currentTarget.classList.contains('active')) {
+        
         this._closeFilter();
       } else {
         this._openFilter();
