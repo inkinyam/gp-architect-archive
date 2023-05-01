@@ -280,183 +280,100 @@ class Filter {
   }
 
   // функция поиска
-/*   search() {
-    let result;
-    if (Object.keys(this._searchQuery).length === 0) {
-      this.totalResult.textContent = this.data.length;
-      this.renderMosaicCardList(this.data);
-      return this.data;
+ _searchByFilter(objValues, searchValues) {
+
+
+  for (let s=0; s<searchValues.length; s++) {
+    if (typeof(objValues) ==='object') {
+      objValues = Object.values(objValues);
+    } else {
+      objValues = objValues;
     }
-     result = this.data.filter(item => {
-      for (let key in this._searchQuery) {
-        if (Array.isArray(item[key])) {
-          // если значение ключа - массив
-          for (let i = 0; i < item[key].length; i++) {
-            if (this._searchQuery[key].includes(item[key][i])) {
-              return true;
-            }
-          }
-        } else if (typeof item[key] === 'object') {
-          // если значение ключа - объект
-          for (let subKey in this._searchQuery[key][0]) {
-            if (this._searchQuery[key][0][subKey] !== item[key][subKey]) {
-              return false;
-            }
-          }
+
+    for (let i = 0; i< objValues.length; i++) {
+      if (typeof(objValues[i])==='object'||Array.isArray(objValues[i])){
+        if (this._searchByFilter(objValues[i], searchValues)) {
           return true;
-        } else {
-          // если значение ключа - простое значение
-          if (this._searchQuery[key].includes(item[key])) {
-            return true;
-          }
         }
       }
-      return false;
-    });
-    
-    console.log (this.data);
-    console.log(this._searchQuery);
-    console.log(result)
 
-    this.totalResult.textContent = result.length;
-    this.renderMosaicCardList(result);
-    return result;
-  } */
+      else if (typeof(objValues[i]) === 'number'||typeof(objValues[i]==='string')) {
+        if (searchValues[s].includes(objValues[i])) {
+          return true;
+        } 
+      }
+    }
+  }
+}
 
+  
+
+  _searchInElement(element) {
+    let inputText = this.searchTextInput.value.toLowerCase();
+    let elemArray =[];
+  
+    if (typeof(element) ==='object') {
+      elemArray = Object.values(element);
+    } else {
+      elemArray = element;
+    }
+
+    for (let i=0; i<=elemArray.length-1; i++) {
+      if (elemArray[i] === null) {
+        continue;
+      }
+
+      else if (typeof(elemArray[i]) === 'number'||typeof(elemArray[i]) === 'string') {
+        if (elemArray[i].toString().toLowerCase().includes(inputText)) {
+          return true;
+        }
+      } 
+      else if (Array.isArray(elemArray[i])||typeof(elemArray[i]) === 'object') {
+        if (this._searchInElement(elemArray[i])){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+       
 
   search() {
   // с учетом инпута
       let result = [];
+      let finalResult = [];
     // если запрос пустой, рисуем чоесть
       if (this.searchTextInput.value === '' && Object.keys(this._searchQuery).length === 0) {
         result = this.data;
       } else {
-
+        
         // проверяем запрос
         this.data.map(item => {
-          let match = true;
-
-          if (this.searchTextInput.value != '') {
-            let values = Object.values(item);
-           
-          let allElements  = [];
-          values.map(elem => {
-            if (elem === null) {
-              return;
-            }
-              if (typeof elem === 'string') {
-                allElements.push(elem);
-              } 
-              else if (typeof elem === 'number') {
-                allElements.push(elem);
-              } 
-              else if (Array.isArray(elem)) {
-                for (let i=0; i<=elem.length-1; i++) {
-                  if ( typeof elem[i] === 'number') {
-                     allElements.push(elem[i]);
-                  }
-                  if (typeof elem[i] === 'string'){
-                    allElements.push(elem[i]);
-                  } 
-                  else if (typeof elem[i] === 'object') {
-                    if ( elem[i].hasOwnProperty('name')) {
-                     allElements.push(elem[i].name)
-                    } 
-                    else return;
-                  }
-                }
-              } 
-              else if (typeof elem === 'object') {
-                if ( typeof elem['name'] !== 'undefined') {
-                  allElements.push(elem.name)
-                 } else {
-                  allElements.push(elem.url_frontend.href)
-                 }
-              }
-            })
-         
-            if (!allElements.some(value => value.toString().toLowerCase().includes(this.searchTextInput.value.toLowerCase()))) {
-              match = false;
-              console.log('FIND!')
-            }
+          if (this._searchInElement(item)) {
+              result.push(item);
           }
         })
 
-      }
-
-
-    /*   if (this.searchTextInput.value === '' && Object.keys(this._searchQuery).length === 0) { // случай 1
-        result = this.data;
-      } else {
-        for (let i = 0; i < this.data.length; i++) {
-          let item = this.data[i];
-          let match = true;
-    
-          if (this.searchTextInput.value !== '') { 
-            let values = [];
-            if (typeof item === 'string') {
-              values.push(item);
-            } else if (Array.isArray(item)) {
-              for (let i=0; i<=item.length; i++) {
-                values = push(item[i])
-              }
-              
-            } else if (typeof item === 'object') {
-              values = Object.values(item);
-            }
-            if (!values.some(value => value.toString().toLowerCase().includes(this.searchTextInput.value.toLowerCase()))) {
-              match = false;
+         result.map(item => {
+          if (Object.keys(this._searchQuery).length === 0) {
+            return true;
+          }
+       
+          for (let key in this._searchQuery) {
+            let searchValues = Object.values(this._searchQuery[key]);
+            let objValues = Object.values(item[key]);
+            if (this._searchByFilter(objValues, searchValues)) {
+              finalResult.push(item);
             }
           }
-    
-          if (Object.keys(this._searchQuery).length > 0) { 
-            for (let key in this._searchQuery) {
-              if (searchQuery.hasOwnProperty(key)) {
-                let value = this._searchQuery[key];
-                if (Array.isArray(item[key])) { // если значение ключа - массив
-                  if (!item[key].some(val => val.toString().toLowerCase() === value.toLowerCase())) {
-                    match = false;
-                  }
-                } else if (typeof item[key] === 'object') {
-                  for (let subKey in value) {
-                    if (value.hasOwnProperty(subKey)) {
-                      if (item[key][subKey].toString().toLowerCase() !== value[subKey].toLowerCase()) {
-                        match = false;
-                      }
-                    }
-                  }
-                } else {
-                  if (item[key].toString().toLowerCase() !== value.toLowerCase()) {
-                    match = false;
-                  }
-                }
-              }
-            }
-          }
-    
-          if (match) {
-            result.push(item);
-          }
-        }
-      } */
-    
+        }) 
+      
   
-   /*    console.log('исходные данные:')
-      console.log(this.data);
-
-      console.log('фильтры:');
-      console.log(this._searchQuery)
-
-      console.log('запрос в инпуте:'+ this.searchTextInput.value)
-
-      console.log('результат:')
-      console.log(result) */
-  
-      this.totalResult.textContent = result.length;
-      this.renderMosaicCardList(result);
-      return result;
+      this.totalResult.textContent = finalResult.length;
+      this.renderMosaicCardList(finalResult);
+      return finalResult; 
     }
- 
+  }
   
   _addEventListenerToInput () {
     this.searchTextInput.addEventListener('input', (e) => {
@@ -488,7 +405,7 @@ class Filter {
     this.clearButton.addEventListener('click', () => {this._resetFilter()})
     this.submitButton.addEventListener('click',() => {this._submitFilter()});
     this.totalResult.textContent = this.data.length;
-
+console.log(this.data)
   }
 }
 
