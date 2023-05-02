@@ -341,7 +341,7 @@ if (mapBtn) {
   .then((data) => {
     initMap(data)
   })
-  .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
+/*   .catch(err => {console.log(`Что-то пошло не так. ${err}`)}); */
  
   const initMap = (data) => {
     let mapContainer = document.querySelector('#mskmap');
@@ -351,6 +351,7 @@ if (mapBtn) {
             attributionControl : false,
             zoomControl: true,
             keyboard: false,
+            zoom: 13,
             scrollWheelZoom: false,
             center: [55.753214, 37.623054],
             tap: false,

@@ -1,6 +1,6 @@
 import * as L from 'leaflet'
 import bluePin from '../images/pin.png';
-import  blackPin from '../images/pin2.png'
+import blackPin from '../images/pin2.png'
 
 
 class MyLeaflet extends L.Class {
@@ -14,7 +14,11 @@ class MyLeaflet extends L.Class {
     this.groupLayers = {};
     this.controllers = {};
 
-    this.renderMap() 
+    let represent = document.querySelector('.represent_mapview');
+    this.searchTextInput = represent.querySelector('.search__main-input');
+    this.totalResult = represent.querySelector('.represent__counter');
+
+    this.initMap(); 
   }
 
   //добавить тайлы на карты
@@ -99,21 +103,74 @@ class MyLeaflet extends L.Class {
 
   }  
 
+  search(){
+    let finalResult = [];
+
+    if (this.searchTextInput.value === '') {
+      finalResult = this.options.groupLayers[0];
+      this.totalResult.textContent = this.options.groupLayers[0].geojson.features.length;
+    } else {
+      for (let i=0; i<=this.options.groupLayers.length-1; i++) {
+        finalResult.geojson = this.options.groupLayers[i].geojson.features.filter(item => this._searchInElement(item));
+      }
+      finalResult.type = "FeatureCollection";
+      finalResult.name = "search";
+      finalResult.group = "search";
+      
+      this.renderMap(...{groupLayers:finalResult})
+    } 
+  }
+
+
+   _searchInElement(element) {
+    let inputText = this.searchTextInput.value.toLowerCase();
+    let elemArray =[];
+  
+    if (typeof(element) ==='object') {
+      elemArray = Object.values(element);
+    } else {
+      elemArray = element;
+    }
+
+    for (let i=0; i<=elemArray.length-1; i++) {
+      if (elemArray[i] === null) {
+        continue;
+      }
+
+      else if (typeof(elemArray[i]) === 'number'||typeof(elemArray[i]) === 'string') {
+        if (elemArray[i].toString().toLowerCase().includes(inputText)) {
+          return true;
+        }
+      } 
+      else if (Array.isArray(elemArray[i])||typeof(elemArray[i]) === 'object') {
+        if (this._searchInElement(elemArray[i])){
+          return true;
+        }
+      }
+    }
+    return false;
+  } 
+
  // обновление карты
   update() {
    this.map._onResize();
   }
 
   // рендер карты
-  renderMap() {
-    this.map = new L.map(this.container, {...this.options});
+  renderMap(options) {
+    this.map = new L.map(this.container, {...options});
     this._addTiles();
     this._addLayers();
     this._addControllers();
     this.update();
+  }
 
-/*     this.map.fitBounds(this.layers.getBounds());  */
-    }
+  initMap() {
+    this.renderMap(this.options);
+    this.searchTextInput.addEventListener('input', (e) => {
+      this.search();
+    });
+  }
 }
 
 export default function createNewLeaflet(containerId, options) {
