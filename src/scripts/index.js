@@ -25,7 +25,7 @@ import pin from '../images/pin2.png';
 //cоздание экземпляра класса Api
 const api = new Api ('https://projectsmsk.genplanmos.ru/api/v1', {
   headers: {
-     'Content-Type': 'application/json'
+    'Content-Type': 'application/json'
   }
 })
 
@@ -425,7 +425,7 @@ if (filterBlock){
   .then((data) => {
     initFilter(data);
   })
-  .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
+  .catch(err => {console.log(`Что-то пошло не так. ${err}`)}); 
 
   // инициализация мозайки
   const initFilter= (data) => {

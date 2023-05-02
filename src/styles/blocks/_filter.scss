@@ -90,6 +90,21 @@
         height: fit-content;
         background-color: #fff;
         padding: 4px 10px;
+
+        &:hover {
+          .filter__datapicker {
+            background-color: rgba(22,120,226,.01);
+          }
+        }
+
+        .filter__datapicker {
+          @include circe-lowercase;
+          font-size: 14px;          
+          max-width: 100%;
+          width: 100%;
+          outline: none;
+          border: none;
+        }
       }
     }
 

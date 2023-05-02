@@ -5,12 +5,14 @@ class Filter {
     this.openButton      = document.querySelector('.search__openfilter');
     this.filterBlock     = document.querySelector(selectorFilterBlock);
     this.tagsBlock       = document.querySelector(selectorTagsBlock);
-    this.dateSelect      = this.filterBlock.querySelector('.block-date');
+    this.dateSelect      = this.filterBlock.querySelector('.block_date');
     this.clearButton     = this.filterBlock.querySelector('.filters__button_reset');
     this.submitButton    = this.filterBlock.querySelector('.filters__button_submit');
+    
     let represent        = document.querySelector('.represent_mosaicview');
     this.totalResult     = represent.querySelector('.represent__counter');
     this.searchTextInput = represent.querySelector('.search__main-input');
+    
     this._searchQuery    = {};
     this.result          = {};
 
@@ -80,6 +82,55 @@ class Filter {
     });
   }
 
+  _dateFormatter (value) {
+    let text = value.toString().split('-');
+    let date ='';
+    for (let i=text.length-1; i>=0; i--) {
+      if (i<text.length-1) {
+        date =date+'.'+text[i];
+      } else {
+        date =date+text[i];
+      }
+    }
+    return date;
+  }
+
+  _initDatePicker() {
+    let select = this.filterBlock.querySelector('.block_date');
+    let selectSingle_title = select.querySelector('.filters__select-title');
+
+    let dateInput = select.querySelector('.filter__datapicker');
+
+    dateInput.addEventListener('change', ()=> {
+     let date = this._dateFormatter(dateInput.value);
+      let code = 'commissioning_date';
+      if (this._searchQuery.hasOwnProperty(code)) {
+        if (!this._searchQuery[code].includes(date)) {
+          this._searchQuery[code].push(date);
+        }
+      } else {
+        this._searchQuery[code] = [date];
+        }
+    })
+  
+    selectSingle_title.addEventListener('click', () => {
+        if ('active' === select.getAttribute('data-state')) {
+          select.setAttribute('data-state', '');
+        } else {
+        //закрыть все другие
+        this.keys.forEach((key) => {
+          const select = document.querySelector(`.block_${key}`); 
+          if (select) {
+            select.setAttribute('data-state', '');
+          }
+        })
+          select.setAttribute('data-state', 'active');
+        }
+        //на документ навесить клик на esc
+        document.addEventListener('keydown',this._handleEscListener);
+    });
+  }
+
  // темплейт для одного элемента селекта 
   _getSelectElement () {
     let cardTemplate =  document.querySelector('.select_template').content.querySelector('.filter__select-item').cloneNode(true);
@@ -94,10 +145,10 @@ class Filter {
     if (el instanceof Object) {
       el = el.name;
     }
+
     text.textContent = el;
-    
     this._addListenersToSelectElement(card);
-    return card;
+     return card;
   }
   
   // слушатели на каждый элемент селекта
@@ -134,10 +185,19 @@ class Filter {
         if (this._searchQuery.hasOwnProperty(code)) {
           
           if (!this._searchQuery[code].includes(text)) {
-            this._searchQuery[code].push(text);
+            if (code === 'rating') {
+              this._searchQuery[code].push(text.length);
+            }  else {
+              this._searchQuery[code].push(text);
+            }
+
           }
         } else {
-          this._searchQuery[code] = [text];
+          if (code === 'rating') {
+            this._searchQuery[code]= [text.length];
+          }  else {
+            this._searchQuery[code] = [text];
+          }
         }
       }  
     })
@@ -165,7 +225,7 @@ class Filter {
           } else if (key ==='rating') {
             el = this._formatterRating(el); // здездочки вместо цифр
           }
-          selectContent.append(this._renderSelectElement(el, `block_${key}`, indx ));
+          selectContent.append(this._renderSelectElement(el, key));
         })
       }
     });
@@ -179,7 +239,7 @@ class Filter {
         select.setAttribute('data-state', '');
       }
     })
-   
+    this.dateSelect.setAttribute('data-state', '');
     document.removeEventListener('keydown', this._handleEscListener);
   }
 
@@ -202,6 +262,7 @@ class Filter {
               select.setAttribute('data-state', '');
             }
           })
+          this.dateSelect.setAttribute('data-state', '');
             select.setAttribute('data-state', 'active');
           }
           //на документ навесить клик на esc
@@ -218,18 +279,28 @@ class Filter {
   }
 
   // рендер тэга
-  _renderTagElement(el) {
+  _renderTagElement(el, key) {
     let card = this._getTagElement();
     let cardText = card.querySelector('.tag__text');
-    cardText.textContent = el;
+    card.setAttribute('data-key', key);
+    if (key === 'rating') {
+      cardText.textContent = this._formatterRating(el);
+    } else {
+      cardText.textContent = el;
+    }
     let deleteBtn = card.querySelector('.tag__delete');
    
-    deleteBtn.addEventListener('click', e => {
+    deleteBtn.addEventListener('click', (e) => {
       card.remove();
-
-      for (let key in this._searchQuery) {
+           
         if (this._searchQuery.hasOwnProperty(key)) {
-          let index = this._searchQuery[key].indexOf(cardText.textContent);
+          let index;
+          if (key === 'rating') {
+            index = this._searchQuery[key].indexOf(cardText.textContent.length);
+          } else {
+            index = this._searchQuery[key].indexOf(cardText.textContent);
+          }
+ 
           if (index != -1) {
             this._searchQuery[key].splice(index,1);
           }
@@ -237,7 +308,6 @@ class Filter {
             delete this._searchQuery[key];
           }
         }
-      }
 
       this.search();
     })
@@ -255,50 +325,52 @@ class Filter {
 
   // очищение формы фильтров
   _resetFilter(){
+    this._closeSelects();
     this._resetSelectsItem();
     this._searchQuery = {};
     this.search();
   }
-
 
   // отрисовка тэгов
   _renderAllTags(){
     this.tagsBlock.textContent = '';
     for (let key in this._searchQuery) {
       this._searchQuery[key].forEach(el => {
-        this.tagsBlock.append(this._renderTagElement(el))
+        this.tagsBlock.append(this._renderTagElement(el, key))
       })
     }
   }
 
   // САБМИТ ФОРМЫ
-  _submitFilter(){
+  _submitFilter(e){
+    e.preventDefault();
     this._renderAllTags();  
     this._closeFilter();
     this._closeSelects();
     this.search();
   }
 
-  // функция поиска
+  // фильтрация по выбранным фильтрам
  _searchByFilter(objValues, searchValues) {
-
-
   for (let s=0; s<searchValues.length; s++) {
+    let arrayFromObjValues = [];
     if (typeof(objValues) ==='object') {
-      objValues = Object.values(objValues);
+      arrayFromObjValues = Object.values(objValues);
+    } else if (Array.isArray(objValues)){
+      arrayFromObjValues = objValues;
     } else {
-      objValues = objValues;
+      arrayFromObjValues.push(objValues);
     }
 
-    for (let i = 0; i< objValues.length; i++) {
-      if (typeof(objValues[i])==='object'||Array.isArray(objValues[i])){
-        if (this._searchByFilter(objValues[i], searchValues)) {
+    for (let i = 0; i< arrayFromObjValues.length; i++) {
+      if (typeof(arrayFromObjValues[i])==='object'||Array.isArray(arrayFromObjValues[i])){
+        if (this._searchByFilter(arrayFromObjValues[i], searchValues)) {
           return true;
         }
       }
 
-      else if (typeof(objValues[i]) === 'number'||typeof(objValues[i]==='string')) {
-        if (searchValues[s].includes(objValues[i])) {
+      else if (typeof(arrayFromObjValues[i]) === 'number'||typeof(arrayFromObjValues[i]==='string')) {
+        if (searchValues[s].toString().includes(arrayFromObjValues[i].toString())) {
           return true;
         } 
       }
@@ -307,7 +379,7 @@ class Filter {
 }
 
   
-
+// поиск по строке из инпута
   _searchInElement(element) {
     let inputText = this.searchTextInput.value.toLowerCase();
     let elemArray =[];
@@ -337,47 +409,59 @@ class Filter {
     return false;
   }
        
-
+// общая функция поиска
   search() {
-  // с учетом инпута
       let result = [];
       let finalResult = [];
-    // если запрос пустой, рисуем чоесть
+    // если запрос пустой, рисуем чо есть
       if (this.searchTextInput.value === '' && Object.keys(this._searchQuery).length === 0) {
-        result = this.data;
+        finalResult = this.data;
+        this.totalResult.textContent = finalResult.length;
+        this.renderMosaicCardList(finalResult);
       } else {
         
-        // проверяем запрос
+      // проверяем запрос
+        // сначала по вводимой строке
         this.data.map(item => {
           if (this._searchInElement(item)) {
               result.push(item);
           }
         })
 
+        // потом по фильтрам, которые выставлены
          result.map(item => {
           if (Object.keys(this._searchQuery).length === 0) {
-            return true;
+            finalResult.push(item);
           }
        
           for (let key in this._searchQuery) {
             let searchValues = Object.values(this._searchQuery[key]);
-            let objValues = Object.values(item[key]);
+            let objValues;
+            if (item[key] === null) {
+              continue;
+            }
+
+            if (typeof(item[key]) === 'object') {
+              objValues = Object.values(item[key]);
+            } else {
+              objValues = item[key];
+            }
+
+            
             if (this._searchByFilter(objValues, searchValues)) {
               finalResult.push(item);
             }
           }
         }) 
-      
-  
-      this.totalResult.textContent = finalResult.length;
-      this.renderMosaicCardList(finalResult);
-      return finalResult; 
+
+        this.totalResult.textContent = finalResult.length;
+        this.renderMosaicCardList(finalResult);
+        return finalResult; 
     }
   }
   
   _addEventListenerToInput () {
     this.searchTextInput.addEventListener('input', (e) => {
-      // может все-таки на нажатие какой-то кнопки?
       this.search();
     })
   }
@@ -387,6 +471,7 @@ class Filter {
   initFilter () {
     this._getSelectItems();
     this._fillSelect();
+    this._initDatePicker();
     this._addListenersToSelect();
     this._addEventListenerToInput();
 
@@ -395,7 +480,6 @@ class Filter {
     this.openButton.addEventListener('click', (e)=> {
       e.preventDefault();
       if (e.currentTarget.classList.contains('active')) {
-        
         this._closeFilter();
       } else {
         this._openFilter();
@@ -403,9 +487,8 @@ class Filter {
     })
 
     this.clearButton.addEventListener('click', () => {this._resetFilter()})
-    this.submitButton.addEventListener('click',() => {this._submitFilter()});
+    this.submitButton.addEventListener('click', (e) => {this._submitFilter(e)});
     this.totalResult.textContent = this.data.length;
-console.log(this.data)
   }
 }
 
