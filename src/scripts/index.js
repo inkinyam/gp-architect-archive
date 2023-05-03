@@ -123,8 +123,6 @@ if (tabletContainer) {
     initTable(projectData, tagsData);   // отрисовываем таблицу        
   })
 
-
-
   const initTable = (projectData, tagsData) => {
     const mediaQuerySmallSize = window.matchMedia('(max-width: 1240px)'); // проверяем мобилка или десктоп
 
@@ -338,10 +336,10 @@ if (mapBtn) {
 
   // отправляем запрос в апи, вызываем функцию инициализации карты
   api.getGeoJson()
-  .then((data) => {
-    initMap(data)
-  })
-  .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
+    .then((data) => {
+      initMap(data)
+    })
+    .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
  
   const initMap = (data) => {
     let mapContainer = document.querySelector('#mskmap');
@@ -415,17 +413,17 @@ if (mapBtn) {
           map.update();
         })
       } 
-    }
+  }
 }
 
 // инициализация фильтров
 let filterBlock = document.querySelector('.filters'); 
 if (filterBlock){
   api.getAllProjects()
-  .then((data) => {
-    initFilter(data);
-  })
-  .catch(err => {console.log(`Что-то пошло не так. ${err}`)}); 
+    .then((data) => {
+      initFilter(data);
+    })
+    .catch(err => {console.log(`Что-то пошло не так. ${err}`)}); 
 
   // инициализация мозайки
   const initFilter= (data) => {
