@@ -341,13 +341,13 @@ if (mapBtn) {
   .then((data) => {
     initMap(data)
   })
-/*   .catch(err => {console.log(`Что-то пошло не так. ${err}`)}); */
+  .catch(err => {console.log(`Что-то пошло не так. ${err}`)});
  
   const initMap = (data) => {
     let mapContainer = document.querySelector('#mskmap');
     if (mapContainer) {
       //  создаем карту
-      let map = createNewLeaflet('#mskmap', { 
+      let map =  createNewLeaflet('#mskmap', { 
             attributionControl : false,
             zoomControl: true,
             keyboard: false,
@@ -360,10 +360,9 @@ if (mapBtn) {
             clickFitBounds: false,
             clickPanToLayer: false,
             doubleClickZoom: false,
-
             minZoom: 11,
             maxZoom: 17,
-            baseLayers: [ // массив базовых слоев
+            baseLayers: [ 
               {
                 name: 'OpenStreetMap',
                 url: 'https://projectsmsk.genplanmos.ru/static/tileset/{z}/{x}/{y}.png',
