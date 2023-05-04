@@ -86,7 +86,7 @@
 
   .assets__columns {
     column-count: 2;
-    column-gap: 10px;
+    column-gap: 12px;
     
     .assets__pattern-block {
       @include silly-link;
@@ -94,7 +94,7 @@
       height: 100%;
       display: inline-block;
       font-size: 0;
-      padding-bottom: 10px;
+      padding-bottom: 5px;
   
       img {
         @include transition;
