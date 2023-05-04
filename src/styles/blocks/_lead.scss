@@ -78,7 +78,11 @@
     h2, h3, h4, div {
       @include circe-uppercase;
       font-weight: 700;
-      margin: 15px 0 10px;
+      margin: 60px 0 20px;
+    }
+
+    p {
+      margin-bottom: 16px;
     }
 
     ul {
