@@ -316,7 +316,7 @@ if (tabletContainer) {
         },
         {
           field: 'tags',
-          title: 'ТЭГИ',
+          title: 'Теги',
           searchable: true,
           sortable: true,
           width: '10.5',
