@@ -16,6 +16,8 @@
     column-gap: 40px;
     margin-bottom: 40px;
 
+    p {margin: 0;}
+
     @media screen and (max-width: $tablet) {
       column-count: 1;
     }
@@ -77,6 +79,12 @@
       @include circe-uppercase;
       font-weight: 700;
       margin: 15px 0 10px;
+    }
+
+    ul {
+      list-style: disc !important;
+      padding-left: 2em;
+      margin: 10px 0;
     }
 
 
