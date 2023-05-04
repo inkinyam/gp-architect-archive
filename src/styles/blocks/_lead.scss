@@ -14,6 +14,7 @@
     line-height: 23.5px;
     column-count: 2;
     column-gap: 40px;
+    margin-bottom: 40px;
 
     @media screen and (max-width: $tablet) {
       column-count: 1;
@@ -22,5 +23,66 @@
 
   @media screen and (max-width: $tablet) {
     margin: 50px auto;
+  }
+
+  .lead__showmore {
+    @include silly-link;
+    @include circe-lowercase;
+    @include transition;
+
+    display: flex;
+    justify-content: center;
+    column-gap: 8px;
+    margin: 0 auto;
+    min-width: 150px;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    padding: 0;
+
+
+
+    &:hover {
+      color: $primary-color-hovered;
+    }
+
+    &.active {
+      color: $primary-color-hovered;
+      margin-top: 40px;
+      align-items: center;
+
+      img {
+        transform: rotate(180deg);
+      }
+    }
+
+  }
+
+  .lead__full {
+    max-width: 688px;
+    font-size: 16px;
+    line-height: 23.5px;
+    width: 90%;
+    margin: 0 auto;
+    @include transition;
+    @include circe-lowercase;
+    transition-property: max-height;
+    max-height: 0;
+    height: 0;
+    overflow: hidden;
+
+    h2, h3, h4, div {
+      @include circe-uppercase;
+      font-weight: 700;
+      margin: 15px 0 10px;
+    }
+
+
+    &.active {
+      max-height: 100000px;
+      height: fit-content;
+    }
   }
 }

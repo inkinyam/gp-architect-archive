@@ -64,6 +64,27 @@ if (sliderBlock) {
   new Carousel(sliderBlock, options, { Autoplay });
 }
 
+const showmoreButton = document.querySelector('.lead__showmore');
+if (showmoreButton) {
+  let showMoreBlock = document.querySelector('.lead__full');
+  if (showMoreBlock) {
+    showmoreButton.addEventListener('click', (e)=> {
+      let buttonText = showmoreButton.querySelector('.lead__showmore-text');
+
+      if (!showmoreButton.classList.contains('active')) {
+        showmoreButton.classList.add('active');
+        showMoreBlock.classList.add('active')
+        buttonText.textContent = 'Скрыть полное описание';
+      } else {
+         showmoreButton.classList.remove('active');
+        showMoreBlock.classList.remove('active')
+        buttonText.textContent = 'Показать все';
+      }
+    })
+  }
+
+}
+
 //навигация на стр. проекта
 const navBar = document.querySelector('.navigation');
 if (navBar) {
