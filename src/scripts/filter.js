@@ -15,8 +15,6 @@ class Filter {
     
     this._searchQuery    = {};
     this.result          = {};
-    this.tagCounter      = 0;
-
     this.renderMosaicCardList = renderMosaicCardList;
 
     //слушатель на esc
@@ -287,9 +285,7 @@ class Filter {
 
     deleteBtn.addEventListener('click', () => {
       card.remove();
-      this.tagCounter--;
-      this._renderTagCounter();
-           
+               
         if (this._searchQuery.hasOwnProperty(key)) {
           let index;
           if (key === 'rating') {
@@ -343,9 +339,6 @@ class Filter {
     this._resetSelectsItem();
     this._searchQuery = {};
     this.search();
-
-    this.tagCounter = 0;
-    this._renderTagCounter();
   }
 
   // отрисовка тэгов
@@ -357,19 +350,9 @@ class Filter {
         this.tagCounter++;
       })
     }
-    this._renderTagCounter();
-   
+    
   }
 
-  _renderTagCounter () {
-    if (this.tagCounter != 0) {
-      this.openButton.innerHTML = `<span class="search__openfilter_round">${this.tagCounter}</span>`
-    } else {
-      this.openButton.innerHTML = `<svg class="search__openfilter_svg" width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                       <path d="M1 3V1.5V1H22V3L14 11V23L8.5 20V11.5L1 3Z" stroke="black"/>
-                                      </svg> `
-    }
-  }
 
   // САБМИТ ФОРМЫ
   _submitFilter(e){
