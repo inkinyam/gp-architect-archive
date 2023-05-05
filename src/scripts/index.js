@@ -63,6 +63,17 @@ if (sliderBlock) {
   new Carousel(sliderBlock, options, { Autoplay });
 }
 
+const printButton = document.querySelector('.navigation__open-variants');
+if (printButton) {
+  let printVariants = document.querySelector('.navigation__nav-print-variants');
+
+  printButton.addEventListener('click', () => {
+    printButton.classList.toggle('active');
+    printVariants.classList.toggle('active');
+  })
+
+}
+
 const showmoreButton = document.querySelector('.lead__showmore');
 if (showmoreButton) {
   let showMoreBlock = document.querySelector('.lead__full');
