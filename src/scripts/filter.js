@@ -449,7 +449,9 @@ class Filter {
 
             
             if (this._searchByFilter(objValues, searchValues)) {
-              finalResult.push(item);
+              if(!finalResult.includes(item)) {
+                finalResult.push(item);
+              }
             }
           }
         }) 
