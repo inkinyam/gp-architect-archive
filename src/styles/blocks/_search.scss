@@ -47,17 +47,31 @@
       min-height: 20px;
       min-width: 20px;
       padding: 0;  
+      border-radius: 0;
       width: 20px; 
       height: 20px;   
-      .search__openfilter_svg {
-       @include transition; 
+      margin-top: 15px;
+
+      .search__openfilter_round {
+        @include circe-lowercase;
+        font-size: 12px;
+        width: 18px;
+        height: 18px;
+        background-color: $primary-color-hovered;
+        color: white;
+        border-radius: 50%;
       }
+
+
+     .search__openfilter_svg {
+       @include transition; 
+      } 
       
       &:hover {
         background-color: transparent;
-        .search__openfilter_svg path{
+         .search__openfilter_svg path{
           stroke: $primary-color-hovered;
-        }
+        } 
       }
 
       &.active {
@@ -77,6 +91,9 @@
     }
 
   }
+
+
+  
 
  
 }

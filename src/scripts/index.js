@@ -15,7 +15,6 @@ import createNewLeaflet from './leaflet';       // работа карты
 import Section from './section';
 import MosaicCard from './mosaicCard';
 
-
 //иконки для карты
 import zoomIn from '../images/zoom-in-icon.svg';
 import zoomOut from '../images/zoom-out-icon.svg';

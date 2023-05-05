@@ -15,6 +15,7 @@ class Filter {
     
     this._searchQuery    = {};
     this.result          = {};
+    this.tagCounter      = 0;
 
     this.renderMosaicCardList = renderMosaicCardList;
 
@@ -93,6 +94,15 @@ class Filter {
       }
     }
     return date;
+  }
+
+  // переводим цифры в звездочки
+  _formatterRating (el) {
+    let str ='';
+    for (let i = 0; i< el; i++) {
+      str = str + '★';
+    }
+    return str;
   }
 
   _initDatePicker() {
@@ -203,14 +213,6 @@ class Filter {
     })
   }
 
-  // переводим цифры в звездочки
-  _formatterRating (el) {
-    let str ='';
-    for (let i = 0; i< el; i++) {
-      str = str + '★';
-    }
-    return str;
-  }
 
   // заполняем селекты всеми возможными полями, которые есть в data
   _fillSelect() {
@@ -278,20 +280,15 @@ class Filter {
     return cardTemplate;
   }
 
-  // рендер тэга
-  _renderTagElement(el, key) {
-    let card = this._getTagElement();
-    let cardText = card.querySelector('.tag__text');
-    card.setAttribute('data-key', key);
-    if (key === 'rating') {
-      cardText.textContent = this._formatterRating(el);
-    } else {
-      cardText.textContent = el;
-    }
+
+  _addEventListenerToTag (card, key){
     let deleteBtn = card.querySelector('.tag__delete');
-   
-    deleteBtn.addEventListener('click', (e) => {
+    let cardText = card.querySelector('.tag__text');
+
+    deleteBtn.addEventListener('click', () => {
       card.remove();
+      this.tagCounter--;
+      this._renderTagCounter();
            
         if (this._searchQuery.hasOwnProperty(key)) {
           let index;
@@ -307,10 +304,28 @@ class Filter {
           if (this._searchQuery[key].length === 0) {
             delete this._searchQuery[key];
           }
-        }
 
+          if (Object.values(this._searchQuery).length === 0) {
+           this._resetFilter();
+          }
+        }
+        
       this.search();
     })
+  }
+
+  // рендер тэга
+  _renderTagElement(el, key) {
+    let card = this._getTagElement();
+    let cardText = card.querySelector('.tag__text');
+    card.setAttribute('data-key', key);
+    if (key === 'rating') {
+      cardText.textContent = this._formatterRating(el);
+    } else {
+      cardText.textContent = el;
+    }
+    this._addEventListenerToTag(card, key);
+
     
     return card;
   }
@@ -322,22 +337,37 @@ class Filter {
     selectsElement.forEach(item => item.classList.remove('active'));
   }
 
-
   // очищение формы фильтров
   _resetFilter(){
     this._closeSelects();
     this._resetSelectsItem();
     this._searchQuery = {};
     this.search();
+
+    this.tagCounter = 0;
+    this._renderTagCounter();
   }
 
   // отрисовка тэгов
   _renderAllTags(){
     this.tagsBlock.textContent = '';
     for (let key in this._searchQuery) {
-      this._searchQuery[key].forEach(el => {
+      this._searchQuery[key].map(el => {
         this.tagsBlock.append(this._renderTagElement(el, key))
+        this.tagCounter++;
       })
+    }
+    this._renderTagCounter();
+   
+  }
+
+  _renderTagCounter () {
+    if (this.tagCounter != 0) {
+      this.openButton.innerHTML = `<span class="search__openfilter_round">${this.tagCounter}</span>`
+    } else {
+      this.openButton.innerHTML = `<svg class="search__openfilter_svg" width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <path d="M1 3V1.5V1H22V3L14 11V23L8.5 20V11.5L1 3Z" stroke="black"/>
+                                      </svg> `
     }
   }
 
