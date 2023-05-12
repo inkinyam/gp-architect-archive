@@ -16,8 +16,13 @@ export default class MosaicCard {
   _renderCard () {
     this._getCardElement();
     const cardImage = this._cardElement.querySelector('.mosaic__img');
-    cardImage.src   = this._img;
-    cardImage.alt   = this._name;
+    if (this._img) {
+      cardImage.src   = this._img;
+      cardImage.alt   = this._name;
+    } else {
+      cardImage.src   = "https://www.vanwalraven.com/image/media/products/notfound@960w.png?v=1649171577";
+      cardImage.alt   = "фото скоро появится";
+    }
     this._cardElement.setAttribute('href', this._link);
     this._cardElement.querySelector('.mosaic__card-title').textContent = this._name;
     this._cardElement.querySelector('.mosaic__card-subtitle').textContent = this._address;

@@ -45,6 +45,9 @@ class MyLeaflet extends L.Class {
         { style: layerStyle,
           onEachFeature: (feature, layer) => {
             if (feature.geometry.type === 'Point') {
+              if (!feature.properties.image) {
+                feature.properties.image = 'https://www.vanwalraven.com/image/media/products/notfound@960w.png?v=1649171577'
+              }
               let marker =  L.marker( layer._latlng, 
                                       { icon: L.icon({
                                         iconUrl: redPin,

@@ -221,7 +221,11 @@ class Filter {
         
         this[`block_${key}`].forEach((el, indx)=> {
           if (key ==='district') {
-            el = el.abbreviation; // заполняем полем аббревиатуры, а не имени
+            if (el) {
+              el = el.abbreviation; // заполняем полем аббревиатуры, а не имени
+            } else {
+              return false;
+            }
           } else if (key ==='rating') {
             el = this._formatterRating(el); // здездочки вместо цифр
           }
@@ -505,6 +509,7 @@ class Filter {
     this.submitButton.addEventListener('click', (e) => {this._submitFilter(e)});
     this.totalResult.textContent = this.data.length;
   }
+  
 }
 
 export default Filter;
