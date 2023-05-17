@@ -212,28 +212,60 @@ class Filter {
   }
 
 
-  // заполняем селекты всеми возможными полями, которые есть в data
-  _fillSelect() {
-    this.keys.forEach((key) => {
-      const select = document.querySelector(`.block_${key}`); 
-      if (select) {
+  _fillSelect () {
+    //по всем ключам 
+    for (let i = 0; i < this.keys.length - 1; i++) {
+      const select = document.querySelector(`.block_${this.keys[i]}`); // ищем селект с нужным классом
+      
+      if (select) { 
         const selectContent = select.querySelector('.filters__select-content');
-        
-        this[`block_${key}`].forEach((el, indx)=> {
-          if (key ==='district') {
-            if (el) {
-              el = el.abbreviation; // заполняем полем аббревиатуры, а не имени
+        const arrayOfUniqueSelectElements = [];
+        //если селект найден, то для каждого ключа в массиве this.block_key форматируем их в нужный вид и составляем массив уникальных элементов для проверки повторяемости 
+        for (let j = 0; j < this[`block_${this.keys[i]}`].length; j++) { 
+          let el;
+          // заполняем полем аббревиатуры, а не имени
+          if (this.keys[i] === 'district') {
+            if (this[`block_${this.keys[i]}`][j]) {
+              el = this[`block_${this.keys[i]}`][j].abbreviation; 
             } else {
-              return false;
+              continue;
             }
-          } else if (key ==='rating') {
-            el = this._formatterRating(el); // здездочки вместо цифр
+          } 
+
+          // заполняем полем наименования тега или функции
+          else if ((this.keys[i] === 'tags')||(this.keys[i] === 'functions')) {
+            if (this[`block_${this.keys[i]}`][j]) {
+              el = this[`block_${this.keys[i]}`][j].name; 
+            } else {
+              continue;
+            }
+          } 
+
+          // здездочки вместо цифр
+          else if (this.keys[i] ==='rating') {
+            el = this._formatterRating(this[`block_${this.keys[i]}`][j]); 
+          } 
+          else {
+            el = this[`block_${this.keys[i]}`][j];
           }
-          selectContent.append(this._renderSelectElement(el, key));
-        })
+
+          // проверка на повторяемость и орисовка
+          let index;
+          index = arrayOfUniqueSelectElements.indexOf(el);
+          if (index != -1) {
+            continue;
+          } 
+          if ((el === '')||(el === null)) {
+            continue;
+          }
+          else {
+            arrayOfUniqueSelectElements.push(el);
+            selectContent.append(this._renderSelectElement(el, this.keys[i]));
+          }
+        }
       }
-    });
-  } 
+    }
+  }
   
   // закрывание селектов, удаление слушателя на esc
   _closeSelects () {
@@ -253,9 +285,9 @@ class Filter {
       const select = document.querySelector(`.block_${key}`); 
       
       if (select) {
-        const selectSingle_title = select.querySelector('.filters__select-title');
+        const selectSingleTitle = select.querySelector('.filters__select-title');
     
-        selectSingle_title.addEventListener('click', () => {
+        selectSingleTitle.addEventListener('click', () => {
           if ('active' === select.getAttribute('data-state')) {
             select.setAttribute('data-state', '');
           } else {
@@ -299,7 +331,7 @@ class Filter {
           }
  
           if (index != -1) {
-            this._searchQuery[key].splice(index,1);
+            this._searchQuery[key].splice(index, 1);
           }
           if (this._searchQuery[key].length === 0) {
             delete this._searchQuery[key];
@@ -309,7 +341,6 @@ class Filter {
            this._resetFilter();
           }
         }
-        
       this.search();
     })
   }
@@ -325,8 +356,6 @@ class Filter {
       cardText.textContent = el;
     }
     this._addEventListenerToTag(card, key);
-
-    
     return card;
   }
 
@@ -354,7 +383,6 @@ class Filter {
         this.tagCounter++;
       })
     }
-    
   }
 
 
@@ -366,6 +394,7 @@ class Filter {
     this._closeSelects();
     this.search();
   }
+
 
   // фильтрация по выбранным фильтрам
  _searchByFilter(objValues, searchValues) {
@@ -425,62 +454,63 @@ class Filter {
     }
     return false;
   }
-       
+     
+  
 // общая функция поиска
   search() {
-      let result = [];
-      let finalResult = [];
+    let result = [];
+    let finalResult = [];
     // если запрос пустой, рисуем чо есть
-      if (this.searchTextInput.value === '' && Object.keys(this._searchQuery).length === 0) {
-        finalResult = this.data;
-        this.totalResult.textContent = finalResult.length;
-        this.renderMosaicCardList(finalResult);
-      } else {
-        
-      // проверяем запрос
-        // сначала по вводимой строке
-        this.data.map(item => {
-          if (this._searchInElement(item)) {
-              result.push(item);
-          }
-        })
+    if (this.searchTextInput.value === '' && Object.keys(this._searchQuery).length === 0) {
+      finalResult = this.data;
+      this.totalResult.textContent = finalResult.length;
+      this.renderMosaicCardList(finalResult);
+    } else {
 
-        // потом по фильтрам, которые выставлены
-         result.map(item => {
-          if (Object.keys(this._searchQuery).length === 0) {
+    // проверяем запрос
+    // сначала по вводимой строке
+    this.data.map(item => {
+      if (this._searchInElement(item)) {
+        result.push(item);
+      }
+    })
+
+    // потом по фильтрам, которые выставлены
+    result.map(item => {
+      if (Object.keys(this._searchQuery).length === 0) {
+        finalResult.push(item);
+      }
+       
+      for (let key in this._searchQuery) {
+        let searchValues = Object.values(this._searchQuery[key]);
+        let objValues;
+        if (item[key] === null) {
+          continue;
+        }
+
+        if (typeof(item[key]) === 'object') {
+          objValues = Object.values(item[key]);
+        } else {
+          objValues = item[key];
+        }
+
+        
+        if (this._searchByFilter(objValues, searchValues)) {
+          if(!finalResult.includes(item)) {
             finalResult.push(item);
           }
-       
-          for (let key in this._searchQuery) {
-            let searchValues = Object.values(this._searchQuery[key]);
-            let objValues;
-            if (item[key] === null) {
-              continue;
-            }
+        }
+      }
+    }) 
 
-            if (typeof(item[key]) === 'object') {
-              objValues = Object.values(item[key]);
-            } else {
-              objValues = item[key];
-            }
-
-            
-            if (this._searchByFilter(objValues, searchValues)) {
-              if(!finalResult.includes(item)) {
-                finalResult.push(item);
-              }
-            }
-          }
-        }) 
-
-        this.totalResult.textContent = finalResult.length;
-        this.renderMosaicCardList(finalResult);
-        return finalResult; 
+    this.totalResult.textContent = finalResult.length;
+    this.renderMosaicCardList(finalResult);
+    return finalResult; 
     }
   }
   
   _addEventListenerToInput () {
-    this.searchTextInput.addEventListener('input', (e) => {
+    this.searchTextInput.addEventListener('input', () => {
       this.search();
     })
   }

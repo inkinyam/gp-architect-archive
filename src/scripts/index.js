@@ -454,8 +454,9 @@ if (filterBlock){
     .then((data) => {
       initFilter(data);
     })
-    .catch(err => {console.log(`Что-то пошло не так. ${err}`)}); 
+   .catch(err => {console.log(`Что-то пошло не так. ${err}`)});  
 
+   
   // инициализация мозайки
   const initFilter= (data) => {
     const cardList = new Section ((item) => {
