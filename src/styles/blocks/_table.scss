@@ -208,7 +208,10 @@
 }  
 
 
-
+.aa-tablet__img {
+  display: inline-block;
+  opacity: 0.4;
+}
 .table-hover>tbody>tr:hover>* {
   --bs-table-accent-bg:  rgb(230, 241, 252);
 

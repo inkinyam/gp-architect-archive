@@ -20,6 +20,13 @@ import zoomIn from '../images/zoom-in-icon.svg';
 import zoomOut from '../images/zoom-out-icon.svg';
 import pin from '../images/pin2.png';
 
+//иконки для карты
+import fillPhoto from '../images/fill_photo.svg';
+import fillVideo from '../images/fill_video.svg';
+import fillText from '../images/fill_text.svg';
+import fillPresentation from '../images/fill_presentation.svg';
+import fillRenders from '../images/fill_render.svg';
+
 
 //cоздание экземпляра класса Api
 const api = new Api ('https://projectsmsk.genplanmos.ru/api/v1', {
@@ -211,6 +218,33 @@ if (tabletContainer) {
       return str;
     }
 
+    // форматтер для заполненности проекта
+    function fillerFormatter (value, row){
+      
+      let str = ''
+      if (value.description === true) {
+        str = str+ `<img class="aa-tablet__img"  src=${fillText} title="Описание и ТЭПы" alt="Описание и ТЭПы">`
+      } 
+
+      if (value.photos === true) {
+        str = str+ `<img class="aa-tablet__img"   src=${fillPhoto}  title="Фотографии" alt="Фотографии">`
+      }
+
+      if (value.presentations === true) {
+        str = str+`<img class="aa-tablet__img"   src=${fillPresentation}  title="Презентации" alt="Презентации">`
+      }
+      
+      if (value.renders === true) {
+        str = str+ `<img class="aa-tablet__img"   src=${fillRenders} title="Рендеры" alt="Рендеры">`
+      }
+
+      if (value.videos === true) {
+        str = str+ `<img class="aa-tablet__img"   src=${fillVideo} title="Видео"  alt="Видео">`
+      }
+
+      return str;
+    }
+
     // создание таблицы
     let $table = $('#table').bootstrapTable({ 
       data: projectData,
@@ -348,6 +382,17 @@ if (tabletContainer) {
           valign: 'middle',
           filterControl:'input', 
           formatter: objFormatter
+        },
+        {
+          field: 'fullness',
+          title: '',
+          searchable: false,
+          sortable: false,
+          width: '5',
+          widthUnit: '%',
+          align:'center',
+          valign: 'middle',
+          formatter: fillerFormatter
         }
       ] 
     });
@@ -393,7 +438,7 @@ if (mapBtn) {
             maxZoom: 17,
             baseLayers: [ 
               {
-                name: 'OpenStreetMap',
+                name: 'GenplanmosMap',
                 url: 'https://projectsmsk.genplanmos.ru/static/tileset/{z}/{x}/{y}.png',
                 options: {},
               },
@@ -456,7 +501,7 @@ if (filterBlock){
     })
    .catch(err => {console.log(`Что-то пошло не так. ${err}`)});  
 
-   
+
   // инициализация мозайки
   const initFilter= (data) => {
     const cardList = new Section ((item) => {
