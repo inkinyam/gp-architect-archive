@@ -64,15 +64,11 @@
     border-top-color: transparent !important;
   }
 
-  .aa-tablet__raiting {
-    font-size: 18px;
-    color: $primary-color-hovered;
-  }
 
   .aa-tablet__link {
     @include silly-link;
     color: $dark-color-default;
-    font-weight: 1024;
+    font-weight: 700;
     text-align: left;
 
     @media screen and (max-width: 1240px) {
@@ -91,9 +87,13 @@
     tbody {
       tr {
         &.selected {
-          background-color: rgba(31, 132, 233, 0.05);
+          background-color: rgb(235, 241, 248) !important;
+
+          .aa-tablet__cell-inner {
+            background-color: rgb(235, 241, 248) !important;
+          }
           &:hover {
-            box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.25);
+            box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
             @media screen  and (max-width: 1240px){
               box-shadow: none;
             }
@@ -101,8 +101,11 @@
         }
         
         &:hover {
+          box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
+          background-color: transparent;
           td {
-            background-color: rgb(230, 241, 252);
+            /* background-color: rgb(230, 241, 252); */
+            
             @media screen  and (max-width: 1240px){
               background-color: transparent;
             }
@@ -161,7 +164,7 @@
       margin: 0 0 25px 0;
       width: 100%;
       padding: 10px 0 0;
-      box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.15);
+      box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
       overflow: hidden;
       border-radius: 20px;
       display: flex;
@@ -208,12 +211,15 @@
 }  
 
 
-.aa-tablet__img {
-  display: inline-block;
-  opacity: 0.4;
-}
+
 .table-hover>tbody>tr:hover>* {
-  --bs-table-accent-bg:  rgb(230, 241, 252);
+  --bs-table-accent-bg:  rgba(255, 255, 255, 0);
+
+  .aa-tablet__cell-inner {
+    opacity: 1;
+    top: 0;
+    z-index: 2;
+  }
 
   @media screen and (max-width: 1240px) {
     --bs-table-accent-bg:  rgba(255, 255, 255, 0);
@@ -241,4 +247,60 @@
 
 .bootstrap-table .fixed-table-container .table thead th .desc {
    background-image: url(../../images/sortable.png);
+}
+
+
+.aa-tablet__img {
+  display: inline-block;
+  opacity: 0.4;
+  width: 16px;
+  max-height: 16px;
+  height: 100%;
+}
+
+.aa-tablet__cell {
+  display: flex;
+  flex-direction: row;
+  column-gap: 3px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 44px;
+}
+
+.aa-tablet__cell-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  z-index: -55;
+  top: -100%;
+  opacity: 0;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  column-gap: 3px;
+
+
+  .aa-tablet__cell-link {
+    @include silly-link;
+    display: block;
+    width: 25px;
+    height: 25px;
+
+
+    img {
+      @include transition;
+    }
+
+    &:hover {
+      img { 
+        opacity: 0.8;
+      }
+    }
+  }
 }

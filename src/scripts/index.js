@@ -26,6 +26,9 @@ import fillVideo from '../images/fill_video.svg';
 import fillText from '../images/fill_text.svg';
 import fillPresentation from '../images/fill_presentation.svg';
 import fillRenders from '../images/fill_render.svg';
+import iconPrintPdf from '../images/icon-pdf.png';
+import iconEdit from '../images/icon-edit.png';
+import iconOpenProject from '../images/icon-to-project.png';
 
 
 //cоздание экземпляра класса Api
@@ -218,32 +221,68 @@ if (tabletContainer) {
       return str;
     }
 
-    // форматтер для заполненности проекта
     function fillerFormatter (value, row){
+      let data = [];
       
-      let str = ''
-      if (value.description === true) {
-        str = str+ `<img class="aa-tablet__img"  src=${fillText} title="Описание и ТЭПы" alt="Описание и ТЭПы">`
-      } 
-
-      if (value.photos === true) {
-        str = str+ `<img class="aa-tablet__img"   src=${fillPhoto}  title="Фотографии" alt="Фотографии">`
+      for (let key in value) {
+        if (value[key] === true) {
+          data.push(key);
+        }
       }
 
-      if (value.presentations === true) {
-        str = str+`<img class="aa-tablet__img"   src=${fillPresentation}  title="Презентации" alt="Презентации">`
-      }
+      let result = ['<div class="aa-tablet__cell">']
+
+      data.forEach(item => {
+        switch (item) {
+          case "photos": result.push(` <img class="aa-tablet__img" src=${fillPhoto}  title="Фотографии" alt="Фотографии"> `); 
+            break;
+          case "description": result.push(` <img class="aa-tablet__img" src=${fillText} title="Описание и ТЭПы" alt="Описание и ТЭПы"> `); 
+            break;
+          case "renders": result.push(` <img class="aa-tablet__img" src=${fillRenders} title="Рендеры" alt="Рендеры"> `); 
+            break;
+          case "videos": result.push(` <img class="aa-tablet__img" src=${fillVideo} title="Видео"  alt="Видео"> `); 
+            break;
+          case "presentations": result.push(` <img class="aa-tablet__img" src=${fillPresentation}  title="Презентации" alt="Презентации"> `); 
+            break;
+        }
+      })
+      if (row._links.url_edit.href !== null){
+        result.push(`<div class="aa-tablet__cell-inner">
+                      <a class="aa-tablet__cell-link" href="#" target="_blank">
+                        <img src=${iconPrintPdf} alt="print to pdf" title="печать в пдф">
+                      </a>
+
+                      <a class="aa-tablet__cell-link" href=${row._links.url_frontend.href} target="_blank">
+                        <img src=${iconOpenProject} alt="open" title="открыть проект">
+                      </a>
+
+                      <a class="aa-tablet__cell-link" href=${row._links.url_edit.href} target="_blank">
+                        <img src=${iconEdit} alt="edit" title="редактировать проект">
+                      </a>
+                    </div>`
+                    )
+        } else {
+          result.push(`<div class="aa-tablet__cell-inner">
+                        <a class="aa-tablet__cell-link" href="#" target="_blank">
+                          <img src=${iconPrintPdf} alt="print to pdf" title="печать в пдф">
+                        </a>
+
+                        <a class="aa-tablet__cell-link" href=${row._links.url_frontend.href} target="_blank">
+                          <img src=${iconOpenProject} alt="open" title="открыть проект">
+                        </a>
+                      </div>`)
+        }
+      result.push('</div>')
       
-      if (value.renders === true) {
-        str = str+ `<img class="aa-tablet__img"   src=${fillRenders} title="Рендеры" alt="Рендеры">`
-      }
-
-      if (value.videos === true) {
-        str = str+ `<img class="aa-tablet__img"   src=${fillVideo} title="Видео"  alt="Видео">`
-      }
-
-      return str;
+      return result.join('');
     }
+
+    window.operateEvents = {
+      'mouseover .cell': function (e, value, row, index){
+        console.log('da'+ value);
+       },
+    }
+
 
     // создание таблицы
     let $table = $('#table').bootstrapTable({ 
@@ -328,7 +367,7 @@ if (tabletContainer) {
           title: 'Дата ввода',
           searchable: true,
           sortable: true,
-          width:'7',
+          width:'5',
           widthUnit: '%',
           align:'center',
           valign: 'middle',
@@ -351,7 +390,7 @@ if (tabletContainer) {
           title: 'Архзначимый',
           searchable: true,
           sortable: true,
-          width: '7',
+          width: '5',
           widthUnit: '%',
           align:'center',
           valign: 'middle',
@@ -388,11 +427,12 @@ if (tabletContainer) {
           title: '',
           searchable: false,
           sortable: false,
-          width: '5',
+          width: '6.5',
           widthUnit: '%',
           align:'center',
           valign: 'middle',
-          formatter: fillerFormatter
+          formatter: fillerFormatter,
+          events: operateEvents
         }
       ] 
     });
@@ -498,6 +538,7 @@ if (filterBlock){
   api.getAllProjects()
     .then((data) => {
       initFilter(data);
+      console.log(data)
     })
    .catch(err => {console.log(`Что-то пошло не так. ${err}`)});  
 
