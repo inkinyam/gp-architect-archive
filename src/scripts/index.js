@@ -20,12 +20,14 @@ import zoomIn from '../images/zoom-in-icon.svg';
 import zoomOut from '../images/zoom-out-icon.svg';
 import pin from '../images/pin2.png';
 
-//иконки для карты
+//иконки для таблицы
+//  заполненность
 import fillPhoto from '../images/fill_photo.svg';
 import fillVideo from '../images/fill_video.svg';
 import fillText from '../images/fill_text.svg';
 import fillPresentation from '../images/fill_presentation.svg';
 import fillRenders from '../images/fill_render.svg';
+//  действия с проектом
 import iconPrintPdf from '../images/icon-pdf.png';
 import iconEdit from '../images/icon-edit.png';
 import iconOpenProject from '../images/icon-to-project.png';
@@ -248,10 +250,10 @@ if (tabletContainer) {
       })
       if (row._links.url_edit.href !== null){
         result.push(`<div class="aa-tablet__cell-inner">
-                      <a class="aa-tablet__cell-link" href="#" >
+                      <a class="aa-tablet__cell-link" href=${row._links.url_pdf.href}>
                         <img src=${iconPrintPdf} alt="print to pdf" title="печать в пдф">
                       </a>
-                      <a class="aa-tablet__cell-link" href=${row._links.url_pdf.href} >
+                      <a class="aa-tablet__cell-link" href=${row._links.url_frontend.href} >
                         <img src=${iconOpenProject} alt="open" title="открыть проект">
                       </a>
                       <a class="aa-tablet__cell-link" href=${row._links.url_edit.href}>
