@@ -277,13 +277,6 @@ if (tabletContainer) {
       return result.join('');
     }
 
-    window.operateEvents = {
-      'mouseover .cell': function (e, value, row, index){
-        console.log('da'+ value);
-       },
-    }
-
-
     // создание таблицы
     let $table = $('#table').bootstrapTable({ 
       data: projectData,
@@ -538,7 +531,6 @@ if (filterBlock){
   api.getAllProjects()
     .then((data) => {
       initFilter(data);
-      console.log(data)
     })
    .catch(err => {console.log(`Что-то пошло не так. ${err}`)});  
 
