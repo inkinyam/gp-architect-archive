@@ -277,6 +277,7 @@ if (tabletContainer) {
       return result.join('');
     }
 
+
     // создание таблицы
     let $table = $('#table').bootstrapTable({ 
       data: projectData,
@@ -424,8 +425,7 @@ if (tabletContainer) {
           widthUnit: '%',
           align:'center',
           valign: 'middle',
-          formatter: fillerFormatter,
-          events: operateEvents
+          formatter: fillerFormatter
         }
       ] 
     });
