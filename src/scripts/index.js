@@ -234,40 +234,37 @@ if (tabletContainer) {
 
       data.forEach(item => {
         switch (item) {
-          case "photos": result.push(` <img class="aa-tablet__img" src=${fillPhoto}  title="Фотографии" alt="Фотографии"> `); 
+          case "photos": result.push(`<img class="aa-tablet__img" src=${fillPhoto}  title="Фотографии" alt="Фотографии">`); 
             break;
-          case "description": result.push(` <img class="aa-tablet__img" src=${fillText} title="Описание и ТЭПы" alt="Описание и ТЭПы"> `); 
+          case "description": result.push(`<img class="aa-tablet__img" src=${fillText} title="Описание и ТЭПы" alt="Описание и ТЭПы">`); 
             break;
-          case "renders": result.push(` <img class="aa-tablet__img" src=${fillRenders} title="Рендеры" alt="Рендеры"> `); 
+          case "renders": result.push(`<img class="aa-tablet__img" src=${fillRenders} title="Рендеры" alt="Рендеры">`); 
             break;
-          case "videos": result.push(` <img class="aa-tablet__img" src=${fillVideo} title="Видео"  alt="Видео"> `); 
+          case "videos": result.push(`<img class="aa-tablet__img" src=${fillVideo} title="Видео"  alt="Видео">`); 
             break;
-          case "presentations": result.push(` <img class="aa-tablet__img" src=${fillPresentation}  title="Презентации" alt="Презентации"> `); 
+          case "presentations": result.push(`<img class="aa-tablet__img" src=${fillPresentation}  title="Презентации" alt="Презентации">`); 
             break;
         }
       })
       if (row._links.url_edit.href !== null){
         result.push(`<div class="aa-tablet__cell-inner">
-                      <a class="aa-tablet__cell-link" href="#" target="_blank">
+                      <a class="aa-tablet__cell-link" href="#" >
                         <img src=${iconPrintPdf} alt="print to pdf" title="печать в пдф">
                       </a>
-
-                      <a class="aa-tablet__cell-link" href=${row._links.url_frontend.href} target="_blank">
+                      <a class="aa-tablet__cell-link" href=${row._links.url_pdf.href} >
                         <img src=${iconOpenProject} alt="open" title="открыть проект">
                       </a>
-
-                      <a class="aa-tablet__cell-link" href=${row._links.url_edit.href} target="_blank">
+                      <a class="aa-tablet__cell-link" href=${row._links.url_edit.href}>
                         <img src=${iconEdit} alt="edit" title="редактировать проект">
                       </a>
                     </div>`
                     )
         } else {
           result.push(`<div class="aa-tablet__cell-inner">
-                        <a class="aa-tablet__cell-link" href="#" target="_blank">
+                        <a class="aa-tablet__cell-link" href=${row._links.url_pdf.href}>
                           <img src=${iconPrintPdf} alt="print to pdf" title="печать в пдф">
                         </a>
-
-                        <a class="aa-tablet__cell-link" href=${row._links.url_frontend.href} target="_blank">
+                        <a class="aa-tablet__cell-link" href=${row._links.url_frontend.href} >
                           <img src=${iconOpenProject} alt="open" title="открыть проект">
                         </a>
                       </div>`)
@@ -276,7 +273,6 @@ if (tabletContainer) {
       
       return result.join('');
     }
-
 
     // создание таблицы
     let $table = $('#table').bootstrapTable({ 
