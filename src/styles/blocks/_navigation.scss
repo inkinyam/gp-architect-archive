@@ -210,6 +210,22 @@
 
   }
 
+  .navigation__print-button {
+    @include button;
+    @include transition;
+    display: none;
+    text-transform: unset;
+    margin-left: auto;
+    &:hover {
+      background-color: $primary-color-onclick;
+    }
+
+    &.active {
+      display: flex;
+    }
+
+  }
+
   @media screen and (max-width: $tablet) {
     flex-wrap: wrap;
     padding: 0 40px;

@@ -54,6 +54,7 @@ if (presentTab) {
   new Tabs('.representation-tabs').init();
 }
 
+
 // слайдер на стр.проекта
 const sliderBlock = document.getElementById("main-slider");
 if (sliderBlock) {
@@ -578,3 +579,24 @@ if (passwordField) {
       })
     }
 }
+
+// страница печати пдф
+
+let printBlock = document.querySelector('.print');
+if (printBlock) {
+  let pictureTabs = printBlock.querySelector('.pictures-tabs');
+  let inputs = Array.from(printBlock.querySelectorAll('.template__input '));
+  
+  inputs.forEach(item => {
+    item.addEventListener('change', e => {
+      e.preventDefault();
+      if (item.checked === true) {
+        pictureTabs.classList.add('active');
+      }
+    })
+  })
+
+
+  new Tabs('.pictures-tabs').init();
+}
+

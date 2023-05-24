@@ -9,7 +9,6 @@
   }
 }
 
-
 .tabs__links {
   display: flex;
   flex-direction: row;
@@ -119,4 +118,30 @@
 
 .tabs ~ .pagination  {
   margin-bottom: 80px;
+}
+
+.pictures-tabs {
+  max-width: 100%;
+  margin-top: 70px;
+  display: none;
+
+  &.active {
+    display: flex;
+  }
+
+  .tabs__nav {
+    border-bottom: 1px solid #a7a6b5;
+    margin-bottom: 30px;
+  }
+
+  .tabs__nav-btn {
+    height: 54px;
+
+    &.tabs__nav-btn_active {
+      background-color: #E8F1FC;
+      &::after {
+        display: none;
+       } 
+    }
+  }
 }
