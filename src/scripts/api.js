@@ -36,4 +36,11 @@ export default class Api {
     .then (res => {return this._checkRes(res)})
   }
 
+  getExpandProject(id) {
+    return fetch (`${this.baseUrl}/project/projects/${id}/?expand=photos,renders`, {
+      headers: this.headers
+    })
+    .then (res => {return this._checkRes(res)})
+  }
+
 }

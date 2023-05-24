@@ -105,11 +105,16 @@
 
     &:hover {
       transform: translateY(-2px);
+      --shadow-color: 0deg 0% 59%;
+      box-shadow: 
+      0.4px 0.9px 1.1px hsl(var(--shadow-color) / 0.4),
+      1.3px 3.2px 3.9px -0.8px hsl(var(--shadow-color) / 0.4),
+      3.3px 8px 9.7px -1.7px hsl(var(--shadow-color) / 0.4),
+      8px 19.5px 23.7px -2.5px hsl(var(--shadow-color) / 0.4);
       p {
         color: $primary-color-hovered;
       }
     }
-
   }
 
 

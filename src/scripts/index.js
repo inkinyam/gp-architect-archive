@@ -76,16 +76,6 @@ if (sliderBlock) {
   new Carousel(sliderBlock, options, { Autoplay });
 }
 
-const printButton = document.querySelector('.navigation__open-variants');
-if (printButton) {
-  let printVariants = document.querySelector('.navigation__nav-print-variants');
-
-  printButton.addEventListener('click', () => {
-    printButton.classList.toggle('active');
-    printVariants.classList.toggle('active');
-  })
-
-}
 
 const showmoreButton = document.querySelector('.lead__showmore');
 if (showmoreButton) {
@@ -175,11 +165,11 @@ if (tabletContainer) {
 
     // рейтинг в звездочки
     function raitingFormatter(value) {
-    let str = '';
-      for (let i=0; i<value; i++){
-      str = str + '★';
-    }
-    return '<p style="color: #106CD1">'+ str + '</p>'
+      let str = '';
+        for (let i=0; i<value; i++){
+        str = str + '★';
+      }
+      return '<p style="color: #106CD1">'+ str + '</p>'
     }
 
     // ссылка в название проекта
@@ -581,22 +571,38 @@ if (passwordField) {
 }
 
 // страница печати пдф
+const printButton = document.querySelector('.navigation__open-variants');
+if (printButton) {
+  let printVariants = document.querySelector('.navigation__nav-print-variants');
 
-let printBlock = document.querySelector('.print');
-if (printBlock) {
-  let pictureTabs = printBlock.querySelector('.pictures-tabs');
-  let inputs = Array.from(printBlock.querySelectorAll('.template__input '));
-  
-  inputs.forEach(item => {
-    item.addEventListener('change', e => {
-      e.preventDefault();
-      if (item.checked === true) {
-        pictureTabs.classList.add('active');
-      }
-    })
+  printButton.addEventListener('click', () => {
+    printButton.classList.toggle('active');
+    printVariants.classList.toggle('active');
   })
 
+}
 
-  new Tabs('.pictures-tabs').init();
+import PrintPageToPDF from './print';
+let printBlock = document.querySelector('.print');
+if (printBlock) {
+
+  let address = window.location.href;
+  let id='';
+  if (address.startsWith('https://projectsmsk.genplanmos.ru/project/')) {
+    id = address.replace('https://projectsmsk.genplanmos.ru/project/', '').split('/')[0];
+  } else {
+    id = '1';
+  }
+
+  api.getExpandProject(id)
+  .then((data) => {
+    let printer = new PrintPageToPDF('.print', data);
+    printer.init();
+  })
+  /* .catch(err => {console.log(`Что-то пошло не так. ${err}`)}); */
+ 
+ 
+
+
 }
 
