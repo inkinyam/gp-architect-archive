@@ -64,9 +64,9 @@
           <li class="template ">
             <input type="radio" class="template__input simple" name="template" id="simple">
             <label for="simple" class="template__block">
-              <span class="left-top"></span>
-              <span class="left-bottom"></span>
-              <span class="right-top"></span>
+              <span class="left-top counter active"> 1</span>
+              <span class="left-bottom counter active">2</span>
+              <span class="right-top counter"></span>
               <span class="right-bottom"></span>
               <p>Простой шаблон</p>
             </label>
@@ -74,9 +74,9 @@
           <li class="template">            
             <input type="radio"  class="template__input complex" name="template" id="complex">
             <label for="complex" class="template__block">
-              <span class="left-top"></span>
-              <span class="left-bottom"></span>
-              <span class="right-top"></span>
+              <span class="left-top counter"></span>
+              <span class="left-bottom counter"></span>
+              <span class="right-top counter"></span>
               <span class="right-bottom"></span>
               <span class="arrows">
                 <span class="arrow"></span>
@@ -91,37 +91,36 @@
             <input type="radio"  class="template__input singleimg" name="template" id="singleimg">
             <label for="singleimg" class="template__block">
               <span class="top"></span>
-              <span class="bottom"></span>
+              <span class="bottom counter"></span>
               <p>Одна картинка на слайд</p>
             </label>
           </li>
        </ul> 
 
-       <div class="tabs pictures-tabs">
-       
-          <ul class="tabs__nav"> 
-            <li class="tabs__nav-item">
-              <a class="tabs__nav-btn" type="button" href="#photos">
-                Фото
-              </a>
-            </li>
-            <li class="tabs__nav-item">
-              <a class="tabs__nav-btn" type="button" href="#renders">
-                Рендеры
-              </a>
-            </li>
-          </ul>
+      <div class="tabs pictures-tabs">
+        <ul class="tabs__nav"> 
+          <li class="tabs__nav-item">
+            <a class="tabs__nav-btn" type="button" href="#photos">
+              Фото
+            </a>
+          </li>
+          <li class="tabs__nav-item">
+            <a class="tabs__nav-btn" type="button" href="#renders">
+              Рендеры
+            </a>
+          </li>
+        </ul>
 
-          <div class="tabs__content">
-            <div class="tabs__panel" data-tab-name="photos">
+        <div class="tabs__content">
+          <div class="tabs__panel" data-tab-name="photos">
               <ul class="pictures">
-                <li class="pictures__block">
+                <li class="pictures__block active">
                   <img class="pictures__img" src="<%=require('../images/test-photo.png')%>">
-                  <span class="picture__control"></span>
+                  <span class="picture__control">1</span>
                 </li>
-                <li class="pictures__block">
+                <li class="pictures__block active">
                   <img class="pictures__img" src="<%=require('../images/test-photo.png')%>">
-                  <span class="picture__control"></span>
+                  <span class="picture__control">2</span>
                 </li>
                 <li class="pictures__block">
                   <img class="pictures__img" src="<%=require('../images/test-photo.png')%>">
@@ -144,22 +143,22 @@
                   <span class="picture__control"></span>
                 </li>
               </ul>
-              </div>
-            </div> 
-            <div class="tabs__panel" data-tab-name="renders">
-              <ul class="pictures">
-                <li class="pictures__block">
-                  <img class="pictures__img" src="<%=require('../images/main-photo-2.jpg')%>">
-                  <span class="picture__control"></span>
-                </li>
-                <li class="pictures__block">
-                  <img class="pictures__img" src="<%=require('../images/main-photo-2.jpg')%>">
-                  <span class="picture__control"></span>
-                </li>
-                
-              </ul>
-            </div> 
           </div>
+       
+          <div class="tabs__panel" data-tab-name="renders">
+              <ul class="pictures">
+                <li class="pictures__block">
+                  <img class="pictures__img" src="<%=require('../images/main-photo-2.jpg')%>">
+                  <span class="picture__control"></span>
+                </li>
+                <li class="pictures__block">
+                  <img class="pictures__img" src="<%=require('../images/main-photo-2.jpg')%>">
+                  <span class="picture__control"></span>
+                </li>
+              </ul>
+          </div> 
+        </div>
+      </div>
     </section>
     
   </main>

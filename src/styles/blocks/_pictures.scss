@@ -31,6 +31,17 @@
         background-color: #EDF4FD;
       }
     }
+
+    &.active {
+      &:before {
+        background-color: rgba(232, 241, 252, 0.7);
+      }  
+
+      .picture__control {
+        background-color: $primary-color-hovered;
+
+      }
+    }
   }
 
   .pictures__img {
@@ -42,15 +53,20 @@
   }
 
   .picture__control {
+    @include circe-lowercase;
     @include transition;
+    @include silly-link;
     position: absolute;
     width: 32px;
     height: 32px;
     right: 10px;
     top: 10px;
-    color: white;
+    color: #EDF4FD;
     background-color: transparent;
     border-radius: 50%;
     z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
