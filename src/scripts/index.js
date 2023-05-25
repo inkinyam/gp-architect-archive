@@ -538,12 +538,12 @@ if (filterBlock){
     }
 
     let block = new Filter('.filters', 
-                          '.filter-tags', 
-                          { data, 
-                            renderMosaicCardList: (data)=> {
-                              cardList.renderItems(data);
-                            }
-                          });
+                           '.filter-tags', 
+                           { data, 
+                             renderMosaicCardList: (data)=> {
+                               cardList.renderItems(data);
+                             }
+                           });
     return block;
   }
 }
@@ -597,6 +597,7 @@ if (printBlock) {
   api.getExpandProject(id)
   .then((data) => {
     let printer = new PrintPageToPDF('.print', data);
+
     printer.init();
   })
   /* .catch(err => {console.log(`Что-то пошло не так. ${err}`)}); */

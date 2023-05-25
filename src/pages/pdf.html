@@ -64,8 +64,8 @@
           <li class="template ">
             <input type="radio" class="template__input simple" name="template" id="simple">
             <label for="simple" class="template__block">
-              <span class="left-top counter active"> 1</span>
-              <span class="left-bottom counter active">2</span>
+              <span class="left-top counter "></span>
+              <span class="left-bottom counter "></span>
               <span class="right-top counter"></span>
               <span class="right-bottom"></span>
               <p>Простой шаблон</p>
@@ -113,48 +113,57 @@
 
         <div class="tabs__content">
           <div class="tabs__panel" data-tab-name="photos">
-              <ul class="pictures">
-                <li class="pictures__block active">
-                  <img class="pictures__img" src="<%=require('../images/test-photo.png')%>">
-                  <span class="picture__control">1</span>
-                </li>
-                <li class="pictures__block active">
-                  <img class="pictures__img" src="<%=require('../images/test-photo.png')%>">
-                  <span class="picture__control">2</span>
-                </li>
-                <li class="pictures__block">
-                  <img class="pictures__img" src="<%=require('../images/test-photo.png')%>">
+              <ul class="pictures photoblock">
+
+                <li class="pictures__block" data-id="123" data-type="photo">
+                  <img class="pictures__img" src="<%=require('../images/mosaic (1).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
-                <li class="pictures__block">
-                  <img class="pictures__img" src="<%=require('../images/test-photo.png')%>">
+
+                <li class="pictures__block" data-id="124" data-type="photo">
+                  <img class="pictures__img" src="<%=require('../images/mosaic (1).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
-                <li class="pictures__block">
-                  <img class="pictures__img" src="<%=require('../images/test-photo.png')%>">
+
+                <li class="pictures__block" data-id="125" data-type="photo">
+                  <img class="pictures__img" src="<%=require('../images/mosaic (1).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
-                <li class="pictures__block">
-                  <img class="pictures__img" src="<%=require('../images/test-photo.png')%>">
+
+                <li class="pictures__block" data-id="126" data-type="photo">
+                  <img class="pictures__img" src="<%=require('../images/mosaic (1).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
-                <li class="pictures__block">
-                  <img class="pictures__img" src="<%=require('../images/test-photo.png')%>">
+
+                <li class="pictures__block" data-id="127" data-type="photo">
+                  <img class="pictures__img" src="<%=require('../images/mosaic (1).png')%>" alt="1">
+                  <span class="picture__control"></span>
+                </li>
+
+                <li class="pictures__block" data-id="128" data-type="photo">
+                  <img class="pictures__img" src="<%=require('../images/mosaic (1).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
               </ul>
           </div>
        
           <div class="tabs__panel" data-tab-name="renders">
-              <ul class="pictures">
-                <li class="pictures__block">
-                  <img class="pictures__img" src="<%=require('../images/main-photo-2.jpg')%>">
+              <ul class="pictures renderblock">
+                <li class="pictures__block" data-id="127" data-type="render">
+                  <img class="pictures__img" src="<%=require('../images/mosaic (2).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
-                <li class="pictures__block">
-                  <img class="pictures__img" src="<%=require('../images/main-photo-2.jpg')%>">
+
+                <li class="pictures__block" data-id="125" data-type="render">
+                  <img class="pictures__img" src="<%=require('../images/mosaic (2).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
+
+                <li class="pictures__block" data-id="126" data-type="render">
+                  <img class="pictures__img" src="<%=require('../images/mosaic (2).png')%>" alt="1">
+                  <span class="picture__control"></span>
+                </li>
+
               </ul>
           </div> 
         </div>
@@ -183,4 +192,12 @@
     </div>
   </footer>
 </body>
+
+
+<template class="picture_element">
+  <li class="pictures__block">
+    <img class="pictures__img" src="" alt="">
+    <span class="picture__control"></span>
+  </li>
+</template>
 </html>
