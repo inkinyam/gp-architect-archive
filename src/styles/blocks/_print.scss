@@ -117,8 +117,6 @@
     }
   }
 
-
-
   .simple~.template__block {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -237,5 +235,12 @@
       grid-row: 2;
       grid-column: 1;
     }
+  }
+}
+
+
+.print {
+  .tabs__nav {
+    justify-content: flex-start;
   }
 }

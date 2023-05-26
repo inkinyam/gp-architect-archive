@@ -210,19 +210,25 @@
 
   }
 
+  .navigation__print-form {
+    margin-left: auto;   
+    display: none;
+    
+    &.active {
+      display: flex;
+    }
+  }
+
   .navigation__print-button {
     @include button;
     @include transition;
-    display: none;
+
     text-transform: unset;
-    margin-left: auto;
+
     &:hover {
       background-color: $primary-color-onclick;
     }
 
-    &.active {
-      display: flex;
-    }
 
   }
 

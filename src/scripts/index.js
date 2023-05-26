@@ -34,7 +34,7 @@ import iconOpenProject from '../images/icon-to-project.png';
 
 
 //cоздание экземпляра класса Api
-const api = new Api ('https://projectsmsk.genplanmos.ru/api/v1', {
+const api = new Api ('https://projectsmsk.genplanmos.ru', {
   headers: {
     'Content-Type': 'application/json'
   }
@@ -596,7 +596,9 @@ if (printBlock) {
 
   api.getExpandProject(id)
   .then((data) => {
-    let printer = new PrintPageToPDF('.print', data);
+    let printer = new PrintPageToPDF('.print', 
+                                     { data, 
+                                       sendToPrint: (info) => api.sendQueryForPrint(info, id).then(() => console.log('ura')).catch(err => console.log(err)) });
 
     printer.init();
   })
