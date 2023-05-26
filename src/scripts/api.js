@@ -53,7 +53,7 @@ export default class Api {
       method: 'POST',
       body: params
     })
-    .then (res => {return this._checkRes(res)})
+    .then (res => {return res})
   }
 
 }

@@ -104,7 +104,7 @@ class PrintPageToPDF {
 
   handleSubmitForm () {
     this.printQuery = {
-      template: this.selectedTemplate.id,
+      template: this.selectedTemplate.getAttribute('data-type'),
       images: this.selectedImg
     }
     this.sendToPrint(this.printQuery);
@@ -117,11 +117,11 @@ class PrintPageToPDF {
     this._addEventListenerToTemplates();
     new Tabs('.pictures-tabs').init();
     this._addListenersToPictures(this.photos);
+
     this.form.addEventListener('submit', (e)=>{ 
       e.preventDefault();
-      this.handleSubmitForm();
-      
-   })
+          this.handleSubmitForm();
+    })
   }
 }
 

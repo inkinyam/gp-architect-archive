@@ -598,7 +598,15 @@ if (printBlock) {
   .then((data) => {
     let printer = new PrintPageToPDF('.print', 
                                      { data, 
-                                       sendToPrint: (info) => api.sendQueryForPrint(info, id).then(() => console.log('ura')).catch(err => console.log(err)) });
+                                       sendToPrint: (info) => api.sendQueryForPrint(info, id)
+                                                                 .then((res) => {
+                                                                    let blob = new Blob([res.body]);
+                                                                    let link = document.createElement('a');
+                                                                    link.href = window.URL.createObjectURL(blob);
+                                                                    window.open(link);
+
+                                                                 })
+                                                                 .catch(err => console.log(err)) });
 
     printer.init();
   })
