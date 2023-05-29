@@ -217,6 +217,10 @@
     &.active {
       display: flex;
     }
+
+    .navigation__print-query {
+      display: none;
+    }
   }
 
   .navigation__print-button {

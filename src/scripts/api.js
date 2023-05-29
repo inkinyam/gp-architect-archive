@@ -42,12 +42,16 @@ export default class Api {
     })
     .then (res => {return this._checkRes(res)})
   }
-
+/* 
   sendQueryForPrint (data, id) {
     let params = new URLSearchParams();
     params.append('template', data.template);
-    params.append('images', data.images);
 
+    data.images.forEach((item, inx) => {
+      params.append(`images[`+inx+`[type]`, item.type);
+      params.append(`images[`+inx+`[id]`,   item.id);
+    })
+   
     return fetch (`${this.baseUrl}/project/${id}/pdf/generate/`, {
       headers: this.headers,
       method: 'POST',
@@ -55,5 +59,5 @@ export default class Api {
     })
     .then (res => {return res})
   }
-
+ */
 }

@@ -54,9 +54,10 @@
         </a>
       </div>
 
-      <form class="navigation__print-form " target="_blank" >
+      <form class="navigation__print-form " target="_blank" action="/project/2/pdf/generate/">
+        <fieldset class="navigation__print-query"></fieldset>
         <button type="submit" href="#" class="navigation__print-button ">Создать PDF</button>
-        </form>
+      </form>
     </nav>
 
     <section class="print">
@@ -64,7 +65,7 @@
 
        <ul class="print__templates">
           <li class="template ">
-            <input type="radio" class="template__input simple" name="template" id="simple" data-type="1">
+            <input type="radio" class="template__input simple" name="template" id="simple" data-type="template-1">
             <label for="simple" class="template__block">
               <span class="left-top counter "></span>
               <span class="left-bottom counter "></span>
@@ -74,7 +75,7 @@
             </label>
           </li>
           <li class="template">            
-            <input type="radio"  class="template__input complex" name="template" id="complex" data-type="2">
+            <input type="radio"  class="template__input complex" name="template" id="complex" data-type="template-2">
             <label for="complex" class="template__block">
               <span class="left-top counter"></span>
               <span class="left-bottom counter"></span>
@@ -90,7 +91,7 @@
         
           </li>
           <li class="template">
-            <input type="radio"  class="template__input singleimg" name="template" id="singleimg" data-type="3">
+            <input type="radio"  class="template__input singleimg" name="template" id="singleimg" data-type="template-3">
             <label for="singleimg" class="template__block">
               <span class="top"></span>
               <span class="bottom counter"></span>
@@ -196,10 +197,4 @@
 </body>
 
 
-<template class="picture_element">
-  <li class="pictures__block">
-    <img class="pictures__img" src="" alt="">
-    <span class="picture__control"></span>
-  </li>
-</template>
 </html>

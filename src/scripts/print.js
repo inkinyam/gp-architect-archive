@@ -1,7 +1,7 @@
 import Tabs from "./LinkedTabs";
 
 class PrintPageToPDF {
-  constructor (selector,{ data, sendToPrint}) {
+  constructor (selector) {
     this.block = document.querySelector(selector);
     this.tabs = this.block.querySelector('.pictures-tabs');
     this.templates = Array.from(this.block.querySelectorAll('.template__input'));
@@ -9,10 +9,9 @@ class PrintPageToPDF {
     this.photos = Array.from(this.block.querySelectorAll('.pictures__block'));
     
     this.form = document.querySelector('.navigation__print-form');
-    this.data = data;
+    this.printQuery = this.form.querySelector('.navigation__print-query');
+
     this.pictureCounter = 0;
-    
-    this.sendToPrint = sendToPrint;
     this.selectedImg = [];
   }
 
@@ -103,11 +102,28 @@ class PrintPageToPDF {
   }
 
   handleSubmitForm () {
-    this.printQuery = {
-      template: this.selectedTemplate.getAttribute('data-type'),
-      images: this.selectedImg
-    }
-    this.sendToPrint(this.printQuery);
+
+    this.printQuery.textContent='';
+
+    let input = document.createElement('input');
+    input.name = 'template';
+    input.value = this.selectedTemplate.getAttribute('data-type');
+    this.printQuery.append(input);
+
+    this.selectedImg.forEach((item,indx) => {
+      let inputType   = document.createElement('input');
+      inputType.type  = 'text';
+      inputType.name  = `images[${indx}][type]`;
+      inputType.value = item.type;
+
+      let inputId   = document.createElement('input');
+      inputId.type  = 'text';
+      inputId.name  = `images[${indx}][id]`;
+      inputId.value = item.id;
+
+      this.printQuery.append(inputType);
+      this.printQuery.append(inputId);
+    })
   }
 
 
@@ -119,8 +135,7 @@ class PrintPageToPDF {
     this._addListenersToPictures(this.photos);
 
     this.form.addEventListener('submit', (e)=>{ 
-      e.preventDefault();
-          this.handleSubmitForm();
+      this.handleSubmitForm();
     })
   }
 }

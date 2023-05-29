@@ -522,7 +522,7 @@ if (filterBlock){
     .then((data) => {
       initFilter(data);
     })
-/*    .catch(err => {console.log(`Что-то пошло не так. ${err}`)});   */
+    .catch(err => {console.log(`Что-то пошло не так. ${err}`)});   
 
 
   // инициализация мозайки
@@ -580,41 +580,11 @@ if (printButton) {
     printButton.classList.toggle('active');
     printVariants.classList.toggle('active');
   })
-
 }
 
 import PrintPageToPDF from './print';
 let printBlock = document.querySelector('.print');
 if (printBlock) {
-
-  let address = window.location.href;
-  let id='';
-  if (address.startsWith('https://projectsmsk.genplanmos.ru/project/')) {
-    id = address.replace('https://projectsmsk.genplanmos.ru/project/', '').split('/')[0];
-  } else {
-    id = '1';
-  }
-
-  api.getExpandProject(id)
-  .then((data) => {
-    let printer = new PrintPageToPDF('.print', 
-                                     { data, 
-                                       sendToPrint: (info) => api.sendQueryForPrint(info, id)
-                                                                 .then((res) => {
-                                                                    let blob = new Blob([res.body]);
-                                                                    let link = document.createElement('a');
-                                                                    link.href = window.URL.createObjectURL(blob);
-                                                                    window.open(link);
-
-                                                                 })
-                                                                 .catch(err => console.log(err)) });
-
+  let printer = new PrintPageToPDF('.print')
     printer.init();
-  })
-  /* .catch(err => {console.log(`Что-то пошло не так. ${err}`)}); */
- 
- 
-
-
-}
-
+  }
