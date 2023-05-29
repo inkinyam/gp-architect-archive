@@ -107,17 +107,18 @@ class PrintPageToPDF {
 
     let input = document.createElement('input');
     input.name = 'template';
+    input.type  = 'hidden';
     input.value = this.selectedTemplate.getAttribute('data-type');
     this.printQuery.append(input);
 
     this.selectedImg.forEach((item,indx) => {
       let inputType   = document.createElement('input');
-      inputType.type  = 'text';
+      inputType.type  = 'hidden';
       inputType.name  = `images[${indx}][type]`;
       inputType.value = item.type;
 
       let inputId   = document.createElement('input');
-      inputId.type  = 'text';
+      inputId.type  = 'hidden';
       inputId.name  = `images[${indx}][id]`;
       inputId.value = item.id;
 
