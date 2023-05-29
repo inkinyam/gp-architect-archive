@@ -23,6 +23,8 @@ class PrintPageToPDF {
           if (item.checked === true) {
             this.tabs.classList.add('active');
             this.selectedTemplate = item;
+
+            this._fillTemplates();
           }
         })
       })
@@ -76,37 +78,83 @@ class PrintPageToPDF {
     })
   }
 
-  _fillTemplates(){
+  // заполнение "окошек" в темплейте по мере выбирания фоток и отображением количества фоток
+  _fillTemplates () {
     let counterBlock = this.selectedTemplate.nextElementSibling;
     let counters = Array.from(counterBlock.querySelectorAll('.counter'));
-  
-    let counterIndex = 0;
 
-    for (let i = 0; i < this.selectedImg.length; i++) {
-      counters[counterIndex].textContent = i+1;
-      if( !counters[counterIndex].classList.contains('active')) {
-        counters[counterIndex].classList.add('active');
+    // пока выбранных фоток меньше или равно количеству "окошек" в шаблоне
+    if (this.selectedImg.length <= counters.length) {
+      counters.forEach(item => {
+        item.textContent ='';
+        item.classList.remove('active');
+      })
+      
+      for (let i =0; i<this.selectedImg.length; i++) {
+
+
+        counters[i].textContent = i+1;
+        if (!counters[i].classList.contains('active')) {
+          counters[i].classList.add('active');
+        }
       }
-      counterIndex++;
-      if (counterIndex === counters.length) {
-        counterIndex = 0;
+    } 
+    // если выбранных фоток больше, чем "окошек" в шаблоне
+    else if (this.selectedImg.length > counters.length) {
+      let result = this.selectedImg.length%counters.length;
+
+      if (result != 0) {
+        
+        counters.forEach(item => {
+          item.textContent ='';
+          item.classList.remove('active');
+        })
+
+        let number = this.selectedImg.length - result+1;
+        for (let i=0; i<result; i++) {
+        
+          counters[i].textContent = number;
+          if (!counters[i].classList.contains('active')) {
+            counters[i].classList.add('active');
+          }
+          number++;
+        }
+
+      } else {
+        let number = this.selectedImg.length-counters.length+1;
+        for (let i=0; i<counters.length; i++) {
+        
+          counters[i].textContent = number;
+          if (!counters[i].classList.contains('active')) {
+            counters[i].classList.add('active');
+          }
+          number++;
+        }
       }
-    }
-    while (counterIndex < counters.length) {
-      counters[counterIndex].textContent = '';
-      if (counters[counterIndex].classList.contains('active')) {
-        counters[counterIndex].classList.remove('active');
-      }
-      counterIndex++;
+
+      
+
+     
+
+      
+      
+      
     }
   }
 
+  counter (bigArr, smalArr) {
+    let roundCount = 0;
+    if (bigArr.length - smalArr.length > 0) {
+      roundCount ++;
+      this.counter;
+    }
+    return roundCount;
+  }
+
   handleSubmitForm () {
-
     this.printQuery.textContent='';
-
-    let input = document.createElement('input');
-    input.name = 'template';
+    let input   = document.createElement('input');
+    input.name  = 'template';
     input.type  = 'hidden';
     input.value = this.selectedTemplate.getAttribute('data-type');
     this.printQuery.append(input);
@@ -128,14 +176,12 @@ class PrintPageToPDF {
   }
 
 
- 
-
   init (){
     this._addEventListenerToTemplates();
     new Tabs('.pictures-tabs').init();
     this._addListenersToPictures(this.photos);
 
-    this.form.addEventListener('submit', (e)=>{ 
+    this.form.addEventListener('submit', ()=>{ 
       this.handleSubmitForm();
     })
   }
