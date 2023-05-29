@@ -447,10 +447,11 @@ if (mapBtn) {
             attributionControl : false,
             zoomControl: true,
             keyboard: false,
-            zoom: 13,
+            zoom: 11,
             scrollWheelZoom: false,
             center: [55.753214, 37.623054],
             tap: false,
+            maxBounds: [[56.073150, 36.214289], [55.079306, 38.852788]],
             zoomControl:false,
             fullscreenControl: false,
             clickFitBounds: false,
@@ -521,7 +522,7 @@ if (filterBlock){
     .then((data) => {
       initFilter(data);
     })
-   .catch(err => {console.log(`Что-то пошло не так. ${err}`)});  
+/*    .catch(err => {console.log(`Что-то пошло не так. ${err}`)});   */
 
 
   // инициализация мозайки
