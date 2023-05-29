@@ -28,22 +28,16 @@
   <main class="main">
     <nav class="navigation">
       <div class="navigation__leftblock"><a href="../index.html" class="navigation__back"><img src="images/arrow-back.png" alt="стрелка назад"> ЖК "Бадаевский"</a></div>
-      <form class="navigation__print-form" target="_blank" action="/project/2/pdf/generate/">
-        <fieldset class="navigation__print-query"></fieldset><button type="submit" href="#" class="navigation__print-button">Создать PDF</button>
+      <form class="navigation__print-form" target="_blank" action="/project/2/pdf/generate/" method="post">
+        <fieldset class="navigation__print-query"></fieldset><button type="submit" class="navigation__print-button">Создать PDF</button>
       </form>
     </nav>
     <section class="print">
       <h2 class="print__title">Выберите шаблон</h2>
       <ul class="print__templates">
-        <li class="template"><input type="radio" class="template__input simple" name="template" id="simple" data-type="template-1"> <label for="simple" class="template__block"><span class="left-top counter"></span> <span class="left-bottom counter"></span> <span class="right-top counter"></span> <span class="right-bottom"></span>
-            <p>Простой шаблон</p>
-          </label></li>
-        <li class="template"><input type="radio" class="template__input complex" name="template" id="complex" data-type="template-2"> <label for="complex" class="template__block"><span class="left-top counter"></span> <span class="left-bottom counter"></span> <span class="right-top counter"></span> <span class="right-bottom"></span> <span class="arrows"><span class="arrow"></span> <span class="arrow"></span> </span><span class="right"></span>
-            <p>Шаблон для Стройкомплекса</p>
-          </label></li>
-        <li class="template"><input type="radio" class="template__input singleimg" name="template" id="singleimg" data-type="template-3"> <label for="singleimg" class="template__block"><span class="top"></span> <span class="bottom counter"></span>
-            <p>Одна картинка на слайд</p>
-          </label></li>
+        <li class="template"><input type="radio" class="template__input simple" name="template" id="simple" data-type="template-1"> <label for="simple" class="template__block"><span class="left-top counter"></span> <span class="left-bottom counter"></span> <span class="right-top counter"></span> <span class="right-bottom"></span> <span class="template__block-text">Простой шаблон</span></label></li>
+        <li class="template"><input type="radio" class="template__input complex" name="template" id="complex" data-type="template-2"> <label for="complex" class="template__block"><span class="left-top counter"></span> <span class="left-bottom counter"></span> <span class="right-top counter"></span> <span class="right-bottom"></span> <span class="arrows"><span class="arrow"></span> <span class="arrow"></span> </span><span class="right"></span> <span class="template__block-text">Шаблон для Стройкомплекса</span></label></li>
+        <li class="template"><input type="radio" class="template__input singleimg" name="template" id="singleimg" data-type="template-3"> <label for="singleimg" class="template__block"><span class="top"></span> <span class="bottom counter"></span> <span class="template__block-text">Одна картинка на слайд</span></label></li>
       </ul>
       <div class="tabs pictures-tabs">
         <ul class="tabs__nav">
@@ -54,18 +48,18 @@
           <div class="tabs__panel" data-tab-name="photos">
             <ul class="pictures photoblock">
               <li class="pictures__block" data-id="123" data-type="photo"><img class="pictures__img" src="images/mosaic (1).png" alt="1"> <span class="picture__control"></span></li>
-              <li class="pictures__block" data-id="124" data-type="photo"><img class="pictures__img" src="images/mosaic (1).png" alt="1"> <span class="picture__control"></span></li>
-              <li class="pictures__block" data-id="125" data-type="photo"><img class="pictures__img" src="images/mosaic (1).png" alt="1"> <span class="picture__control"></span></li>
-              <li class="pictures__block" data-id="126" data-type="photo"><img class="pictures__img" src="images/mosaic (1).png" alt="1"> <span class="picture__control"></span></li>
-              <li class="pictures__block" data-id="127" data-type="photo"><img class="pictures__img" src="images/mosaic (1).png" alt="1"> <span class="picture__control"></span></li>
-              <li class="pictures__block" data-id="128" data-type="photo"><img class="pictures__img" src="images/mosaic (1).png" alt="1"> <span class="picture__control"></span></li>
+              <li class="pictures__block" data-id="124" data-type="photo"><img class="pictures__img" loading="lazy" src="images/mosaic (1).png" alt="1"> <span class="picture__control"></span></li>
+              <li class="pictures__block" data-id="125" data-type="photo"><img class="pictures__img" loading="lazy" src="images/mosaic (1).png" alt="1"> <span class="picture__control"></span></li>
+              <li class="pictures__block" data-id="126" data-type="photo"><img class="pictures__img" loading="lazy" src="images/mosaic (1).png" alt="1"> <span class="picture__control"></span></li>
+              <li class="pictures__block" data-id="127" data-type="photo"><img class="pictures__img" loading="lazy" src="images/mosaic (1).png" alt="1"> <span class="picture__control"></span></li>
+              <li class="pictures__block" data-id="128" data-type="photo"><img class="pictures__img" loading="lazy" src="images/mosaic (1).png" alt="1"> <span class="picture__control"></span></li>
             </ul>
           </div>
           <div class="tabs__panel" data-tab-name="renders">
             <ul class="pictures renderblock">
-              <li class="pictures__block" data-id="127" data-type="render"><img class="pictures__img" src="images/mosaic (2).png" alt="1"> <span class="picture__control"></span></li>
-              <li class="pictures__block" data-id="125" data-type="render"><img class="pictures__img" src="images/mosaic (2).png" alt="1"> <span class="picture__control"></span></li>
-              <li class="pictures__block" data-id="126" data-type="render"><img class="pictures__img" src="images/mosaic (2).png" alt="1"> <span class="picture__control"></span></li>
+              <li class="pictures__block" data-id="127" data-type="render"><img class="pictures__img" loading="lazy" src="images/mosaic (2).png" alt="1"> <span class="picture__control"></span></li>
+              <li class="pictures__block" data-id="125" data-type="render"><img class="pictures__img" loading="lazy" src="images/mosaic (2).png" alt="1"> <span class="picture__control"></span></li>
+              <li class="pictures__block" data-id="126" data-type="render"><img class="pictures__img" loading="lazy" src="images/mosaic (2).png" alt="1"> <span class="picture__control"></span></li>
             </ul>
           </div>
         </div>

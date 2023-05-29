@@ -54,9 +54,12 @@
         </a>
       </div>
 
-      <form class="navigation__print-form " target="_blank" action="/project/2/pdf/generate/">
+      <form class="navigation__print-form " 
+            target="_blank" 
+            action="/project/2/pdf/generate/"
+            method="post">
         <fieldset class="navigation__print-query"></fieldset>
-        <button type="submit" href="#" class="navigation__print-button ">Создать PDF</button>
+        <button type="submit" class="navigation__print-button">Создать PDF</button>
       </form>
     </nav>
 
@@ -71,7 +74,7 @@
               <span class="left-bottom counter "></span>
               <span class="right-top counter"></span>
               <span class="right-bottom"></span>
-              <p>Простой шаблон</p>
+              <span class="template__block-text">Простой шаблон</span>
             </label>
           </li>
           <li class="template">            
@@ -86,7 +89,7 @@
                 <span class="arrow"></span>
               </span>
               <span class="right"></span>
-              <p>Шаблон для Стройкомплекса</p>
+              <span class="template__block-text">Шаблон для Стройкомплекса</span>
             </label>
         
           </li>
@@ -95,7 +98,7 @@
             <label for="singleimg" class="template__block">
               <span class="top"></span>
               <span class="bottom counter"></span>
-              <p>Одна картинка на слайд</p>
+              <span class="template__block-text">Одна картинка на слайд</span>
             </label>
           </li>
        </ul> 
@@ -124,27 +127,27 @@
                 </li>
 
                 <li class="pictures__block" data-id="124" data-type="photo">
-                  <img class="pictures__img" src="<%=require('../images/mosaic (1).png')%>" alt="1">
+                  <img class="pictures__img" loading="lazy" src="<%=require('../images/mosaic (1).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
 
                 <li class="pictures__block" data-id="125" data-type="photo">
-                  <img class="pictures__img" src="<%=require('../images/mosaic (1).png')%>" alt="1">
+                  <img class="pictures__img" loading="lazy" src="<%=require('../images/mosaic (1).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
 
                 <li class="pictures__block" data-id="126" data-type="photo">
-                  <img class="pictures__img" src="<%=require('../images/mosaic (1).png')%>" alt="1">
+                  <img class="pictures__img" loading="lazy" src="<%=require('../images/mosaic (1).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
 
                 <li class="pictures__block" data-id="127" data-type="photo">
-                  <img class="pictures__img" src="<%=require('../images/mosaic (1).png')%>" alt="1">
+                  <img class="pictures__img" loading="lazy" src="<%=require('../images/mosaic (1).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
 
                 <li class="pictures__block" data-id="128" data-type="photo">
-                  <img class="pictures__img" src="<%=require('../images/mosaic (1).png')%>" alt="1">
+                  <img class="pictures__img" loading="lazy" src="<%=require('../images/mosaic (1).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
               </ul>
@@ -153,20 +156,19 @@
           <div class="tabs__panel" data-tab-name="renders">
               <ul class="pictures renderblock">
                 <li class="pictures__block" data-id="127" data-type="render">
-                  <img class="pictures__img" src="<%=require('../images/mosaic (2).png')%>" alt="1">
+                  <img class="pictures__img" loading="lazy" src="<%=require('../images/mosaic (2).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
 
                 <li class="pictures__block" data-id="125" data-type="render">
-                  <img class="pictures__img" src="<%=require('../images/mosaic (2).png')%>" alt="1">
+                  <img class="pictures__img" loading="lazy" src="<%=require('../images/mosaic (2).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
 
                 <li class="pictures__block" data-id="126" data-type="render">
-                  <img class="pictures__img" src="<%=require('../images/mosaic (2).png')%>" alt="1">
+                  <img class="pictures__img" loading="lazy" src="<%=require('../images/mosaic (2).png')%>" alt="1">
                   <span class="picture__control"></span>
                 </li>
-
               </ul>
           </div> 
         </div>

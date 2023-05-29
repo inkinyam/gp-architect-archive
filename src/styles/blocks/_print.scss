@@ -25,6 +25,11 @@
 
     @media screen and (max-width: 1170px) {
       grid-template-columns: repeat(2, 330px);
+      justify-content: flex-start;
+     }
+
+     @media screen and (max-width: 800px) {
+      grid-template-columns: repeat(1, 330px);
       justify-content: center;
      }
     
@@ -48,11 +53,7 @@
   input[type='radio']:checked ~  .template__block{
     color: #C7E2FF;
     background-color: #E8F1FC;
-    p {
-      @include transition;
-      color: $primary-color-onclick;
-    }
-
+   
     span {
       &.counter {
         &.active {
@@ -75,12 +76,14 @@
     padding: 20px;
     position: relative;
 
-    p {
+    .template__block-text {
       position: absolute;
       bottom: -30px;
       color: $dark-color-default;
       width: 100%;
       text-align: center;
+      height: fit-content !important;
+      background-color: transparent !important;
     }
 
     span {

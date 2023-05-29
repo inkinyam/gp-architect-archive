@@ -571,16 +571,6 @@ if (passwordField) {
     }
 }
 
-// страница печати пдф
-const printButton = document.querySelector('.navigation__open-variants');
-if (printButton) {
-  let printVariants = document.querySelector('.navigation__nav-print-variants');
-
-  printButton.addEventListener('click', () => {
-    printButton.classList.toggle('active');
-    printVariants.classList.toggle('active');
-  })
-}
 
 import PrintPageToPDF from './print';
 let printBlock = document.querySelector('.print');
