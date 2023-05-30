@@ -2,35 +2,31 @@ import Tabs from "./LinkedTabs";
 
 class PrintPageToPDF {
   constructor (selector) {
-    this.block = document.querySelector(selector);
-    this.tabs = this.block.querySelector('.pictures-tabs');
-    this.templates = Array.from(this.block.querySelectorAll('.template__input'));
-
-    this.photos = Array.from(this.block.querySelectorAll('.pictures__block'));
-    
-    this.form = document.querySelector('.navigation__print-form');
-    this.printQuery = this.form.querySelector('.navigation__print-query');
-
-    this.pictureCounter = 0;
+    this.block       = document.querySelector(selector);
+    this.tabs        = this.block.querySelector('.pictures-tabs');
+    this.templates   = Array.from(this.block.querySelectorAll('.template__input'));
+    this.photos      = Array.from(this.block.querySelectorAll('.pictures__block'));
+    this.form        = document.querySelector('.navigation__print-form');
+    this.printQuery  = this.form.querySelector('.navigation__print-query');
+    this.buttonSelectAll = this.tabs.querySelector('.tabs__select-all');
     this.selectedImg = [];
   }
 
   // открытие табов, если выделен один из темплейтов
-    _addEventListenerToTemplates () {
-      this.templates.forEach(item => {
-        item.addEventListener('change', e => {
-          e.preventDefault();
-          if (item.checked === true) {
-            this.tabs.classList.add('active');
-            this.selectedTemplate = item;
+  _addEventListenerToTemplates () {
+    this.templates.forEach(item => {
+      item.addEventListener('change', e => {
+        e.preventDefault();
+        if (item.checked === true) {
+          this.tabs.classList.add('active');
+          this.selectedTemplate = item;
 
-            this._fillTemplates();
-          }
-        })
+          this._fillTemplates();
+        }
       })
-    }
+    })
+  }
 
-  
   // ивенты на клик фотки
   _addListenersToPictures (arr) {
     arr.forEach(item => {
@@ -64,6 +60,37 @@ class PrintPageToPDF {
     })
   }
 
+  _addEventListenerToButton () {
+    this.buttonSelectAll.addEventListener('click', ()=> {
+      //если все фотки НЕ выделены
+      if ( !this.buttonSelectAll.classList.contains('selected')) {
+        this.selectedImg = [];
+        this.photos.forEach(item => {
+          item.classList.add('active');
+          this.selectedImg.push({
+            id: item.getAttribute('data-id'),
+            type: item.getAttribute('data-type'),
+            element: item
+          })
+        })
+        this.buttonSelectAll.textContent = 'Очистить все';
+        this.buttonSelectAll.classList.add('selected');
+ 
+      } else {
+        this.photos.forEach(item => {
+          item.classList.remove('active');
+          let counter = item.querySelector('.picture__control');
+          counter.textContent = '';
+          this.selectedImg = [];
+        })
+        this.buttonSelectAll.textContent = 'Выделить все';
+        this.buttonSelectAll.classList.remove('selected');
+      }
+      this._countPictures();
+      this._fillTemplates();
+    })
+  }
+
   // вписываем в кружочки порядковый номер фотки
   _countPictures () {
     if (this.selectedImg.length != 0) {
@@ -71,7 +98,6 @@ class PrintPageToPDF {
     } else {
       this.form.classList.remove('active');
     }
-
     this.selectedImg.forEach((item,indx) => {
       let counter = item.element.querySelector('.picture__control');
       counter.textContent = indx+1;
@@ -142,15 +168,7 @@ class PrintPageToPDF {
     }
   }
 
-  counter (bigArr, smalArr) {
-    let roundCount = 0;
-    if (bigArr.length - smalArr.length > 0) {
-      roundCount ++;
-      this.counter;
-    }
-    return roundCount;
-  }
-
+  // сабмит формы, который создает все нужные для бэкэнда инпуты с данными
   handleSubmitForm () {
     this.printQuery.textContent='';
     let input   = document.createElement('input');
@@ -174,12 +192,13 @@ class PrintPageToPDF {
       this.printQuery.append(inputId);
     })
   }
-
-
+  
+  // инициализация формы
   init (){
     this._addEventListenerToTemplates();
     new Tabs('.pictures-tabs').init();
     this._addListenersToPictures(this.photos);
+    this._addEventListenerToButton();
 
     this.form.addEventListener('submit', ()=>{ 
       this.handleSubmitForm();

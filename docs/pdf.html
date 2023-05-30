@@ -40,10 +40,12 @@
         <li class="template"><input type="radio" class="template__input singleimg" name="template" id="singleimg" data-type="template-3"> <label for="singleimg" class="template__block"><span class="top"></span> <span class="bottom counter"></span> <span class="template__block-text">Одна картинка на слайд</span></label></li>
       </ul>
       <div class="tabs pictures-tabs">
-        <ul class="tabs__nav">
-          <li class="tabs__nav-item"><a class="tabs__nav-btn" type="button" href="#photos">Фото</a></li>
-          <li class="tabs__nav-item"><a class="tabs__nav-btn" type="button" href="#renders">Рендеры</a></li>
-        </ul>
+        <div class="tabs__header">
+          <ul class="tabs__nav">
+            <li class="tabs__nav-item"><a class="tabs__nav-btn" type="button" href="#photos">Фото</a></li>
+            <li class="tabs__nav-item"><a class="tabs__nav-btn" type="button" href="#renders">Рендеры</a></li>
+          </ul><button class="tabs__select-all">Выделить все</button>
+        </div>
         <div class="tabs__content">
           <div class="tabs__panel" data-tab-name="photos">
             <ul class="pictures photoblock">

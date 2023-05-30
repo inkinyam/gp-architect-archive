@@ -13,8 +13,8 @@ import Api from './api.js';                     // работа с апи
 import initSubmenu from './submenu';            // меню на стр.одного проекта
 import createNewLeaflet from './leaflet';       // работа карты
 import Section from './section';
-import MosaicCard from './mosaicCard';
-
+import MosaicCard from './mosaicCard'; 
+import PrintPageToPDF from './print';            // работа страницы печати проекта
 //иконки для карты
 import zoomIn from '../images/zoom-in-icon.svg';
 import zoomOut from '../images/zoom-out-icon.svg';
@@ -48,12 +48,11 @@ if (burgerButton) {
   })
 }
 
-// переключение табов на главной странице
+// табы на главной странице
 let presentTab = document.querySelector('.representation-tabs');
 if (presentTab) {
   new Tabs('.representation-tabs').init();
 }
-
 
 // слайдер на стр.проекта
 const sliderBlock = document.getElementById("main-slider");
@@ -76,7 +75,7 @@ if (sliderBlock) {
   new Carousel(sliderBlock, options, { Autoplay });
 }
 
-
+// "показать еще" на стр. проекта
 const showmoreButton = document.querySelector('.lead__showmore');
 if (showmoreButton) {
   let showMoreBlock = document.querySelector('.lead__full');
@@ -104,7 +103,7 @@ if (navBar) {
   initSubmenu('.navigation');
 }
 
-// подключение фансибокс к чему-угодно 
+// фансибокс, инициализация на нужный дататайп
 Fancybox.bind('[data-fancybox]', {
   Images: {
     zoom: true,
@@ -153,9 +152,10 @@ if (window.innerHeight > 950) {
 let tabletContainer = document.querySelector('.aa-tablet');
 if (tabletContainer) {
   Promise.all([api.getAllProjects(), api.getTags()])
-  .then(([projectData, tagsData])=> {
-    initTable(projectData, tagsData);   // отрисовываем таблицу        
-  })
+         .then(([projectData, tagsData])=> {
+            // отрисовываем таблицу   
+            initTable(projectData, tagsData);       
+          })
 
   const initTable = (projectData, tagsData) => {
     const mediaQuerySmallSize = window.matchMedia('(max-width: 1240px)'); // проверяем мобилка или десктоп
@@ -281,7 +281,7 @@ if (tabletContainer) {
           checkbox: true,
           align: 'center',
           valign: 'middle',
-          width: '3.5',
+          width: '2',
           widthUnit: '%',
           searchable: true,
           align:'left',
@@ -292,9 +292,9 @@ if (tabletContainer) {
           title: 'ID',
           searchable: true,
           sortable: true,
-          width: '3.5',
+          width: '2',
           widthUnit: '%',
-          align:'left',
+          align:'center',
           valign: 'middle',
           filterControl:'input'
         },
@@ -303,7 +303,7 @@ if (tabletContainer) {
           title: 'Рейтинг',
           searchable: true,
           sortable: true,
-          width: '5.5',
+          width: '2.5',
           widthUnit: '%',
           align:'center',
           valign: 'middle',
@@ -549,7 +549,6 @@ if (filterBlock){
   }
 }
 
-
 // переключение глазика на форме
 let passwordField= document.querySelector('.form__field_password');
 if (passwordField) {
@@ -571,8 +570,9 @@ if (passwordField) {
     }
 }
 
+// работа формы печати на странице печати проекта 
+// (выбор фото, заполнение темплейта, сбор данных для отправки на бэк)
 
-import PrintPageToPDF from './print';
 let printBlock = document.querySelector('.print');
 if (printBlock) {
   let printer = new PrintPageToPDF('.print')

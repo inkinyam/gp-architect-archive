@@ -132,5 +132,34 @@
   .tabs__nav {
     border-bottom: 1px solid #a7a6b5;
     margin-bottom: 30px;
+    width: 100%;
+  }
+}
+
+.tabs__header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+
+.tabs__select-all {
+  @include silly-link;
+  @include circe-lowercase;
+  @include transition;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  z-index: 2;
+  transform: translateY(2px);
+  height: 41px;
+  width: 140px;
+  margin-left: 10px;
+
+  &:hover {
+    color: $primary-color-hovered;
+    background-color: #E8F1FC;
   }
 }
