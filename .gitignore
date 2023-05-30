@@ -1,3 +1,5 @@
 .vscode
 .sass-cache
 node_modules
+dataProject.json
+dataGeoJSON.json
