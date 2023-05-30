@@ -14,7 +14,7 @@ export default class Api {
 
 //метод, который реализует получение данных по всем проектам из апи
   getAllProjects () {
-    return fetch (`${this.baseUrl}/project/projects/`, {
+    return fetch (`${this.baseUrl}/api/v1/project/projects/`, {
       headers: this.headers
     })
     .then (res => {return this._checkRes(res)})
@@ -22,7 +22,7 @@ export default class Api {
   
   //метод, который реализует получение полного json
   getGeoJson() {
-    return fetch (`${this.baseUrl}/project/geo-json/`, {
+    return fetch (`${this.baseUrl}/api/v1/project/geo-json/`, {
       headers: this.headers
     })
     .then (res => {return this._checkRes(res)})
@@ -30,10 +30,9 @@ export default class Api {
 
   // метод, реализующий получения полного списка тэгов с АПИ
   getTags () {
-    return fetch (`${this.baseUrl}/project/tags/`, {
+    return fetch (`${this.baseUrl}/api/v1/project/tags/`, {
       headers: this.headers
     })
     .then (res => {return this._checkRes(res)})
   }
-
 }

@@ -22,6 +22,7 @@ export default class MosaicCard {
     } else {
       cardImage.src   = "https://www.vanwalraven.com/image/media/products/notfound@960w.png?v=1649171577";
       cardImage.alt   = "фото скоро появится";
+      cardImage.classList.add('empty');
     }
     this._cardElement.setAttribute('href', this._link);
     this._cardElement.querySelector('.mosaic__card-title').textContent = this._name;

@@ -103,22 +103,26 @@ class Filter {
     return str;
   }
 
-  _initDatePicker() {
-    let select = this.filterBlock.querySelector('.block_date');
+
+  _initDatePicker(blockSelector, fieldName) {
+    let select = this.filterBlock.querySelector(blockSelector);
     let selectSingle_title = select.querySelector('.filters__select-title');
 
     let dateInput = select.querySelector('.filter__datapicker');
 
     dateInput.addEventListener('change', ()=> {
      let date = this._dateFormatter(dateInput.value);
-      let code = 'commissioning_date';
+     let code = fieldName;
+
+     if (date.length === 10) {
       if (this._searchQuery.hasOwnProperty(code)) {
         if (!this._searchQuery[code].includes(date)) {
           this._searchQuery[code].push(date);
         }
       } else {
         this._searchQuery[code] = [date];
-        }
+      }
+     }
     })
   
     selectSingle_title.addEventListener('click', () => {
@@ -520,7 +524,8 @@ class Filter {
   initFilter () {
     this._getSelectItems();
     this._fillSelect();
-    this._initDatePicker();
+    this._initDatePicker('.block_date', 'commissioning_date');
+    this._initDatePicker('.block_agr-date', 'agr_date');
     this._addListenersToSelect();
     this._addEventListenerToInput();
 

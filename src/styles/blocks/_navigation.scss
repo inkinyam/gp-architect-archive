@@ -116,7 +116,7 @@
   .navigation__nav-print {
     position: relative;
 
-    .navigation__open-variants {
+    .navigation__print {
       @include silly-link;
       @include button;
       @include transition;
@@ -136,12 +136,6 @@
       min-height: 40px;
       box-sizing: border-box;
       padding: 10px 15px;
-
-      img {
-        width: 15px;
-        height: 17px;
-        margin-left: 10px;
-      }
 
       &:hover {
         background-color: $primary-color-onclick;
@@ -206,6 +200,32 @@
       margin-left: auto;
       min-width: auto;
      }
+
+
+  }
+
+  .navigation__print-form {
+    margin-left: auto;   
+    display: none;
+    
+    &.active {
+      display: flex;
+    }
+
+    .navigation__print-query {
+      display: none;
+    }
+  }
+
+  .navigation__print-button {
+    @include button;
+    @include transition;
+
+    text-transform: unset;
+
+    &:hover {
+      background-color: $primary-color-onclick;
+    }
 
 
   }

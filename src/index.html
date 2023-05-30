@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="48x48" href="./images/favicons/favicon-48x48.png">
@@ -8,10 +12,6 @@
   <link rel="apple-touch-icon" type="image/png" sizes="167x167" href="./images/favicons/favicon-167x167.png">
   <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="./images/favicons/favicon-180x180.png">
   <link rel="icon" type="image/png" sizes="192x192" href="./images/favicons/favicon-192x192.png">
-  
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Ключевые проекты Москвы</title>
   <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
@@ -43,8 +43,9 @@
     <div class="header__sidepanel">
       <div class="header__sidepanel-inner">
         <a href="index.html" class="header__sidepanel-link">Главная</a>
-        <a href="./login.html" class="header__sidepanel-link">Выйти</a>
         <a href="./project.html" class="header__sidepanel-link">Сраница проекта</a>
+        <a href="./pdf.html" class="header__sidepanel-link">Печать проекта</a>
+        <a href="./login.html" class="header__sidepanel-link">Выйти</a>
       </div>
     </div>
   </header>
@@ -166,9 +167,12 @@
                     </div>
                   </div>
 
-                  <div class="filters__select block_agr_date" data-state="">
+                  <div class="filters__select block_agr-date" data-state="">
                     <div class="filters__select-title" data-default="Дата АГР">Дата АГР</div>
-                    <div class="filters__select-content">
+                    <div class="filters__select-content" >
+                      <div class="filter__select-item" >
+                        <input class="filter__datapicker" placeholder="Укажите дату" type="date" id="date-block" >
+                      </div>
                     </div>
                   </div>
                 </div>

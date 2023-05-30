@@ -31,7 +31,7 @@
     max-height: 275px;
     min-height: 275px;
     max-width: 100%;
- 
+    
     object-fit: cover;
     object-position: center;
     @media screen and (max-width: $tablet) {
@@ -44,6 +44,10 @@
       max-height: 200px;
     }
 
+    &.empty {
+      border: 0.5px solid #0000000d;
+ 
+    }
   }
 
   .mosaic__card-title {
